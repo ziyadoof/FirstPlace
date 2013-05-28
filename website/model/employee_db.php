@@ -1,22 +1,16 @@
 <?php
-class StudentDB {
-    public static function getStudents() {
+class EmployeeDB {
+    public static function getEmployees() {
        //TODO
-        return $students;
+        return $employees;
     }
     
-     public static function getStudentByClass($class_id) {
-         //TODO
-        return $students;
-    }
-    
-    
-    public static function getProduct($s_id) {
+    public static function getEmployee($s_id) {
         //TODO
-        return $student;
+        return $employee;
     }
 
-    public static function addStudent($student) {
+    public static function addEmployee($employee) {
        //TODO
         return $row_count;
     }

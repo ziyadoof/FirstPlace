@@ -11,7 +11,7 @@ class StudentDB {
     }
     
     
-    public static function getProduct($s_id) {
+    public static function getStudent($s_id) {
         //TODO
         return $student;
     }
