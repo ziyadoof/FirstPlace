@@ -45,16 +45,12 @@ class Student {
         $this->lname = $value;
     }
     
-        public function getFirstName() {
+    public function getFirstName() {
         return $this->fname;
     }
 
     public function setFirstName($value) {
         $this->fname = $value;
-    }
-
-    public function getPrice() {
-        return $this->price;
     }
 
     public function getPhoneNum() {

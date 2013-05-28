@@ -1,31 +1,23 @@
 <?php
 class Employee {
-    private $emp_id, $fname, $lname, $grade, $phoneNum, $address, 
-            $email, $start_year;
+    private $emp_id, $fname, $lname, $phoneNum, $address, $email, $usname,
+            $passwd, $room;
 
-    public function __construct($fname, $lname, $phoneNum, 
-            $address) {
+    public function __construct($fname, $lname, $email, $usname, $passwd, 
+            $room) {
         $this->fname = $fname;
         $this->lname = $lname;
-        $this->phoneNum = $phoneNum;
-        $this->address = $address;
+        $this->email = $email;
+        $this->usname = usname;
+        $this->passwd = passwd;
+        $this->room = room;        
         
-        $this->start_year = date("M Y");
-        
-        $this->grade = "N/A";
-        $this->email = "N/A";       
+        $this->phoneNum = "N/A";
+        $this->address = "N/A";
     }
 
     public function getID() {
         return $this->emp_id;
-    }
-
-    public function getGrade() {
-        return $this->grade;
-    }
-
-    public function setGrade($value) {
-        $this->grade = $value;
     }
 
     public function getLastName() {
@@ -36,16 +28,12 @@ class Employee {
         $this->lname = $value;
     }
     
-        public function getFirstName() {
+    public function getFirstName() {
         return $this->fname;
     }
 
     public function setFirstName($value) {
         $this->fname = $value;
-    }
-
-    public function getPrice() {
-        return $this->price;
     }
 
     public function getPhoneNum() {
@@ -72,10 +60,24 @@ class Employee {
         $this->email = $value;
     }
 
-    public function getStart_Year() {
-        
-        return $start_year;
+    public function getUserName() {   
+        return $usname;
+    }
+    
+    public function getPassword() {   
+        return $passwd;
+    }
+    
+    public function setPassword($value) {
+        $this->passwd = $value;
     }
 
+        public function getRoom() {   
+        return $room;
+    }
+    
+    public function setRoom($value) {
+        $this->room = $value;
+    }
 }
 ?>
