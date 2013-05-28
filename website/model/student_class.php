@@ -1,7 +1,7 @@
 <?php
 class Student {
     private $s_id, $case_work, $fname, $lname, $grade, $phoneNum, $address, 
-            $email,$start_year ;
+            $email, $start_year;
 
     public function __construct($case_work, $fname, $lname, $phoneNum, 
             $address) {
