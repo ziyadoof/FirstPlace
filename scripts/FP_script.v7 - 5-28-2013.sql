@@ -12,7 +12,7 @@ USE `FirstPlace` ;
 DROP TABLE IF EXISTS `FirstPlace`.`Employee` ;
 
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Employee` (
-  `emp_id` INT NOT NULL ,
+  `emp_id` INT NOT NULL AUTO_INCREMENT ,
   `FirstName` VARCHAR(45) NOT NULL ,
   `LastName` VARCHAR(45) NOT NULL ,
   `PhoneNumber` INT NOT NULL ,
@@ -50,8 +50,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `FirstPlace`.`Student` ;
 
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Student` (
-  `s_id` INT NOT NULL ,
-  `Case_Role_emp_id` INT NULL ,
+  `s_id` INT NOT NULL AUTO_INCREMENT ,
+  `Case_Role_CaseWorker_ID` INT NULL ,
   `FirstName` VARCHAR(45) NOT NULL ,
   `LastName` VARCHAR(45) NOT NULL ,
   `Grade` VARCHAR(45) NULL ,
@@ -59,7 +59,6 @@ CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Student` (
   `Address` VARCHAR(45) NOT NULL ,
   `email_address` VARCHAR(45) NULL ,
   `YearStarted` VARCHAR(45) NOT NULL ,
-  `Case_Role_CaseWorker_ID` INT NULL ,
   PRIMARY KEY (`s_id`) ,
   INDEX `fk_Student_Case_Role1_idx` (`Case_Role_CaseWorker_ID` ASC) ,
   CONSTRAINT `fk_Student_Case_Role1`
@@ -76,7 +75,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `FirstPlace`.`SchoolYear` ;
 
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`SchoolYear` (
-  `sy_id` INT NOT NULL ,
+  `sy_id` INT NOT NULL AUTO_INCREMENT ,
   `StartDate` VARCHAR(45) NULL ,
   `EndDate` VARCHAR(45) NULL ,
   `Name` VARCHAR(45) NULL ,
@@ -90,7 +89,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `FirstPlace`.`Room` ;
 
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Room` (
-  `Room_ID` INT NOT NULL ,
+  `Room_ID` INT NOT NULL AUTO_INCREMENT ,
   `Location` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`Room_ID`) )
 ENGINE = InnoDB;
@@ -102,8 +101,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `FirstPlace`.`StdClass` ;
 
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`StdClass` (
+  `stdC_id` INT NOT NULL AUTO_INCREMENT ,
   `ClassName` VARCHAR(10) NOT NULL ,
-  `stdC_id` INT NOT NULL ,
   PRIMARY KEY (`stdC_id`) )
 ENGINE = InnoDB;
 
@@ -114,13 +113,13 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `FirstPlace`.`Class` ;
 
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Class` (
-  `c_id` INT NOT NULL ,
+  `c_id` INT NOT NULL AUTO_INCREMENT ,
   `SchoolYear_sy_id` INT NOT NULL ,
   `Room_Room_ID` INT NOT NULL ,
+  `stdC_id` INT NOT NULL ,
   `Name` VARCHAR(45) NOT NULL ,
   `StartTime` VARCHAR(45) NULL ,
   `EndTime` VARCHAR(45) NULL ,
-  `stdC_id` INT NOT NULL ,
   PRIMARY KEY (`c_id`) ,
   INDEX `fk_Class_SchoolYear1_idx` (`SchoolYear_sy_id` ASC) ,
   INDEX `fk_Class_Room1_idx` (`Room_Room_ID` ASC) ,
@@ -149,8 +148,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `FirstPlace`.`Attendance_type` ;
 
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Attendance_type` (
+  `att_Ty_ID` INT NOT NULL AUTO_INCREMENT ,
   `att_Ty_Name` VARCHAR(50) NOT NULL ,
-  `att_Ty_ID` INT NOT NULL ,
   PRIMARY KEY (`att_Ty_ID`) )
 ENGINE = InnoDB;
 
@@ -163,9 +162,9 @@ DROP TABLE IF EXISTS `FirstPlace`.`Attendance` ;
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Attendance` (
   `Student_s_id` INT NOT NULL ,
   `Class_ID` INT NOT NULL ,
+  `att_Ty_ID` INT NOT NULL ,
   `Att_Date` DATE NOT NULL ,
   `Comment` VARCHAR(500) NULL ,
-  `att_Ty_ID` INT NOT NULL ,
   INDEX `fk_Attendance_Student1_idx` (`Student_s_id` ASC) ,
   INDEX `c_id_idx` (`Class_ID` ASC) ,
   INDEX `att_Ty_ID_idx` (`att_Ty_ID` ASC) ,
@@ -236,7 +235,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `FirstPlace`.`Holiday` ;
 
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Holiday` (
-  `holi_id` INT NOT NULL ,
+  `holi_id` INT NOT NULL AUTO_INCREMENT ,
   `SchoolYear_sy_id` INT NOT NULL ,
   `Start Date` VARCHAR(45) NULL ,
   `EndDate` VARCHAR(45) NULL ,
@@ -257,7 +256,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `FirstPlace`.`Specialty` ;
 
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Specialty` (
-  `S_ID` INT NOT NULL ,
+  `S_ID` INT NOT NULL AUTO_INCREMENT ,
   `Type` VARCHAR(45) NOT NULL ,
   `Name` VARCHAR(45) NOT NULL ,
   `Start_Date` DATE NOT NULL ,
@@ -296,10 +295,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `FirstPlace`.`Notification` ;
 
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Notification` (
-  `Notf_ID` INT NOT NULL ,
+  `Notf_ID` INT NOT NULL AUTO_INCREMENT ,
   `Case_Role_CaseWorker_ID` INT NOT NULL ,
-  `Notf_Date` DATE NOT NULL ,
   `Student_s_id` INT NOT NULL ,
+  `Notf_Date` DATE NOT NULL ,
   PRIMARY KEY (`Notf_ID`) ,
   INDEX `fk_Notification_Case_Role1_idx` (`Case_Role_CaseWorker_ID` ASC) ,
   INDEX `att_id_idx` (`Student_s_id` ASC) ,
@@ -340,10 +339,9 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `FirstPlace`.`Teacher_Role_has_Class` ;
 
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Teacher_Role_has_Class` (
-  `Teach_Has_Class_ID` INT NOT NULL ,
   `Teacher_Role_Tech_ID` INT NOT NULL ,
   `Class_c_id` INT NOT NULL ,
-  PRIMARY KEY (`Teach_Has_Class_ID`) ,
+  PRIMARY KEY (`Teacher_Role_Tech_ID`, `Class_c_id`) ,
   INDEX `fk_Teacher_Role_has_Class_Class1_idx` (`Class_c_id` ASC) ,
   INDEX `fk_Teacher_Role_has_Class_Teacher_Role1_idx` (`Teacher_Role_Tech_ID` ASC) ,
   CONSTRAINT `fk_Teacher_Role_has_Class_Teacher_Role1`
@@ -365,7 +363,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `FirstPlace`.`Log_Type` ;
 
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Log_Type` (
-  `log_ty_ID` INT NOT NULL ,
+  `log_ty_ID` INT NOT NULL AUTO_INCREMENT ,
   `log_ty_name` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`log_ty_ID`) )
 ENGINE = InnoDB;
@@ -377,7 +375,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `FirstPlace`.`Logs` ;
 
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Logs` (
-  `log_ID` INT NOT NULL ,
+  `log_ID` INT NOT NULL AUTO_INCREMENT ,
   `log_Date` DATETIME NOT NULL ,
   `emp_id` INT NOT NULL ,
   `log_type_id` INT NOT NULL ,
@@ -403,6 +401,7 @@ CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Logs` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+USE `FirstPlace` ;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
