@@ -1,5 +1,7 @@
 <?php
 require('/model/mysql_connect.php');
+require('/model/employee_class.php');
+require('/model/employee_db.php');
 // require('/model/category.php');
 // require('/model/category_db.php');
 // require('/model/product.php');
@@ -36,16 +38,12 @@ if ($action == 'add_product') {
 	
 
     // Validate the inputs
-    //if (empty($code) || empty($name) || empty($price)) {
-    //    $error = "Invalid product data. Check all fields and try again.";
-    //    include('../errors/error.php');
-    //} else {
-    //    $current_category = CategoryDB::getCategory($category_id);
-    //    $product = new Product($current_category, $code, $name, $price);
-    //    ProductDB::addProduct($product);
-
-        // Display the Product List page for the current category
-    //    header("Location: .?category_id=$category_id");
-    //}
+    if (empty($firstname) || empty($lastname) || empty($email_address)|| empty($classroom)|| empty($username) || empty($password)) {
+        $error = "Invalid product data. Check all fields and try again.";
+        include('../errors/error.php');
+    } else {
+		$employeeRow = new Employee($firstname, $lastname, $email_address, $username, $password, $classroom);
+        EmployeeDB::addEmployee($employeeRow);
+    }
 }
 ?>
