@@ -52,7 +52,7 @@ class Employee {
     }
     
     public function getEmail() {
-        return $email;
+        return $this->email;
     }
 
     public function setEmail($value) {
@@ -60,11 +60,11 @@ class Employee {
     }
 
     public function getUserName() {   
-        return $usname;
+        return $this->usname;
     }
     
     public function getPassword() {   
-        return $passwd;
+        return $this->passwd;
     }
     
     public function setPassword($value) {
@@ -72,7 +72,7 @@ class Employee {
     }
 
         public function getRoom() {   
-        return $room;
+        return $this->room;
     }
     
     public function setRoom($value) {

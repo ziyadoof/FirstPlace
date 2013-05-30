@@ -4,7 +4,7 @@
 
 	<h1>User Management</h1>
     <h2>Add Employee</h2>
-    <form action="index_student.php" method="post" class="imagetable" id="formtable">
+    <form action="index.php" method="post" class="imagetable" id="formtable">
         <input type="hidden" name="action" value="add_product" />
 
 		<table id='formtable' class='imagetable'>
