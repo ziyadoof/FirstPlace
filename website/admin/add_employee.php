@@ -1,9 +1,9 @@
-<?php include 'view/header.php'; ?>
+<?php include '../view/header.php'; ?>
 
 <div id="content">
 
 	<h1>User Management</h1>
-    <h2>Add Student</h2>
+    <h2>Add Employee</h2>
     <form action="index_student.php" method="post" class="imagetable" id="formtable">
         <input type="hidden" name="action" value="add_product" />
 
@@ -48,4 +48,4 @@
     </form>
 </div> <!-- #content --> 
 
-<?php include 'view/footer.php'; ?>
+<?php include '../view/footer.php'; ?>
