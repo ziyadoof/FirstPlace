@@ -3,7 +3,7 @@ class StdClass {
     private  $stdClass_id, $className;
 
     public function __construct($stdClass_id, $className) {
-        $this->stdClass_id = $room_id;
+        $this->stdClass_id = $stdClass_id;
 				
 		$this->className = $className;
 		
