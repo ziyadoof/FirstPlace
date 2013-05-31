@@ -1,5 +1,5 @@
 <?php
-class Class {
+class ClassFP {
     private $c_id, $schoolYear_id, $room_id, $stdC_id, $name, $start_time, $end_time;
 
     public function __construct($c_id, $schoolYear_id, $room_id, $stdC_id, $name) {
