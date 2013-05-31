@@ -50,6 +50,7 @@ else if ($action == 'add_employee')
 		} else 
 		{
 			$employeeRow = new Employee($firstname, $lastname, $email_address, $username, $password, $classroom);
+			$employeeRow->setRoom($classroom);
 			EmployeeDB::addEmployee($employeeRow);
 		}
 	}

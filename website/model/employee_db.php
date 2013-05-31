@@ -22,9 +22,9 @@ class EmployeeDB {
 		
 		$query =
 			"INSERT INTO employee
-				(FirstName, LastName, email_Address, password, username)
+				(Room_Room_ID, FirstName, LastName, email_Address, password, username)
 			VALUES
-				('$firstname', '$lastname', '$email_address', '$password', '$username')";
+				('$classroom', '$firstname', '$lastname', '$email_address', '$password', '$username')";
 
         $row_count = $db->exec($query);
         return $row_count;
