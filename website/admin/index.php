@@ -2,6 +2,8 @@
 require('../model/mysql_connect.php');
 require('../model/employee_class.php');
 require('../model/employee_db.php');
+require('../model/room_class.php');
+require('../model/room_db.php');
 
 
 if (isset($_POST['action'])) {
@@ -13,7 +15,7 @@ if (isset($_POST['action'])) {
 }
 
 if ($action == 'show_add_employee_form') {                 //--------------------------------------------
-    $categories = RoomDB::getRooms();
+    $rooms = RoomDB::getRooms();
     include('add_employee.php');
 }
 else if ($action == 'add_employee') 
