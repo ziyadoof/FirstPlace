@@ -14,6 +14,7 @@ if (isset($_POST['action'])) {
     $action = 'list_products';
 }
 
+//Get the available rooms for adding new employee.
 if ($action == 'show_add_employee_form') {                 //--------------------------------------------
     $rooms = RoomDB::getRooms();
     include('add_employee.php');

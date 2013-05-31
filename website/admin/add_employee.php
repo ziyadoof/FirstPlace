@@ -33,8 +33,8 @@
 	 			<td>
 				    <select name="classRoom_new">
 						<?php foreach ($rooms as $room) : ?>
-						<option value="<?php echo $room->getRoomName(); ?>">
-							<?php echo $room->getRoomName(); ?>
+						<option value="<?php echo $room->getRoom_id(); ?>">
+							<?php echo $room->getLocation(); ?>
 						</option>
 						<?php endforeach; ?>
 					</select>
@@ -54,6 +54,10 @@
 			</tr>
 		</table>
     </form>
+	
+	
+	
+	
 </div> <!-- #content --> 
 
 <?php include '../view/footer.php'; ?>
