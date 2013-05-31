@@ -1,16 +1,15 @@
 <?php
 class Employee {
-    private $emp_id, $fname, $lname, $phoneNum, $address, $email, $usname,
-            $passwd, $room;
+    private $emp_id, $fname, $lname, $phoneNum, $address, $email, $usname, $passwd, $room;
 
-    public function __construct($fname, $lname, $email, $usname, $passwd, 
-            $room) {
+    public function __construct($fname, $lname, $email, $usname, $passwd,$room) 
+	{
         $this->fname = $fname;
         $this->lname = $lname;
         $this->email = $email;
-        $this->usname = usname;
-        $this->passwd = passwd;
-        $this->room = room;        
+        $this->usname = $usname;
+        $this->passwd = $passwd;
+        $this->room = $room;        
         
         $this->phoneNum = "N/A";
         $this->address = "N/A";
@@ -53,7 +52,7 @@ class Employee {
     }
     
     public function getEmail() {
-        return $email;
+        return $this->email;
     }
 
     public function setEmail($value) {
@@ -61,11 +60,11 @@ class Employee {
     }
 
     public function getUserName() {   
-        return $usname;
+        return $this->usname;
     }
     
     public function getPassword() {   
-        return $passwd;
+        return $this->passwd;
     }
     
     public function setPassword($value) {
@@ -73,7 +72,7 @@ class Employee {
     }
 
         public function getRoom() {   
-        return $room;
+        return $this->room;
     }
     
     public function setRoom($value) {
