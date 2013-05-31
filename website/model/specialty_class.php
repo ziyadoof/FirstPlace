@@ -1,6 +1,6 @@
 <?php
 class Specialty {
-    private  $specialty_id, $type, $name, start_date, $end_date;
+    private  $specialty_id, $type, $name, $start_date, $end_date;
 
     public function __construct($specialty_id, $type, $name, $start_date, $end_date) {
         $this->specialty_id = $specialty_id;

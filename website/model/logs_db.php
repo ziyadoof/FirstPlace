@@ -40,7 +40,7 @@ class LogsDB {
         
     }
 	
-	ublic static function deleteLogsByDate($log_Date) {
+    public static function deleteLogsByDate($log_Date) {
          //TODO
         
     }
