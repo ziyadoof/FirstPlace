@@ -25,7 +25,7 @@
 			<ul>
 				<li><a href="#">Admin</a>
 					<ul>
-						<li><a href="/FirstPlace/website/admin/add_employee.php">Users Management</a></li>
+						<li><a href="/FirstPlace/website/admin/add_employee.php?action=show_add_employee_form">Users Management</a></li>
 						<li><a href="/FirstPlace/website/admin/add_school_year.php">School Year Management</a></li>
 						<li><a href="/FirstPlace/website/admin/view_logs.php">View Logs</a></li>
 					</ul>

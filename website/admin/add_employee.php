@@ -5,7 +5,7 @@
 	<h1>User Management</h1>
     <h2>Add Employee</h2>
     <form action="index.php" method="post" class="imagetable" id="formtable">
-        <input type="hidden" name="action" value="add_product" />
+        <input type="hidden" name="action" value="add_employee" />
 
 		<table id='formtable' class='imagetable'>
 			<tr>
@@ -30,7 +30,15 @@
 				<td><input type='tel' name='phoneNumber_new'  /></td>
 				<td><input type='text' name='address_new' /></td>
 		   		<td><input type='email' name='email_new' required /></td>
-	 			<td><input type='text' name='classRoom_new' /></td>
+	 			<td>
+				    <select name="classRoom_new">
+						<?php foreach ($rooms as $room) : ?>
+						<option value="<?php echo $room->getRoomName(); ?>">
+							<?php echo $room->getRoomName(); ?>
+						</option>
+						<?php endforeach; ?>
+					</select>
+				</td>
 				<td><input type='text' name='username_new' required /></td>
 	 			<td><input type='password' name='password_new' required /></td>
 		 		<td>
