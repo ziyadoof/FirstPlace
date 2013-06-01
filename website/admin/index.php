@@ -43,7 +43,7 @@ else if ($action == 'add_employee')
 	
 
 		// Validate the inputs
-		if (empty($firstname) || empty($lastname) || empty($email_address)|| empty($classroom)|| empty($username) || empty($password)) 
+		if (empty($firstname) || empty($lastname) || empty($email_address)|| empty($username) || empty($password)) 
 		{
 			$error = "Invalid product data. Check all fields and try again.";
 			include('../errors/error.php');
