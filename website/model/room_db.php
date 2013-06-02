@@ -29,9 +29,19 @@ class RoomDB {
     }
     
     
-    public static function addRoom($room_id) {
-		//TODO
-        
+    public static function addRoom($room) {
+		$db = Database::getDB();
+		
+		$roomName = $room->getLocation();
+		
+		$query =
+			"INSERT INTO room
+				(Location)
+			VALUES
+				('$roomName')";
+		
+		$row_count = $db->exec($query);
+        return $row_count;
     }
 	
 	public static function updateRoom($room_id) {

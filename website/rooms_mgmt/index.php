@@ -1,12 +1,7 @@
 <?php
 require('../model/mysql_connect.php');
-require('../model/employee_class.php');
-require('../model/employee_db.php');
 require('../model/room_class.php');
 require('../model/room_db.php');
-require('../model/caseRole_db.php');
-require('../model/adminRole_db.php');
-require('../model/teacherRole_db.php');
 
 
 if (isset($_POST['action'])) {
@@ -14,46 +9,48 @@ if (isset($_POST['action'])) {
 } else if (isset($_GET['action'])) {
     $action = $_GET['action'];
 } else {
-    $action = 'show_add_employee_form';
+    $action = 'show_add_room_form';
 }
 
-//Get the available rooms for adding new employee.
-if ($action == 'show_add_employee_form') {             
-    $rooms = RoomDB::getRooms();				//variable will hold all the rooms
-	$employees = EmployeeDB::getEmployees();	//variable will hold all the employees
-    include('add_employee.php');
-} else if ($action == 'add_employee') {
+//Get the available rooms then redirect to the add with list form.
+if ($action == 'show_add_room_form') {             
+    
+	$rooms = RoomDB::getRooms();				//variable will hold all the rooms
+    include('add_room.php');
+
+} else if ($action == 'add_room') {
 	
-	$firstname = $_POST['firstName_new'];
-	$lastname = $_POST['lastName_new'];
-	$phonenumber = $_POST['phoneNumber_new'];
-	$address = $_POST['address_new'];
-	$email_address = $_POST['email_new'];
-	$classroom = $_POST['classRoom_new'];
-	$username = $_POST['username_new'];
-	$password = $_POST['password_new'];
-	$roleID = $_POST['roleID_new'];
+	$rName = $_POST['roomName_new'];
+	
+	$availableRooms = RoomDB::getRooms();//variable will hold all the rooms
+	$MatchRoom = 0;
+	
+	//Check if there is a match
+	foreach ($availableRooms as $AvRoom) :
+		if ($rName == $AvRoom->getLocation()) {
+			$MatchRoom = 1;
+		}
+	endforeach;
+
 
 	// Validate the inputs
-	if (empty($firstname) || empty($lastname) || empty($email_address)|| empty($username) || empty($password)) 
+	if (empty($rName)) 
 	{
-		$error = "Invalid product data. Check all fields and try again.";
+		$error = "Invalid room data. Check all fields and try again.";
 		include('../errors/error.php');
-	} else 
-	{
+	} elseif ($MatchRoom == 1){
+		$error = "Room name already exists. Try another name.";
+		include('../errors/error.php');
+	}else {
 		//Set vlaues
-		$employeeRow = new Employee($firstname, $lastname, $email_address, $username, $password, $classroom);
-		$employeeRow->setRoom($classroom);
-		$employeeRow->setEmployeeType($roleID);
-		$employeeRow->setPhoneNum($phonenumber);
-		$employeeRow->setAddress($address);
+		$RoomRow = new Room("", $rName);
 			
 		//insert
-		EmployeeDB::addEmployee($employeeRow); //DB trigger will take care of the adding the rmployee to the approbiate role.
+		RoomDB::addRoom($RoomRow);
 	}
 		
 	//redirect hte user to the same page where he can see the employee list and refrech the add fields
-	header("Location: .?action=show_add_employee_form");
+	header("Location: .?action=show_add_room_form");
 } else if ($action == 'edit_employee') {
 	
 	$rooms = RoomDB::getRooms();
@@ -116,6 +113,5 @@ if ($action == 'show_add_employee_form') {
 	//go back to show the employee
 	header("Location: .?action=show_add_employee_form");
 }
-
 
 ?>
