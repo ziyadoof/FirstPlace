@@ -14,7 +14,7 @@
  			<tr>
  				<th>*First Name</th>
 				<th>*Last Name</th>
-				<th>Phone Number</th>
+				<th>Phone Numebr</th>
 				<th>Address</th>
 				<th>*Email</th>
 				<th>Class Room</th>
