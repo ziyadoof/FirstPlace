@@ -31,17 +31,6 @@ else if ($action == 'add_employee')
 		$password = $_POST['password_new'];
 		$roleID = $_POST['roleID_new'];
 
-		echo $firstname;
-		echo $lastname;
-		echo $phonenumber;
-		echo $address;
-		echo $email_address;
-		echo $classroom;
-		echo $username;
-		echo $password;
-		echo $roleID;
-	
-
 		// Validate the inputs
 		if (empty($firstname) || empty($lastname) || empty($email_address)|| empty($username) || empty($password)) 
 		{
@@ -59,5 +48,8 @@ else if ($action == 'add_employee')
 			//insert
 			EmployeeDB::addEmployee($employeeRow); //DB trigger will take care of the adding the rmployee to the approbiate role.
 		}
+		
+		//redirect hte user to the same page where he can see the employee list and refrech the add fields
+		header("Location: .?action=show_add_employee_form");
 	}
 ?>

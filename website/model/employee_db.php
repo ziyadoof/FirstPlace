@@ -1,12 +1,34 @@
 <?php
 class EmployeeDB {
     public static function getEmployees() {
-       //TODO
-        return $employees;
+		$db = Database::getDB();
+        
+		$query = 'select * from EmployeeListWithRoom order by LastName'; //This is a view
+		
+		//Get the results into array
+		$result = $db->query($query);
+		$employees = array();
+		foreach ($result as $row) {
+			$category = new Category($row['categoryID'],
+                                     $row['categoryName']);
+            $employee = new Employee($row['FirstName'],
+									$row['LastName'],
+									$row['email_Address'],
+									$row['username'],
+									$row['password'],
+									$row['Location']);
+			$employee->setPhoneNum($row['PhoneNumber']);
+			$employee->setAddress($row['Address']);
+			$employee->setEmployeeType($row['employeetype']);
+			
+            $employees[] = $employee;
+        }
+		
+		return $employees;
     }
     
     public static function getEmployee($s_id) {
-        //TODO
+        
         return $employee;
     }
 

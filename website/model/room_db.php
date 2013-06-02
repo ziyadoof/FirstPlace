@@ -3,6 +3,8 @@ class RoomDB {
 
     public static function getRooms() {
         $db = Database::getDB();
+		
+		//This is a view
         $query = 'SELECT * FROM viewrooms
                   ORDER BY Location';
         $result = $db->query($query);
