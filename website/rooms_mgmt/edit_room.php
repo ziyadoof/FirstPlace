@@ -2,43 +2,23 @@
 
 <div id="content">
 
-	<h1>Edit Employee Record</h1>
+	<h1>Edit Room Record</h1>
 	
     <form action="index.php" method="post" class="imagetable" id="formtable">
-        <input type="hidden" name="action" value="update_employee" />
+        <input type="hidden" name="action" value="update_room" />
 
 		<table id='formtable' class='imagetable'>
 			<tr>
-				<th colspan='8' class='tableTitle'>Employee Infomation</th>
+				<th colspan='2' class='tableTitle'>Room Infomation</th>
 			</tr>
  			<tr>
- 				<th>*First Name</th>
-				<th>*Last Name</th>
-				<th>Phone Numebr</th>
-				<th>Address</th>
-				<th>*Email</th>
-				<th>Class Room</th>
+ 				<th>* Room Name (ex. "BANN-305")</th>
 				<th>Action</th>
   			</tr>
  			<tr>
-				
- 				<td><input type='text' name='firstName_cuurent' value="<?php echo $employee->getFirstName(); ?>" required /></td>
-		 		<td><input type='text' name='lastName_cuurent' value="<?php echo $employee->getLastName(); ?>" required /></td>
-				<td><input type='text' name='phoneNumber_cuurent' value="<?php echo $employee->getPhoneNum(); ?>"  /></td>
-				<td><input type='text' name='address_cuurent' value="<?php echo $employee->getAddress(); ?>" /></td>
-		   		<td><input type='email' name='email_cuurent' value="<?php echo $employee->getEmail(); ?>" required /></td>
-	 			<td>
-				    <select name="classRoom_cuurent">
-						<option value="NotSpecified">No Room</option>
-						<?php foreach ($rooms as $room) : ?>
-						<option value="<?php echo $room->getRoom_id(); ?>" <?php if ($employee->getRoom() == $room->getLocation()) { echo "selected";}?>>
-							<?php echo $room->getLocation(); ?>
-						</option>
-						<?php endforeach; ?>
-					</select>
-				</td>
+ 				<td><input type='text' name='LocName_New' value="<?php echo $roomToBeEdited->getLocation(); ?>" required /></td>
   				<td colspan='2' id='formButtons'>
-					<input type='hidden'  name='empID_cuurent' value="<?php echo $employee->getEmployeeID(); ?>" />
+					<input type='hidden'  name='r_id_cuurent' value="<?php echo $roomToBeEdited->getRoom_id(); ?>" />
 			  		<input type='submit' value="Update" />
 					<a href='index.php'><button type='button'>Cancel</button></a>
  				</td>

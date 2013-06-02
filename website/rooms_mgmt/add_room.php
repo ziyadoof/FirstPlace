@@ -41,11 +41,6 @@
 					<input type="hidden" name="room_id" value="<?php echo $room->getRoom_id(); ?>" />
                     <input type="submit" value="Edit" />
                 </form>
-				<form class='inline' method='post' action='index.php'>
-					<input type="hidden" name="action" value="delete_room" />
-					<input type="hidden" name="room_id" value="<?php echo $room->getRoom_id(); ?>" />
-                    <input type="submit" value="Delete" />
-                </form>
 			</td>			
 		</tr>
 		<?php endforeach; ?>
