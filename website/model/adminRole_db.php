@@ -14,10 +14,18 @@ class AdminRoleDB {
        //TODO
         
     }
-	
 	public static function deleteAdminRole($admin_id) {
-       //TODO
-        
+		//TODO
+	
+	}
+	public static function deleteAdminRoleByEmpID($employee_id) {
+       
+	   $db = Database::getDB();
+	   
+	   $query = "DELETE FROM admin_role WHERE emp_id = '$employee_id' ";
+	   
+	   $row_count = $db->exec($query);
+	   return $row_count;
     }
 }
 ?>

@@ -20,5 +20,14 @@ class CaseRoleDB {
         
     }
 	
+	public static function deleteCaseWorkerByEmpID($employee_id) {
+	   $db = Database::getDB();
+	   
+	   $query = "DELETE FROM case_role WHERE Employee_emp_id = '$employee_id' ";
+	   
+	   $row_count = $db->exec($query);
+	   return $row_count;
 	}
+	
+}
 ?>

@@ -47,7 +47,6 @@
 					</select>
 				</td>
   				<td colspan='2' id='formButtons'>
- 					<input type='hidden'  name='form_action' value='create' />
 			  		<input type='submit' value="Add User" />
  				</td>
 			</tr>

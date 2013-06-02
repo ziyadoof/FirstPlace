@@ -4,6 +4,9 @@ require('../model/employee_class.php');
 require('../model/employee_db.php');
 require('../model/room_class.php');
 require('../model/room_db.php');
+require('../model/caseRole_db.php');
+require('../model/adminRole_db.php');
+require('../model/teacherRole_db.php');
 
 
 if (isset($_POST['action'])) {
@@ -62,8 +65,56 @@ if ($action == 'show_add_employee_form') {
 } else if ($action == 'delete_employee') {
 	
 	$empIdToDelete = $_POST['employee_id']; 
+	
+	$DelEmployee = EmployeeDB::getEmployee($empIdToDelete);
+	$ToBeDeletedEmpID = $DelEmployee->getEmployeeID();
+	
+	if ($DelEmployee->getEmployeeType() == 't'){
+		TeacherRoleDB::deleteTeachByEmployee($ToBeDeletedEmpID);
+		EmployeeDB::deleteEmployee($ToBeDeletedEmpID);
+	}elseif ($DelEmployee->getEmployeeType() == 'a'){
+		AdminRoleDB::deleteAdminRoleByEmpID($ToBeDeletedEmpID);
+		EmployeeDB::deleteEmployee($ToBeDeletedEmpID);	
+	} elseif ($DelEmployee->getEmployeeType() == 'c'){
+		CaseRoleDB::deleteCaseWorkerByEmpID($ToBeDeletedEmpID);
+		EmployeeDB::deleteEmployee($ToBeDeletedEmpID);	
+	} else {
+		$error = "Invalid product data. Check all fields and try again.";
+		include('../errors/error.php');	
+	}
 
-	include ('edit_employee.php');
+	header("Location: .?action=show_add_employee_form");
+	
+} else if ($action == 'update_employee') {
+	
+	$firstname = $_POST['firstName_cuurent'];
+	$lastname = $_POST['lastName_cuurent'];
+	$phonenumber = $_POST['phoneNumber_cuurent'];
+	$address = $_POST['address_cuurent'];
+	$email_address = $_POST['email_cuurent'];
+	$classroom = $_POST['classRoom_cuurent'];
+	$roleID = $_POST['roleID_cuurent'];
+	$eID = $_POST['empID_cuurent']; 
+	
+	if (empty($firstname) || empty($lastname) || empty($email_address) || empty($eID)) 
+	{
+		$error = "Invalid product data. Check all fields and try again.";
+		include('../errors/error.php');
+	} else 
+	{
+		//Set vlaues
+		$employeeNew = new Employee($firstname, $lastname, $email_address, $username, $password, $classroom);
+		$employeeNew->setEmployeeID($eID);
+		$employeeNew->setRoom($classroom);
+		$employeeNew->setEmployeeType($roleID);
+		$employeeNew->setPhoneNum($phonenumber);
+		$employeeNew->setAddress($address);
+		
+		//updated
+		EmployeeDB::updateEmployee($employeeNew); //big employee role problem!
+	}
+	//go back to show the employee
+	header("Location: .?action=show_add_employee_form");
 }
 
 

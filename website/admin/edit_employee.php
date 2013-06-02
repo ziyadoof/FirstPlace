@@ -5,7 +5,7 @@
 	<h1>Edit Employee Record</h1>
 	
     <form action="index.php" method="post" class="imagetable" id="formtable">
-        <input type="hidden" name="action" value="add_employee" />
+        <input type="hidden" name="action" value="update_employee" />
 
 		<table id='formtable' class='imagetable'>
 			<tr>
@@ -18,7 +18,6 @@
 				<th>Address</th>
 				<th>*Email</th>
 				<th>Class Room</th>
-				<th>*Role ID</th>
 				<th>Action</th>
   			</tr>
  			<tr>
@@ -38,15 +37,8 @@
 						<?php endforeach; ?>
 					</select>
 				</td>
-		 		<td>
-					<select name='roleID_cuurent'>
-						<option value="a" <?php if ($employee->getEmployeeType() == 'a') { echo "selected";}?>>Admin</option>
-						<option value="t" <?php if ($employee->getEmployeeType() == 't') { echo "selected";}?>>Teacher</option>
-						<option value="c" <?php if ($employee->getEmployeeType() == 't') { echo "selected";}?>>Case Worker</option>
-					</select>
-				</td>
   				<td colspan='2' id='formButtons'>
- 					<input type='hidden'  name='form_action' value='create' />
+					<input type='hidden'  name='empID_cuurent' value="<?php echo $employee->getEmployeeID(); ?>" />
 			  		<input type='submit' value="Update" />
 					<a href='index.php'><button type='button'>Cancel</button></a>
  				</td>

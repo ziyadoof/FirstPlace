@@ -3,7 +3,7 @@ class EmployeeDB {
     public static function getEmployees() {
 		$db = Database::getDB();
         
-		$query = 'select * from EmployeeListWithRoom order by LastName'; //This is a view
+		$query = 'select * from EmployeeListWithRoom order by employeetype'; //This is a view
 		
 		//Get the results into array
 		$result = $db->query($query);
@@ -84,5 +84,62 @@ class EmployeeDB {
 		}
         return $row_count;
     }
+
+	public static function updateEmployee($employee) {
+		$db = Database::getDB();
+		
+		$e_id = $employee->getEmployeeID();
+		$classroom = $employee->getRoom();
+		$firstname = $employee->getFirstName();
+		$lastname = $employee->getLastName();
+		$phoneNum = $employee->getPhoneNum();
+		$address = $employee->getAddress();
+		$emailAddress = $employee->getEmail();
+		$username = $employee->getUserName();
+		$password = $employee->getPassword();
+		$empType = $employee->getEmployeeType();		
+		
+		$queryWithRoomSpecified = 
+				"UPDATE employee
+				SET emp_id = emp_id ,
+					Room_Room_ID = '$classroom' ,
+					FirstName = '$firstname' ,
+					LastName =  '$lastname',
+					PhoneNumber = '$phoneNum' ,
+					Address = '$address' ,
+					email_Address = '$emailAddress'
+				WHERE emp_id = '$e_id'";
+				
+		$queryWithRoomNotSpecified = 
+				"UPDATE employee
+				SET emp_id = emp_id ,
+					Room_Room_ID = NULL ,
+					FirstName = '$firstname' ,
+					LastName =  '$lastname',
+					PhoneNumber = '$phoneNum' ,
+					Address = '$address' ,
+					email_Address = '$emailAddress'
+				WHERE emp_id = '$e_id'";
+		
+		if ($classroom == "NotSpecified")
+		{
+			$row_count = $db->exec($queryWithRoomNotSpecified);
+		} else 
+		{
+			$row_count = $db->exec($queryWithRoomSpecified);
+		}
+		
+		return $row_count;
+	}
+	
+	public static function deleteEmployee($employeeID) {
+	   $db = Database::getDB();
+	   
+	   $query = "DELETE FROM employee WHERE emp_id = '$employeeID' ";
+	   
+	   $row_count = $db->exec($query);
+	   return $row_count;
+	}
+
 }
 ?>
