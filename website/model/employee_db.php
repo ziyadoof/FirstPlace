@@ -9,8 +9,6 @@ class EmployeeDB {
 		$result = $db->query($query);
 		$employees = array();
 		foreach ($result as $row) {
-			$category = new Category($row['categoryID'],
-                                     $row['categoryName']);
             $employee = new Employee($row['FirstName'],
 									$row['LastName'],
 									$row['email_Address'],
