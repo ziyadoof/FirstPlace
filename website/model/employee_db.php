@@ -16,6 +16,7 @@ class EmployeeDB {
 									$row['password'],
 									$row['Location']);
 			$employee->setPhoneNum($row['PhoneNumber']);
+			$employee->setEmployeeID($row['emp_id']);
 			$employee->setAddress($row['Address']);
 			$employee->setEmployeeType($row['employeetype']);
 			
@@ -47,13 +48,13 @@ class EmployeeDB {
 			"INSERT INTO employee
 				(Room_Room_ID, FirstName, LastName, PhoneNumber, Address, email_Address, password, username, employeetype)
 			VALUES
-				('$classroom', '$firstname', '$lastname', 'phoneNum', 'address', '$email_address', '$password', '$username', '$empType')";
+				('$classroom', '$firstname', '$lastname', '$phoneNum', '$address', '$email_address', '$password', '$username', '$empType')";
 
 		$WithoutRoomQuery =
 			"INSERT INTO employee
 				(FirstName, LastName, PhoneNumber, Address, email_Address, password, username, employeetype)
 			VALUES
-				('$firstname', '$lastname', 'phoneNum', 'address', '$email_address', '$password', '$username', '$empType')";
+				('$firstname', '$lastname', '$phoneNum', '$address', '$email_address', '$password', '$username', '$empType')";
 		
 		//Check if the room was specified by the user or not
 		if ($classroom == "NotSpecified")

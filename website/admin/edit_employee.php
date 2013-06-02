@@ -1,8 +1,10 @@
 <?php include '../view/header.php'; ?>
 
-<div id="content"><h1>Edit Employee Record</h1>
+<div id="content">
 
-	<h2> <? echo $empIdToEdit; ?></h2>
+	<h1>Edit Employee Record</h1>
+	<p><?php echo $empIdToEdit; ?></p>
+
 </div> <!-- #content -->
 
 <?php include '../view/footer.php'; ?>

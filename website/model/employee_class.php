@@ -1,6 +1,6 @@
 <?php
 class Employee {
-    private $fname, $lname, $phoneNum, $address, $email, $usname, $passwd, $room, $employeeType;
+    private $empID, $fname, $lname, $phoneNum, $address, $email, $usname, $passwd, $room, $employeeType;
 
     public function __construct($fname, $lname, $email, $usname, $passwd,$room) 
 	{
@@ -13,6 +13,15 @@ class Employee {
         
         $this->phoneNum = "N/A";
         $this->address = "N/A";
+		$this->empID = "N/A";
+    }
+	
+    public function getEmployeeID() {
+        return $this->empID;
+    }
+
+    public function setEmployeeID($value) {
+        $this->empID = $value;
     }
 
     public function getLastName() {

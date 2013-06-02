@@ -54,7 +54,6 @@ if ($action == 'show_add_employee_form') {
 } else if ($action == 'edit_employee') {
 	
 	$empIdToEdit = $_POST['employee_id']; 
-	echo $empIdToEdit;
 
 	include ('edit_employee.php');
 }

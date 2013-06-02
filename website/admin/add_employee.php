@@ -3,13 +3,12 @@
 <div id="content">
 
 	<h1>User Management</h1>
-    <h2>Add Employee</h2>
     <form action="index.php" method="post" class="imagetable" id="formtable">
         <input type="hidden" name="action" value="add_employee" />
 
 		<table id='formtable' class='imagetable'>
 			<tr>
-				<th colspan='10' class='tableTitle'>Create new user</th>
+				<th colspan='10' class='tableTitle'>Create employee new user</th>
 			</tr>
  			<tr>
  				<th>*First Name</th>
@@ -27,7 +26,7 @@
 				
  				<td><input type='text' name='firstName_new' required /></td>
 		 		<td><input type='text' name='lastName_new' required /></td>
-				<td><input type='text' name='phoneNumber_new'  /></td>
+				<td><input type='number' name='phoneNumber_new'  /></td>
 				<td><input type='text' name='address_new' /></td>
 		   		<td><input type='email' name='email_new' required /></td>
 	 			<td>
@@ -54,8 +53,12 @@
 			</tr>
 		</table>
     </form>
-	
+	<br>
+	<br>
 	<table id='displaytable' class='imagetable'>
+		<tr>
+			<th colspan='8' class='tableTitle'>Employee List</th>
+		</tr>
 		<tr>
 			<th>First Name</th>
 			<th>Last Name</th>
@@ -86,30 +89,15 @@
 			<td>
 				<form class='inline' method='post' action='index.php'>
 					<input type="hidden" name="action" value="edit_employee" />
-					<input type="hidden" name="employee_id" value="<?php echo $employee->getEmployeeType(); ?>" />
+					<input type="hidden" name="employee_id" value="<?php echo $employee->getEmployeeID(); ?>" />
                     <input type="submit" value="Edit" />
                 </form>
 				<form class='inline' method='post' action='index.php'>
 					<input type="hidden" name="action" value="delete_employee" />
-					<input type="hidden" name="employee_id" value="<?php echo $employee->getEmployeeType(); ?>" />
+					<input type="hidden" name="employee_id" value="<?php echo $employee->getEmployeeID(); ?>" />
                     <input type="submit" value="Delete" />
                 </form>
-			</td>
-			
-			<td>
-				<form action="." method="post" id="delete_product_form">
-					<input type='hidden' name='form_action' value='edit' />
-					<input type='hidden' name='record_id' value='4' />
-					<input type='submit' value='Edit' />
-				</form>
-				<form class='inline' method='post' action='#displaytable' onsubmit='return confirm_delete()'>
-					<input type='hidden' name='form_action' value='delete' />
-					<input type='hidden' name='record_id' value='4' />
-					<input type='submit' value='Delete' />
-				</form>
-			</td>
-			
-			
+			</td>			
 		</tr>
 		<?php endforeach; ?>
 	</table>
