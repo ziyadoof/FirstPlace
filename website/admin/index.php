@@ -15,7 +15,7 @@ if (isset($_POST['action'])) {
 }
 
 //Get the available rooms for adding new employee.
-if ($action == 'show_add_employee_form') {                 //--------------------------------------------
+if ($action == 'show_add_employee_form') {             
     $rooms = RoomDB::getRooms();
     include('add_employee.php');
 }
@@ -49,9 +49,15 @@ else if ($action == 'add_employee')
 			include('../errors/error.php');
 		} else 
 		{
+			//Set vlaues
 			$employeeRow = new Employee($firstname, $lastname, $email_address, $username, $password, $classroom);
 			$employeeRow->setRoom($classroom);
-			EmployeeDB::addEmployee($employeeRow);
+			$employeeRow->setEmployeeType($roleID);
+			$employeeRow->setPhoneNum($phonenumber);
+			$employeeRow->setAddress($address);
+			
+			//insert
+			EmployeeDB::addEmployee($employeeRow); //DB trigger will take care of the adding the rmployee to the approbiate role.
 		}
 	}
 ?>

@@ -27,11 +27,12 @@
 				
  				<td><input type='text' name='firstName_new' required /></td>
 		 		<td><input type='text' name='lastName_new' required /></td>
-				<td><input type='tel' name='phoneNumber_new'  /></td>
+				<td><input type='text' name='phoneNumber_new'  /></td>
 				<td><input type='text' name='address_new' /></td>
 		   		<td><input type='email' name='email_new' required /></td>
 	 			<td>
 				    <select name="classRoom_new">
+						<option value="NotSpecified">Not assigned</option>
 						<?php foreach ($rooms as $room) : ?>
 						<option value="<?php echo $room->getRoom_id(); ?>">
 							<?php echo $room->getLocation(); ?>
@@ -43,7 +44,7 @@
 	 			<td><input type='password' name='password_new' required /></td>
 		 		<td>
 					<select name='roleID_new'>
-						<option value="1">Admin</option><option value="2">Teacher</option><option value="3">Case Worker</option>
+						<option value="a">Admin</option><option value="t">Teacher</option><option value="c">Case Worker</option>
 					</select>
 				</td>
   				<td colspan='2' id='formButtons'>

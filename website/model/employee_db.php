@@ -12,21 +12,37 @@ class EmployeeDB {
 
     public static function addEmployee($employee) {
         $db = Database::getDB();
-
+		
+		$classroom = $employee->getRoom();
 		$firstname = $employee->getFirstName();
 		$lastname = $employee->getLastName();
+		$phoneNum = $employee->getPhoneNum();
+		$address = $employee->getAddress();
 		$email_address = $employee->getEmail();
 		$username = $employee->getUserName();
 		$password = $employee->getPassword();
-		$classroom = $employee->getRoom();
+		$empType = $employee->getEmployeeType();
 		
-		$query =
+		$WithRoomQuery =
 			"INSERT INTO employee
-				(Room_Room_ID, FirstName, LastName, email_Address, password, username)
+				(Room_Room_ID, FirstName, LastName, PhoneNumber, Address, email_Address, password, username, employeetype)
 			VALUES
-				('$classroom', '$firstname', '$lastname', '$email_address', '$password', '$username')";
+				('$classroom', '$firstname', '$lastname', 'phoneNum', 'address', '$email_address', '$password', '$username', '$empType')";
 
-        $row_count = $db->exec($query);
+		$WithoutRoomQuery =
+			"INSERT INTO employee
+				(FirstName, LastName, PhoneNumber, Address, email_Address, password, username, employeetype)
+			VALUES
+				('$firstname', '$lastname', 'phoneNum', 'address', '$email_address', '$password', '$username', '$empType')";
+		
+		//Check if the room was specified by the user or not
+		if ($classroom == "NotSpecified")
+		{
+			$row_count = $db->exec($WithoutRoomQuery);
+		} else 
+		{
+			$row_count = $db->exec($WithRoomQuery);
+		}
         return $row_count;
     }
 }
