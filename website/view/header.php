@@ -34,8 +34,7 @@
 				</li>
 				<li><a href="#">Students</a>
 					<ul>
-						<li><a href="/FirstPlace/website/student/add_students.php">Add Student</a></li>
-						<li><a href="/FirstPlace/website/student/add_students.php">Edit Students</a></li>
+						<li><a href="/FirstPlace/website/student/?action=show_add_student_form">Student Management</a></li>                                            
 					</ul>
 				</li>
 				<li><a href="#">Classes</a>

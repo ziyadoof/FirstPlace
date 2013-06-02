@@ -39,7 +39,6 @@
                                                 <option value="6th">6th</option>
 					</select>
 				</td>
-				<td><input type='grade' name='grade_new' required /></td>
 	 			<td>
 				    <select name="casework_new">
 						<option value="NotSpecified">No Room</option>
@@ -52,20 +51,15 @@
 				</td>
                                 <td>
 				    <select name="class_new">
-						<option value="NotSpecified">No Room</option>
-						<?php foreach ($rooms as $room) : ?>
-						<option value="<?php echo $room->getRoom_id(); ?>">
-							<?php echo $room->getLocation(); ?>
+						<option value="NotSpecified">No Class</option>
+						<?php foreach ($classes as $class) : ?>
+						<option value="<?php echo $class->getC_id(); ?>">
+							<?php echo $class->getName ?>
 						</option>
 						<?php endforeach; ?>
 					</select>
 				</td>
                                 <td><input type='year' name='year_new' required /></td>
-                                <td>
-					<select name='roleID_new'>
-						<option value="a">Admin</option><option value="t">Teacher</option><option value="c">Case Worker</option>
-					</select>
-				</td>
   				<td colspan='2' id='formButtons'>
 			  		<input type='submit' value="Add Student" />
  				</td>
@@ -76,7 +70,7 @@
 	<br>
 	<table id='displaytable' class='imagetable'>
 		<tr>
-			<th colspan='8' class='tableTitle'>Student List</th>
+			<th colspan='10' class='tableTitle'>Student List</th>
 		</tr>
 		<tr>
 			<th>First Name</th>

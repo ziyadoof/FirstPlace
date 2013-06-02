@@ -6,6 +6,8 @@ require('../model/class_class.php');
 require('../model/class_db.php');
 require('../model/room_class.php');
 require('../model/room_db.php');
+require('../model/employee_class.php');
+require('../model/employee_db.php');
 
 
 
@@ -19,8 +21,9 @@ if (isset($_POST['action'])) {
 
 //Get the available rooms for adding new student.
 if ($action == 'show_add_student_form') {             
-    $rooms = RoomDB::getRooms();		//variable will hold all the rooms
 	$students = StudentDB::getStudents();	//variable will hold all the students
+        $studentHasClass = StudentHasClassDB::get();	//variable will hold all the Student has class
+        
     include('add_student.php');
 } else if ($action == 'add_student') {
 	
