@@ -1,20 +1,21 @@
 <?php
 class Student {
     private $s_id, $case_work, $fname, $lname, $grade, $phoneNum, $address, 
-            $email, $start_year;
+            $email, $start_date, $fpclass;
 
-    public function __construct($case_work, $fname, $lname, $phoneNum, 
-            $address) {
-        $this->case_work = $case_work;
+    public function __construct($fname, $lname, $phoneNum, $address) {
         $this->fname = $fname;
         $this->lname = $lname;
         $this->phoneNum = $phoneNum;
         $this->address = $address;
         
-        $this->start_year = date("M Y");
-        
+        $this->start_date = date("M Y");
+           
         $this->grade = "N/A";
-        $this->email = "N/A";       
+        $this->email = "N/A";  
+        $this->fpclass = "N/A";  
+        $this->s_id = "N/A";
+        $this->case_work ="N/A";
     }
 
     public function getCaseWorker() {
@@ -25,8 +26,12 @@ class Student {
         $this->case_work = $value;
     }
 
-    public function getID() {
+    public function getStudentID() {
         return $this->s_id;
+    }
+    
+    public function setStudentID($value) {
+        $this->s_ID = $value;
     }
 
     public function getGrade() {
@@ -77,9 +82,20 @@ class Student {
         $this->email = $value;
     }
 
-    public function getStart_Year() {
+    public function getStartDate() {
         
-        return $start_year;
+        return $start_date;
+    }
+
+    public function setStartDate($value) {
+        $this->start_date = $value;
+    }
+    
+    public function setClass($value) {
+        $this->class = $value;
+    }
+    public function getClass() {   
+        return $this->class;
     }
 
 }
