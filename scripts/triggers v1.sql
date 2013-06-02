@@ -1,4 +1,4 @@
-
+-- drop trigger if exists trg_employee_insert;
 
 
 	delimiter //
@@ -26,4 +26,3 @@ end //
 
 
 
-drop trigger if exists trg_employee_insert;
