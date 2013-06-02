@@ -11,7 +11,7 @@ if (isset($_POST['action'])) {
 } else if (isset($_GET['action'])) {
     $action = $_GET['action'];
 } else {
-    $action = 'fff';
+    $action = 'show_add_employee_form';
 }
 
 //Get the available rooms for adding new employee.
@@ -53,7 +53,15 @@ if ($action == 'show_add_employee_form') {
 	header("Location: .?action=show_add_employee_form");
 } else if ($action == 'edit_employee') {
 	
-	$empIdToEdit = $_POST['employee_id']; 
+	$rooms = RoomDB::getRooms();
+	$empIdToEdit = $_POST['employee_id']; 	
+	$employee = EmployeeDB::getEmployee($empIdToEdit);
+
+	include ('edit_employee.php');
+	
+} else if ($action == 'delete_employee') {
+	
+	$empIdToDelete = $_POST['employee_id']; 
 
 	include ('edit_employee.php');
 }

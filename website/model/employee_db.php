@@ -26,9 +26,27 @@ class EmployeeDB {
 		return $employees;
     }
     
-    public static function getEmployee($s_id) {
+    public static function getEmployee($e_id) {
+
+		$db = Database::getDB();
         
-        return $employee;
+		$query = "SELECT * FROM EmployeeListWithRoom
+                  WHERE emp_id = '$e_id'";
+        $result = $db->query($query);
+        $row = $result->fetch();
+        
+		$employee = new Employee($row['FirstName'],
+								$row['LastName'],
+								$row['email_Address'],
+								$row['username'],
+								$row['password'],
+								$row['Location']);
+		$employee->setPhoneNum($row['PhoneNumber']);
+		$employee->setEmployeeID($row['emp_id']);
+		$employee->setAddress($row['Address']);
+		$employee->setEmployeeType($row['employeetype']);
+		
+		return $employee;
     }
 
     public static function addEmployee($employee) {

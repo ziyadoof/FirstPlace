@@ -26,12 +26,12 @@
 				
  				<td><input type='text' name='firstName_new' required /></td>
 		 		<td><input type='text' name='lastName_new' required /></td>
-				<td><input type='number' name='phoneNumber_new'  /></td>
+				<td><input type='text' name='phoneNumber_new'  /></td>
 				<td><input type='text' name='address_new' /></td>
 		   		<td><input type='email' name='email_new' required /></td>
 	 			<td>
 				    <select name="classRoom_new">
-						<option value="NotSpecified">Not assigned</option>
+						<option value="NotSpecified">No Room</option>
 						<?php foreach ($rooms as $room) : ?>
 						<option value="<?php echo $room->getRoom_id(); ?>">
 							<?php echo $room->getLocation(); ?>
