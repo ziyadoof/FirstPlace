@@ -3,7 +3,7 @@ class Student {
     private $s_id, $case_work, $fname, $lname, $grade, $phoneNum, $address, 
             $email, $start_date, $fpclass;
 
-    public function __construct($fname, $lname, $phoneNum, $address) {
+    public function __construct($fname, $lname, $address, $phoneNum) {
         $this->fname = $fname;
         $this->lname = $lname;
         $this->phoneNum = $phoneNum;

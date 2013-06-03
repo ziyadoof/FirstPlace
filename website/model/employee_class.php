@@ -2,7 +2,7 @@
 class Employee {
     private $empID, $fname, $lname, $phoneNum, $address, $email, $usname, $passwd, $room, $employeeType;
 
-    public function __construct($fname, $lname, $email, $usname, $passwd,$room) 
+    public function __construct($fname, $lname, $email, $usname, $passwd, $room) 
 	{
         $this->fname = $fname;
         $this->lname = $lname;
@@ -11,7 +11,7 @@ class Employee {
         $this->passwd = $passwd;
         $this->room = $room;        
         
-        $this->phoneNum = "N/A";
+        $this->phoneNum = "000000";
         $this->address = "N/A";
 		$this->empID = "N/A";
     }

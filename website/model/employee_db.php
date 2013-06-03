@@ -141,5 +141,30 @@ class EmployeeDB {
 	   return $row_count;
 	}
 
+         public static function getCaseWorkers() {
+		$db = Database::getDB();
+        
+		$query = 'select * from ViewCaseWorkers order by username'; //This is a view
+		
+		//Get the results into array
+		$result = $db->query($query);
+		$employees = array();
+		foreach ($result as $row) {
+            $employee = new Employee($row['FirstName'],
+									$row['LastName'],
+									$row['email_Address'],
+									$row['username'],
+									$row['password'],
+									$row['Location']);
+			$employee->setPhoneNum($row['PhoneNumber']);
+			$employee->setEmployeeID($row['emp_id']);
+			$employee->setAddress($row['Address']);
+			$employee->setEmployeeType($row['employeetype']);
+			
+            $employees[] = $employee;
+        }
+		
+		return $employees;
+    }
 }
 ?>

@@ -13,7 +13,6 @@ class StudentDB {
 			$row['LastName'],
 			$row['Address'],
 			$row['PhoneNumber']);
-			$student->setPhoneNum($row['PhoneNumber']);
 			$student->setStudentID($row['st_ID']);
                         $student->setEmail($row['EmailAddress']);
 			$student->setGrade($row['Grade']);
@@ -39,7 +38,6 @@ class StudentDB {
 			$row['LastName'],
 			$row['Address'],
 			$row['PhoneNumber']);
-			$student->setPhoneNum($row['PhoneNumber']);
 			$student->setStudentID($row['st_ID']);
                         $student->setEmail($row['EmailAddress']);
 			$student->setGrade($row['Grade']);

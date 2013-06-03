@@ -25,9 +25,9 @@
 				
  				<td><input type='text' name='firstName_new' required /></td>
 		 		<td><input type='text' name='lastName_new' required /></td>
-				<td><input type='text' name='phoneNumber_new'  /></td>
-				<td><input type='text' name='address_new' /></td>
-		   		<td><input type='email' name='email_new' required /></td>
+				<td><input type='text' name='phoneNumber_new' required /></td>
+				<td><input type='text' name='address_new' required /></td>
+		   		<td><input type='email' name='email_address_new'  /></td>
 	 			<td>
 				    <select name="grade_new">
 						<option value="NotSpecified">No Grade</option>
@@ -41,10 +41,10 @@
 				</td>
 	 			<td>
 				    <select name="casework_new">
-						<option value="NotSpecified">No Room</option>
-						<?php foreach ($rooms as $room) : ?>
-						<option value="<?php echo $room->getRoom_id(); ?>">
-							<?php echo $room->getLocation(); ?>
+						<option value="NotSpecified">No Employee</option>
+						<?php foreach ($caseworks as $employee) : ?>
+						<option value="<?php echo $employee->getEmployeeID(); ?>">
+							<?php echo $employee->getUserName(); ?>
 						</option>
 						<?php endforeach; ?>
 					</select>
@@ -59,7 +59,7 @@
 						<?php endforeach; ?>
 					</select>
 				</td>
-                                <td><input type='year' name='year_new' required /></td>
+                                <td><input type='year' name='year_new' /></td>
   				<td colspan='2' id='formButtons'>
 			  		<input type='submit' value="Add Student" />
  				</td>
@@ -98,12 +98,12 @@
                         <td>
 				<form class='inline' method='post' action='index.php'>
 					<input type="hidden" name="action" value="edit_student" />
-					<input type="hidden" name="student_id" value="<?php echo $student->getEmployeeID(); ?>" />
+					<input type="hidden" name="student_id" value="<?php echo $student->getStudentID(); ?>" />
                     <input type="submit" value="Edit" />
                 </form>
 				<form class='inline' method='post' action='index.php'>
 					<input type="hidden" name="action" value="delete_student" />
-					<input type="hidden" name="student_id" value="<?php echo $student->getEmployeeID(); ?>" />
+					<input type="hidden" name="student_id" value="<?php echo $student->getStudentID(); ?>" />
                     <input type="submit" value="Delete" />
                 </form>
 			</td>			

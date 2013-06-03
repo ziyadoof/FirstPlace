@@ -418,6 +418,11 @@ CREATE TABLE IF NOT EXISTS `FirstPlace`.`ViewStudentHasClass` (`Student_s_id` IN
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `FirstPlace`.`StudentWithCasework` (`s.s_id` INT, `s.FirstName` INT, `s.LastName` INT, `s.email_Address` INT, `s.PhoneNumber` INT, `s.Address` INT, `s.YearStarted` INT,`emp.username` INT);
 
+-- -----------------------------------------------------
+-- Placeholder table for view `FirstPlace`.`ViewCaseWorkers`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `FirstPlace`.`ViewCaseWorkers` (`emp_id` INT, `FirstName` INT, `LastName` INT, `email_Address` INT, `username` INT, `PhoneNumber` INT, `Address` INT, `RoleName` INT);
+
 
 -- -----------------------------------------------------
 -- View `FirstPlace`.`ViewRooms`
@@ -476,7 +481,21 @@ USE `FirstPlace`;
 CREATE  OR REPLACE VIEW `FirstPlace`.`StudentWithCasework` AS
 select s.s_id, s.FirstName, s.LastName, s.email_Address, s.PhoneNumber, s.Address, s.YearStarted, emp.username
 From Student s left outer join Employee emp
-on s.Employee_emp_ID = emp.emp_ID;
+on s.Employee_emp_ID = emp.emp_ID
+order by LastName;
+
+-- -----------------------------------------------------
+-- View `FirstPlace`.`ViewCaseWorkers`
+-- -----------------------------------------------------
+DROP VIEW IF EXISTS `FirstPlace`.`ViewCaseWorkers` ;
+DROP TABLE IF EXISTS `FirstPlace`.`ViewCaseWorkers`;
+USE `FirstPlace`;
+CREATE  OR REPLACE VIEW `FirstPlace`.`ViewCaseWorkers` AS
+select emp_ID, FirstName, LastName, email_Address, PhoneNumber, Address, username, RoleName
+From Employee_has_Role 
+left outer join Employee on emp_ID = Employee_emp_ID 
+left outer join Role on Role_Role_id = Role_id and RoleName = 'c';
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
