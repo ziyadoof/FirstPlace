@@ -16,5 +16,5 @@ class ClassHasEmployeeDB {
         }
         return $classes;
     }
-
+}
 ?>

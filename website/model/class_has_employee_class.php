@@ -14,5 +14,5 @@ class ClassHasEmployee {
     public function getEmployee_emp_id() {
         return $this->employee_emp_id;
     }
-
+}
 ?>
