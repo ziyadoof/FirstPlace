@@ -1,8 +1,7 @@
 <?php
 class StudentDB {
     public static function getStudents() {
-		$db = Database::getDB();
-        
+		$db = Database::getDB();        
 		$query = 'select * from StudentWithCasework order by LastName'; //Not a view
 		
 		//Get the results into array
@@ -13,11 +12,11 @@ class StudentDB {
 			$row['LastName'],
 			$row['Address'],
 			$row['PhoneNumber']);
-			$student->setStudentID($row['st_ID']);
-                        $student->setEmail($row['EmailAddress']);
+			$student->setStudentID($row['s_id']);
+                        $student->setEmail($row['email_address']);
 			$student->setGrade($row['Grade']);
-                        $student->setStartDate($row['StartDate']);
-                        $student->setCaseWorker($row['Casework']);
+                        $student->setStartDate($row['YearStarted']);
+                        $student->setCaseWorker($row['Employee_emp_id']);
  			
             $students[] = $student;
         }
@@ -38,11 +37,11 @@ class StudentDB {
 			$row['LastName'],
 			$row['Address'],
 			$row['PhoneNumber']);
-			$student->setStudentID($row['st_ID']);
-                        $student->setEmail($row['EmailAddress']);
+			$student->setStudentID($row['s_id']);
+                        $student->setEmail($row['email_address']);
 			$student->setGrade($row['Grade']);
-                        $student->setStartDate($row['StartDate']);
-                        $student->setCaseWorker($row['Casework']);
+                        $student->setStartDate($row['YearStarted']);
+                        $student->setCaseWorker($row['Employee_emp_id']);
                         
 		return $student;
     }

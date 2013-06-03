@@ -26,37 +26,23 @@
 				
  				<td><input type='text' name='firstName_cuurent' value="<?php echo $student->getFirstName(); ?>" required /></td>
 		 		<td><input type='text' name='lastName_cuurent' value="<?php echo $student->getLastName(); ?>" required /></td>
-				<td><input type='text' name='phoneNumber_cuurent' value="<?php echo $student->getPhoneNum(); ?>"  /></td>
-				<td><input type='text' name='address_cuurent' value="<?php echo $student->getAddress(); ?>" /></td>
-		   		<td><input type='email' name='email_cuurent' value="<?php echo $student->getEmail(); ?>" required /></td>
-	 			<td>
-				    <select name="grade_cuurent">
-						<option value="NotSpecified">No Room</option>
-						<?php foreach ($rooms as $room) : ?>
-						<option value="<?php echo $room->getRoom_id(); ?>" <?php if ($student->getRoom() == $room->getLocation()) { echo "selected";}?>>
-							<?php echo $room->getLocation(); ?>
-						</option>
-						<?php endforeach; ?>
-					</select>
-				</td>
+				<td><input type='text' name='phoneNumber_cuurent' value="<?php echo $student->getPhoneNum(); ?>"  required/></td>
+				<td><input type='text' name='address_cuurent' value="<?php echo $student->getAddress(); ?>" required/></td>
+		   		<td><input type='email' name='email_cuurent' value="<?php echo $student->getEmail(); ?>"  /></td>
+                                <td><input type='text' name='grade_cuurent' value="<?php echo $student->getGrade(); ?>" /></td>
 	 			<td>
 				    <select name="casework_cuurent">
-						<option value="NotSpecified">No Room</option>
-						<?php foreach ($rooms as $room) : ?>
-						<option value="<?php echo $room->getRoom_id(); ?>" <?php if ($student->getRoom() == $room->getLocation()) { echo "selected";}?>>
-							<?php echo $room->getLocation(); ?>
+						<option value="NotSpecified">No Employee</option>
+						<?php foreach ($caseworks as $employee) : ?>
+						<option value="<?php echo $employee->getEmployeeID() ; ?>" <?php if ($student->getCaseWorker() == $employee->getUserName()) { echo "selected";}?>>
+							<?php echo $employee->getUserName(); ?>
 						</option>
 						<?php endforeach; ?>
 					</select>
 				</td>                                
                 		<td>
 				    <select name="class_cuurent">
-						<option value="NotSpecified">No Room</option>
-						<?php foreach ($rooms as $room) : ?>
-						<option value="<?php echo $room->getRoom_id(); ?>" <?php if ($student->getRoom() == $room->getLocation()) { echo "selected";}?>>
-							<?php echo $room->getLocation(); ?>
-						</option>
-						<?php endforeach; ?>
+						<option value="NotSpecified">ToDO</option>
 					</select>
 				</td>
                 		<td colspan='2' id='formButtons'>

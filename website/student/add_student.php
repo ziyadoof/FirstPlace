@@ -27,7 +27,7 @@
 		 		<td><input type='text' name='lastName_new' required /></td>
 				<td><input type='text' name='phoneNumber_new' required /></td>
 				<td><input type='text' name='address_new' required /></td>
-		   		<td><input type='email' name='email_address_new'  /></td>
+		   		<td><input type='email' name='email_new'  /></td>
 	 			<td>
 				    <select name="grade_new">
 						<option value="NotSpecified">No Grade</option>
