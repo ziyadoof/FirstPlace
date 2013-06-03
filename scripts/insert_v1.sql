@@ -12,8 +12,11 @@ INSERT INTO `firstplace`.`Employee` (`FirstName`, `LastName`, `PhoneNumber`, `Ad
 INSERT INTO `firstplace`.`Employee` (`FirstName`, `LastName`, `email_Address`, `password`, `username`, `employeetype`) VALUES ('Mike', 'tesy', 'test@test', 'sdkas', 'mikeTeach2', 't');
 INSERT INTO `firstplace`.`Employee` (`FirstName`, `LastName`, `PhoneNumber`, `email_Address`, `password`, `username`, `employeetype`) VALUES ('Ziyad2', 'Test', '34', 'test2@es', 'sdfTes', 'ZiyadAdmin2', 'a');
 
+-- insert for Students
+INSERT INTO `firstplace`.`Student` (`FirstName`, `LastName`, `PhoneNumber`, `Address`, `YearStarted`) VALUES ('MAry', 'Jane', '123', '123 Main', 'CURDATE()');
+INSERT INTO `firstplace`.`Student` (`FirstName`, `LastName`, `PhoneNumber`, `Address`, `YearStarted`) VALUES ('Joe', 'Smith', '34', 'Tree St', 'CURDATE()');
+INSERT INTO `firstplace`.`Student` (`FirstName`, `LastName`, `PhoneNumber`, `Address`, `YearStarted`) VALUES ('Kenny', 'Von', '32512', 'Pain', 'CURDATE()');
 
-
-select * from Employee;
+select * from Employees;
 
 

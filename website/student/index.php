@@ -45,8 +45,9 @@ if ($action == 'show_add_student_form') {
 	} else 
 	{
 		//Set vlaues
-		$studentRow = new Student($firstname, $lastname, $phonenumber, $address);
-		$studentRow->setGrade($grade);
+		$studentRow = new Student($firstname, $lastname, $address, $phonenumber);
+		$studentRow->setEmail($email_address);
+                $studentRow->setGrade($grade);
 		$studentRow->setCaseWorker($casework);
 		$studentRow->setClass($class);
 		$studentRow->setStartDate($year);
@@ -86,9 +87,10 @@ if ($action == 'show_add_student_form') {
 	} else 
 	{
 		//Set vlaues
-                $studentNew = new Student($firstname, $lastname, $phonenumber, $address);
+                $studentNew = new Student($firstname, $lastname, $address, $phonenumber);
 		$studentNew->setGrade($grade);
-		$studentNew->setCaseWorker($casework);
+		$studentNew->setEmail($email_address);
+                $studentNew->setCaseWorker($casework);
 		$studentNew->setClass($class);
 		$studentNew->setStartDate($year);
                 $studentNew->setStudentID($sID);

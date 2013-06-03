@@ -1,21 +1,19 @@
 <?php
 class Student {
-    private $s_id, $case_work, $fname, $lname, $grade, $phoneNum, $address, 
-            $email, $start_date, $fpclass;
+    private $s_id, $case_work, $fname, $lname, $grade, $phoneNum, $address, $email, $start_date, $fpclass;
 
-    public function __construct($fname, $lname, $address, $phoneNum) {
+    public function __construct($fname, $lname, $address, $phone) {
         $this->fname = $fname;
         $this->lname = $lname;
-        $this->phoneNum = $phoneNum;
+        $this->phoneNum = $phone;
         $this->address = $address;
-        
-        $this->start_date = date("M Y");
-           
         $this->grade = "N/A";
         $this->email = "N/A";  
         $this->fpclass = "N/A";  
         $this->s_id = "N/A";
-        $this->case_work ="N/A";
+        $this->case_work = 0;
+        $this->start_date = 2012;
+          
     }
 
     public function getCaseWorker() {
@@ -57,9 +55,9 @@ class Student {
     public function setFirstName($value) {
         $this->fname = $value;
     }
-
-    public function getPhoneNum() {
-        return $phoneNum;
+    
+    public function getPhonenum() {
+        return $this->phoneNum;
     }
 
     public function setPhoneNum($value) {
@@ -67,7 +65,7 @@ class Student {
     }
 
     public function getAddress() {
-        return $address;
+        return $this->address;
     }
 
     public function setAddress($value) {
@@ -75,7 +73,7 @@ class Student {
     }
     
     public function getEmail() {
-        return $email;
+        return $this->email;
     }
 
     public function setEmail($value) {
@@ -84,7 +82,7 @@ class Student {
 
     public function getStartDate() {
         
-        return $start_date;
+        return $this->start_date;
     }
 
     public function setStartDate($value) {
@@ -92,8 +90,15 @@ class Student {
     }
     
     public function setClass($value) {
-        $this->class = $value;
+        $this->fpclass = $value;
     }
+    
+    public function getClass() {
+        
+        return $this->fpclass;
+    }
+    
+    
 
 }
 ?>
