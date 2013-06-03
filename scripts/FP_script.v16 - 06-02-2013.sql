@@ -52,7 +52,6 @@ DROP TABLE IF EXISTS `FirstPlace`.`Student` ;
 
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Student` (
   `s_id` INT NOT NULL AUTO_INCREMENT ,
-  `Case_Role_CaseWorker_ID` INT NULL ,
   `FirstName` VARCHAR(45) NOT NULL ,
   `LastName` VARCHAR(45) NOT NULL ,
   `Grade` VARCHAR(45) NULL ,
@@ -60,7 +59,7 @@ CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Student` (
   `Address` VARCHAR(200) NOT NULL ,
   `email_address` VARCHAR(45) NULL ,
   `YearStarted` DATETIME NOT NULL ,
-  `Employee_emp_id` INT NOT NULL ,
+  `Employee_emp_id` INT NULL,
   PRIMARY KEY (`s_id`) ,
   INDEX `fk_Student_Employee1_idx` (`Employee_emp_id` ASC) ,
   CONSTRAINT `fk_Student_Employee1`
