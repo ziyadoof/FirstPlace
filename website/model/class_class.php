@@ -1,23 +1,23 @@
 <?php
 class ClassFP {
-    private $c_id, $schoolYear_id, $room_id, $stdC_id, $name, $start_time, $end_time;
+    private $c_id, $schoolYear_id, $room_id, $stdC_id, $name, $start_time, $end_time, $schoolYear, $grade, $teacher, $room;
 
-    public function __construct($c_id, $schoolYear_id, $room_id, $stdC_id, $name) {
-        $this->c_id = $c_id;
+    public function __construct($stdC_id, $room_id, $schoolYear_id) {
 		$this->schoolYear_id = $schoolYear_id;
         $this->room_id = $room_id;
 		$this->stdC_id = $stdC_id;
-        $this->name = $name;
 		
 		$this->start_time = "8:00 am";
 		$this->end_time = "2:00 pm";
-        
     }
 
     public function getC_id() {
         return $this->c_id;
     }
 
+    public function setC_id($value) {
+        $this->c_id = $value;
+    }
     
     public function getSchoolYear_id() {
         return $this->schoolYear_id;
@@ -57,6 +57,37 @@ class ClassFP {
 	public function setEnd_time($value) {
         $this->end_time = $value;
     }
+	
+	public function getSchoolYear() {   
+        return $this->schoolYear;
+    }
     
+    public function setSchoolYear($value) {
+        $this->schoolYear = $value;
+    }
+    
+	public function getGrade() {   
+        return $this->grade;
+    }
+    
+    public function setGrade($value) {
+        $this->grade = $value;
+    }
+	
+	public function getTeacher() {   
+        return $this->teacher;
+    }
+    
+    public function setTeacher($value) {
+        $this->teacher = $value;
+}
+
+	public function getRoom() {   
+        return $this->room;
+    }
+    
+    public function setRoom($value) {
+        $this->room = $value;
+	}
 }
 ?>

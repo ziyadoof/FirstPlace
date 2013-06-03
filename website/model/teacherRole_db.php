@@ -1,8 +1,22 @@
 <?php
 class TeacherRoleDB {
-    public static function getTeach($teach_id) {
-       //TODO
+    public static function getTeachers() {
+		$db = Database::getDB();
         
+		$query = 'select emp_id, firstname, lastname from employee where employeetype = \'t\'';
+		
+		//Get the results into array
+		$result = $db->query($query);
+		$teachers = array();
+		foreach ($result as $row) {
+            $teacher = new TeacherRole($row['emp_id'],
+									$row['lastname'],
+									$row['firstname']);
+			
+            $teachers[] = $teacher;
+        }
+		
+		return $teachers;
     }
     
     public static function getTeachByEmployee($teach_id, $emp_id) {

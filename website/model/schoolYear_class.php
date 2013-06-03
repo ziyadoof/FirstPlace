@@ -2,14 +2,9 @@
 class SchoolYear {
     private $sy_id, $name, $startDate, $endDate;
 
-    public function __construct( $sy_id, $startDate, $endDate) {
-        $this->sy_id = $schoolYear_id;
-        $this->startDate = $startDate;
-		$this->endDate = $endDate;
-		
-        $this->name = "SchoolYear";
-		
-        
+    public function __construct( $sy_id, $name) {
+        $this->sy_id = $sy_id;		
+        $this->name = $name;
     }
 
     public function getSy_id() {

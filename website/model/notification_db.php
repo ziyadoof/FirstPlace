@@ -1,5 +1,5 @@
 <?php
-class StdClassDB {
+class NotificationDB {
     public static function getNotf_id($notf_id) {
        //TODO
         

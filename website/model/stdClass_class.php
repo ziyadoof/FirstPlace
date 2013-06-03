@@ -1,5 +1,5 @@
 <?php
-class StdClass {
+class StdClass2 {
     private  $stdClass_id, $className;
 
     public function __construct($stdClass_id, $className) {

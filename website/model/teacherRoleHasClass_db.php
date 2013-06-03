@@ -1,5 +1,5 @@
 <?php
-class StdClassDB {
+class TeacherRoleHasClassDB {
     public static function getTeacher($teach_id) {
        //TODO
         
