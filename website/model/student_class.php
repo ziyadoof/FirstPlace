@@ -94,9 +94,6 @@ class Student {
     public function setClass($value) {
         $this->class = $value;
     }
-    public function getClass() {   
-        return $this->class;
-    }
 
 }
 ?>

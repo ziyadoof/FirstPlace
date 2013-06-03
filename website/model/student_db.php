@@ -3,7 +3,7 @@ class StudentDB {
     public static function getStudents() {
 		$db = Database::getDB();
         
-		$query = 'select * from StudentListWithClass order by studenttype'; //This is a view
+		$query = 'select * from StudentWithCasework order by LastName'; //Not a view
 		
 		//Get the results into array
 		$result = $db->query($query);
@@ -18,6 +18,7 @@ class StudentDB {
                         $student->setEmail($row['EmailAddress']);
 			$student->setGrade($row['Grade']);
                         $student->setStartDate($row['StartDate']);
+                        $student->setCaseWorker($row['Casework']);
  			
             $students[] = $student;
         }
@@ -29,7 +30,7 @@ class StudentDB {
 
 		$db = Database::getDB();
         
-		$query = "SELECT * FROM StudentListWithClass
+		$query = "select * from StudentWithCasework
                   WHERE st_id = '$s_id'";
         $result = $db->query($query);
         $row = $result->fetch();
@@ -43,7 +44,8 @@ class StudentDB {
                         $student->setEmail($row['EmailAddress']);
 			$student->setGrade($row['Grade']);
                         $student->setStartDate($row['StartDate']);
-		
+                        $student->setCaseWorker($row['Casework']);
+                        
 		return $student;
     }
 
@@ -58,9 +60,10 @@ class StudentDB {
 		$email_address = $student->getEmail();
 		$grade = $student->getGrade();
 		$stDate = $student->getStartDate();
-		$fpclass = $student->getClas();
+		$fpclass = $student->getClass();
+                
 		
-		$WithCaseworkQuery =
+		$WithCaseWorkerQuery =
 			"INSERT INTO student
 				(FirstName, LastName, Grade, PhoneNumber, Address, email_Address, YearStarted, Employee_emp_id)
 			VALUES
@@ -74,21 +77,24 @@ class StudentDB {
 
                 $WithClassQuery =
 			"INSERT INTO studentClass
-				(FirstName, LastName)
+				(Student_s_id, Class_c_id)
 			VALUES
-				('$firstname', '$fpclass')";
+				('$st_id', '$fpclass')";
 
-		//Check if the room was specified by the user or not
-	        if ($caseworker == "NotSpecified")
-		{
-			$row_count = $db->exec($WithoutClassQuery);
-		} else 
+		//Check if the caseworker was specified by the user or not
+	        if ($casework == "NotSpecified")
 		{
 			$row_count = $db->exec($WithoutCaseWorkerQuery);
+                        $st_id = $mysqli->insert_id;
+		} else 
+		{
+			$row_count = $db->exec($WithCaseWorkerQuery);
+                        $st_id = $mysqli->insert_id;
 		}
-                
+                //Check if class was specified
                 if($fpclass != "NotSpecified")
                 {
+          
                     $row_count = $db->exec($WithClassQuery);
                 }
         return $row_count;
@@ -97,47 +103,52 @@ class StudentDB {
 	public static function updateStudent($student) {
 		$db = Database::getDB();
 		
-		$e_id = $student->getStudentID();
-		$classroom = $student->getRoom();
+		$st_id = $student->getStudentID();
 		$firstname = $student->getFirstName();
 		$lastname = $student->getLastName();
 		$phoneNum = $student->getPhoneNum();
 		$address = $student->getAddress();
 		$emailAddress = $student->getEmail();
-		$username = $student->getUserName();
-		$password = $student->getPassword();
-		$empType = $student->getStudentType();		
+		$grade = $student->getUserName();
+		$casework = $student->getCaseWorker();
+		$stYear = $student->getStartDate();		
 		
-		$queryWithRoomSpecified = 
+		$WithCaseWorkerQuery = 
 				"UPDATE student
-				SET emp_id = emp_id ,
-					Room_Room_ID = '$classroom' ,
+				SET s_id = s_id ,
 					FirstName = '$firstname' ,
 					LastName =  '$lastname',
+                                        Grade = '$grade',  
 					PhoneNumber = '$phoneNum' ,
 					Address = '$address' ,
 					email_Address = '$emailAddress'
-				WHERE emp_id = '$e_id'";
+                                        YearStarted = '$stYear', 
+                                        Employee_emp_id = '$casework'
+                                            
+				WHERE s_id = '$st_id'";
 				
-		$queryWithRoomNotSpecified = 
+		$WithoutCaseWorkerQuery = 
 				"UPDATE student
-				SET emp_id = emp_id ,
-					Room_Room_ID = NULL ,
+				SET s_id = st_id ,
+					
 					FirstName = '$firstname' ,
 					LastName =  '$lastname',
+					Grade = '$grade',  
 					PhoneNumber = '$phoneNum' ,
 					Address = '$address' ,
 					email_Address = '$emailAddress'
-				WHERE emp_id = '$e_id'";
+                                        YearStarted = '$stYear', 
+                                        Employee_emp_id = NULL
+				WHERE s_id = '$st_id'";
 		
-		if ($classroom == "NotSpecified")
+		//Check if the caseworker was specified by the user or not
+	        if ($casework == "NotSpecified")
 		{
-			$row_count = $db->exec($queryWithRoomNotSpecified);
+			$row_count = $db->exec($WithoutCaseWorkerQuery);
 		} else 
 		{
-			$row_count = $db->exec($queryWithRoomSpecified);
+			$row_count = $db->exec($WithCaseWorkerQuery);
 		}
-		
 		return $row_count;
 	}
 

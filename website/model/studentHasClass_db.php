@@ -5,7 +5,7 @@ class StudentHasClassDB {
         $db = Database::getDB();
 		
 		//This is a view
-        $query = 'SELECT * FROM viewstudenthasclass
+        $query = 'SELECT * FROM ViewStudentHasClass_byClass
                   ORDER BY Student_s_id';
         $result = $db->query($query);
         $StudentHasClasses = array();
@@ -21,7 +21,7 @@ class StudentHasClassDB {
         $db = Database::getDB();
 		
 		//This is a view
-        $query = 'SELECT * FROM viewstudenthasclass
+        $query = 'SELECT * FROM ViewStudentHasClass_byClass
                   ORDER BY Class_c_id';
         $result = $db->query($query);
         $StudentHasClasses = array();

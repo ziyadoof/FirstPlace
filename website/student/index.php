@@ -22,7 +22,7 @@ if (isset($_POST['action'])) {
 //Get the available rooms for adding new student.
 if ($action == 'show_add_student_form') {             
 	$students = StudentDB::getStudents();	//variable will hold all the students
-        $studentHasClass = StudentHasClassDB::get();	//variable will hold all the Student has class
+        $employees = EmployeeDB::getEmployees();	//variable will hold all the Student has class
         
     include('add_student.php');
 } else if ($action == 'add_student') {
