@@ -1,6 +1,6 @@
 <?php
 class Employee {
-    private $empID, $fname, $lname, $phoneNum, $address, $email, $usname, $passwd, $room, $employeeType;
+    private $empID, $fname, $lname, $phoneNum, $address, $email, $usname, $passwd, $room, $RoelID, $RoomName, $RoleName;
 
     public function __construct($fname, $lname, $email, $usname, $passwd, $room) 
 	{
@@ -83,13 +83,30 @@ class Employee {
     public function setRoom($value) {
         $this->room = $value;
     }
-    public function getEmployeeType() {   
-        return $this->employeeType;
+    public function getRoleID() {   
+        return $this->RoelID;
     }
     
-    public function setEmployeeType($value) {
-        $this->employeeType = $value;
+    public function setRoleID($value) {
+        $this->RoelID = $value;
     }
+	
+    public function setRoomNmae($value) {
+        $this->RoomName = $value;
+    }	
+	
+	public function getRoomName() {   
+        return $this->RoomName;
+    }
+	
+	public function setRoleName($value) {
+        $this->RoleName = $value;
+    }	
+	
+	public function getRoleName() {   
+        return $this->RoleName;
+    }
+	
 
 }
 ?>

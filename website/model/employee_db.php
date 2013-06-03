@@ -3,7 +3,9 @@ class EmployeeDB {
     public static function getEmployees() {
 		$db = Database::getDB();
         
-		$query = 'select * from EmployeeListWithRoom order by employeetype'; //This is a view
+		$query = 'select * from employeelistwithroomandrole_view order by RoleName'; //This is a view
+		
+		emp_id, FirstName, LastName, email_Address, username, password, Room_Room_ID, Location, PhoneNumber, Address, Role_Role_ID, RoleName
 		
 		//Get the results into array
 		$result = $db->query($query);
@@ -14,10 +16,13 @@ class EmployeeDB {
 									$row['email_Address'],
 									$row['username'],
 									$row['password'],
-									$row['Location']);
+									$row['Room_Room_ID']);
 			$employee->setPhoneNum($row['PhoneNumber']);
 			$employee->setEmployeeID($row['emp_id']);
 			$employee->setAddress($row['Address']);
+			$employee->setAddress($row['Location']);
+			$employee->setAddress($row['Role_Role_ID']);
+			$employee->setAddress($row['RoleName']);
 			
             $employees[] = $employee;
         }
