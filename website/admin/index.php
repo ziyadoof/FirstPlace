@@ -4,8 +4,8 @@ require('../model/employee_class.php');
 require('../model/employee_db.php');
 require('../model/room_class.php');
 require('../model/room_db.php');
-require('../model/caseRole_db.php');
-require('../model/adminRole_db.php');
+require('../model/role_class.php');
+require('../model/role_db.php');
 require('../model/teacherRole_db.php');
 
 
@@ -20,6 +20,7 @@ if (isset($_POST['action'])) {
 //Get the available rooms for adding new employee.
 if ($action == 'show_add_employee_form') {             
     $rooms = RoomDB::getRooms();				//variable will hold all the rooms
+	$roles = RoleDB::getRoles();
 	$employees = EmployeeDB::getEmployees();	//variable will hold all the employees
     include('add_employee.php');
 } else if ($action == 'add_employee') {

@@ -25,7 +25,7 @@
 	 			<td><input type='password' name='password_new' required /></td>
 		 		<td>
 					<select name='roleID_new'>
-	<option value="1">Admin</option><option value="2">Teacher</option><option value="3">Case Worker</option>
+						<option value="1">Admin</option><option value="2">Teacher</option><option value="3">Case Worker</option>
 					</select>
 				</td>
   				<td colspan='2' id='formButtons'>

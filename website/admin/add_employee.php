@@ -42,9 +42,13 @@
 				<td><input type='text' name='username_new' required /></td>
 	 			<td><input type='password' name='password_new' required /></td>
 		 		<td>
-					<select name='roleID_new'>
-						<option value="a">Admin</option><option value="t">Teacher</option><option value="c">Case Worker</option>
-					</select>
+				    <select name="roleID_new">
+						<?php foreach ($roles as $role) : ?>
+						<option value="<?php echo $role->getRole_id(); ?>">
+							<?php echo $role->getRoleName(); ?>
+						</option>
+						<?php endforeach; ?>
+					</select>				
 				</td>
   				<td colspan='2' id='formButtons'>
 			  		<input type='submit' value="Add User" />

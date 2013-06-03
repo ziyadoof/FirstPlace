@@ -30,10 +30,7 @@ class RoleDB {
 		$role = new Role($row['Role_ID'],
 						$row['RoleName']);
 		return $role;   
-    }
-	
-	
-    
+    } 
     
     public static function addRole($roleRow) {
 		$db = Database::getDB();
