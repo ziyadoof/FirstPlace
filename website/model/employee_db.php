@@ -18,7 +18,6 @@ class EmployeeDB {
 			$employee->setPhoneNum($row['PhoneNumber']);
 			$employee->setEmployeeID($row['emp_id']);
 			$employee->setAddress($row['Address']);
-			$employee->setEmployeeType($row['employeetype']);
 			
             $employees[] = $employee;
         }
