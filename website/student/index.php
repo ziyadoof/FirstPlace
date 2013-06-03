@@ -89,7 +89,8 @@ if ($action == 'show_add_student_form') {
 		//Set vlaues
                 $studentNew = new Student($firstname, $lastname, $address, $phonenumber);
 		$studentNew->setGrade($grade);
-		$studentNew->setCaseWorker($casework);
+		$studentNew->setEmail($email_address);
+                $studentNew->setCaseWorker($casework);
 		$studentNew->setClass($class);
 		$studentNew->setStartDate($year);
                 $studentNew->setStudentID($sID);

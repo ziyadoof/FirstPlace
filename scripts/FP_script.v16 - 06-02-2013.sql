@@ -58,8 +58,8 @@ CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Student` (
   `PhoneNumber` VARCHAR(45) NOT NULL ,
   `Address` VARCHAR(200) NOT NULL ,
   `email_address` VARCHAR(45) NULL ,
-  `YearStarted` DATETIME NOT NULL ,
-  `Employee_emp_id` INT NULL,
+  `YearStarted` DATETIME NULL ,
+  `Employee_emp_id` INT NULL ,
   PRIMARY KEY (`s_id`) ,
   INDEX `fk_Student_Employee1_idx` (`Employee_emp_id` ASC) ,
   CONSTRAINT `fk_Student_Employee1`
@@ -478,7 +478,7 @@ DROP VIEW IF EXISTS `FirstPlace`.`StudentWithCasework` ;
 DROP TABLE IF EXISTS `FirstPlace`.`StudentWithCasework`;
 USE `FirstPlace`;
 CREATE  OR REPLACE VIEW `FirstPlace`.`StudentWithCasework` AS
-select s.s_id, s.FirstName, s.LastName, s.email_Address, s.PhoneNumber, s.Address, s.YearStarted, emp.username
+select s.s_id, s.FirstName, s.LastName, s.Grade, s.email_address, s.PhoneNumber, s.Address, s.YearStarted, emp.username
 From Student s left outer join Employee emp
 on s.Employee_emp_ID = emp.emp_ID
 order by LastName;

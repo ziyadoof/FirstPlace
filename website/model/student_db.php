@@ -8,15 +8,16 @@ class StudentDB {
 		$result = $db->query($query);
 		$students = array();
 		foreach ($result as $row) {
-            $student = new Student($row['FirstName'],
+            $student = new Student($row['FirstName'], 
 			$row['LastName'],
 			$row['Address'],
 			$row['PhoneNumber']);
-			$student->setStudentID($row['s_id']);
+            
+                        $student->setGrade($row['Grade']);
                         $student->setEmail($row['email_address']);
-			$student->setGrade($row['Grade']);
                         $student->setStartDate($row['YearStarted']);
-                        $student->setCaseWorker($row['Employee_emp_id']);
+                        $student->setCaseWorker($row['username']);
+                        $student->setStudentID($row['s_id']);
  			
             $students[] = $student;
         }
@@ -37,11 +38,11 @@ class StudentDB {
 			$row['LastName'],
 			$row['Address'],
 			$row['PhoneNumber']);
-			$student->setStudentID($row['s_id']);
                         $student->setEmail($row['email_address']);
 			$student->setGrade($row['Grade']);
                         $student->setStartDate($row['YearStarted']);
                         $student->setCaseWorker($row['Employee_emp_id']);
+                        $student->setStudentID($row['s_id']);
                         
 		return $student;
     }
@@ -54,8 +55,8 @@ class StudentDB {
 		$lastname = $student->getLastName();
 		$phoneNum = $student->getPhoneNum();
 		$address = $student->getAddress();
-		$email_address = $student->getEmail();
-		$grade = $student->getGrade();
+		$emailAddress = $student->getEmail();
+		$grad = $student->getGrade();
 		$stDate = $student->getStartDate();
 		$fpclass = $student->getClass();
                 
@@ -64,13 +65,13 @@ class StudentDB {
 			"INSERT INTO student
 				(FirstName, LastName, Grade, PhoneNumber, Address, email_Address, YearStarted, Employee_emp_id)
 			VALUES
-				('$firstname', '$lastname', '$grade', '$phoneNum', '$address', '$email_address', '$stDate', '$casework')";
+				('$firstname', '$lastname', '$grad', '$phoneNum', '$address', '$emailAddress', '$stDate', '$casework')";
 
 		$WithoutCaseWorkerQuery =
 			"INSERT INTO student
 				(FirstName, LastName, Grade, PhoneNumber, Address, email_Address, YearStarted)
 			VALUES
-				('$firstname', '$lastname', '$grade', '$phoneNum', '$address', '$email_address', '$stDate')";
+				('$firstname', '$lastname', '$grad', '$phoneNum', '$address', '$emailAddress', '$stDate')";
 
                 $WithClassQuery =
 			"INSERT INTO studentClass
