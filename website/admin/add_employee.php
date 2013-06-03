@@ -77,18 +77,10 @@
 			<td><?php echo $employee->getFirstName(); ?></td>
 			<td><?php echo $employee->getLastName(); ?></td>
 			<td><?php echo $employee->getEmail(); ?></td>
-			<td><?php echo $employee->getRoom(); ?></td>
+			<td><?php echo $employee->getRoomName(); ?></td>
 			<td><?php echo $employee->getPhoneNum(); ?></td>
 			<td><?php echo $employee->getAddress(); ?></td>
-			<td><?php $empTtype = $employee->getEmployeeType();
-				if ( $empTtype == "t"){
-					echo "Teacher";
-				} elseif ( $empTtype == "a") {
-					echo "Admin";
-				} else {
-					echo "Case Worker";
-				}
-			?></td>
+			<td><?php echo $employee->getRoleName(); ?></td>
 			<td>
 				<form class='inline' method='post' action='index.php'>
 					<input type="hidden" name="action" value="edit_employee" />

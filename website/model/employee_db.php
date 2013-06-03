@@ -5,8 +5,6 @@ class EmployeeDB {
         
 		$query = 'select * from employeelistwithroomandrole_view order by RoleName'; //This is a view
 		
-		emp_id, FirstName, LastName, email_Address, username, password, Room_Room_ID, Location, PhoneNumber, Address, Role_Role_ID, RoleName
-		
 		//Get the results into array
 		$result = $db->query($query);
 		$employees = array();
@@ -20,9 +18,9 @@ class EmployeeDB {
 			$employee->setPhoneNum($row['PhoneNumber']);
 			$employee->setEmployeeID($row['emp_id']);
 			$employee->setAddress($row['Address']);
-			$employee->setAddress($row['Location']);
-			$employee->setAddress($row['Role_Role_ID']);
-			$employee->setAddress($row['RoleName']);
+			$employee->setRoomNmae($row['Location']);
+			$employee->setRoleID($row['Role_Role_ID']);
+			$employee->setRoleName($row['RoleName']);
 			
             $employees[] = $employee;
         }
@@ -34,21 +32,23 @@ class EmployeeDB {
 
 		$db = Database::getDB();
         
-		$query = "SELECT * FROM EmployeeListWithRoom
+		$query = "SELECT * FROM employeelistwithroomandrole_view
                   WHERE emp_id = '$e_id'";
         $result = $db->query($query);
         $row = $result->fetch();
         
-		$employee = new Employee($row['FirstName'],
-								$row['LastName'],
-								$row['email_Address'],
-								$row['username'],
-								$row['password'],
-								$row['Location']);
-		$employee->setPhoneNum($row['PhoneNumber']);
-		$employee->setEmployeeID($row['emp_id']);
-		$employee->setAddress($row['Address']);
-		$employee->setEmployeeType($row['employeetype']);
+            $employee = new Employee($row['FirstName'],
+									$row['LastName'],
+									$row['email_Address'],
+									$row['username'],
+									$row['password'],
+									$row['Room_Room_ID']);
+			$employee->setPhoneNum($row['PhoneNumber']);
+			$employee->setEmployeeID($row['emp_id']);
+			$employee->setAddress($row['Address']);
+			$employee->setRoomNmae($row['Location']);
+			$employee->setRoleID($row['Role_Role_ID']);
+			$employee->setRoleName($row['RoleName']);
 		
 		return $employee;
     }
@@ -64,19 +64,19 @@ class EmployeeDB {
 		$email_address = $employee->getEmail();
 		$username = $employee->getUserName();
 		$password = $employee->getPassword();
-		$empType = $employee->getEmployeeType();
+		$empRoleID = $employee->getRoleID();
 		
 		$WithRoomQuery =
 			"INSERT INTO employee
-				(Room_Room_ID, FirstName, LastName, PhoneNumber, Address, email_Address, password, username, employeetype)
+				(Room_Room_ID, FirstName, LastName, PhoneNumber, Address, email_Address, password, username, Role_Role_ID)
 			VALUES
-				('$classroom', '$firstname', '$lastname', '$phoneNum', '$address', '$email_address', '$password', '$username', '$empType')";
+				('$classroom', '$firstname', '$lastname', '$phoneNum', '$address', '$email_address', '$password', '$username', '$empRoleID')";
 
 		$WithoutRoomQuery =
 			"INSERT INTO employee
-				(FirstName, LastName, PhoneNumber, Address, email_Address, password, username, employeetype)
+				(FirstName, LastName, PhoneNumber, Address, email_Address, password, username, Role_Role_ID)
 			VALUES
-				('$firstname', '$lastname', '$phoneNum', '$address', '$email_address', '$password', '$username', '$empType')";
+				('$firstname', '$lastname', '$phoneNum', '$address', '$email_address', '$password', '$username', '$empRoleID')";
 		
 		//Check if the room was specified by the user or not
 		if ($classroom == "NotSpecified")
@@ -101,7 +101,7 @@ class EmployeeDB {
 		$emailAddress = $employee->getEmail();
 		$username = $employee->getUserName();
 		$password = $employee->getPassword();
-		$empType = $employee->getEmployeeType();		
+		$empType = $employee->getRoleID();		
 		
 		$queryWithRoomSpecified = 
 				"UPDATE employee
@@ -111,7 +111,8 @@ class EmployeeDB {
 					LastName =  '$lastname',
 					PhoneNumber = '$phoneNum' ,
 					Address = '$address' ,
-					email_Address = '$emailAddress'
+					email_Address = '$emailAddress',
+					Role_Role_ID = '$empType'
 				WHERE emp_id = '$e_id'";
 				
 		$queryWithRoomNotSpecified = 
@@ -122,7 +123,8 @@ class EmployeeDB {
 					LastName =  '$lastname',
 					PhoneNumber = '$phoneNum' ,
 					Address = '$address' ,
-					email_Address = '$emailAddress'
+					email_Address = '$emailAddress',
+					Role_Role_ID = '$empType'
 				WHERE emp_id = '$e_id'";
 		
 		if ($classroom == "NotSpecified")
@@ -145,7 +147,7 @@ class EmployeeDB {
 	   return $row_count;
 	}
 
-         public static function getCaseWorkers() {
+    public static function getCaseWorkers() {
 		$db = Database::getDB();
         
 		$query = 'select * from ViewCaseWorkers order by username'; //This is a view

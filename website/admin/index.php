@@ -36,16 +36,16 @@ if ($action == 'show_add_employee_form') {
 	$roleID = $_POST['roleID_new'];
 
 	// Validate the inputs
-	if (empty($firstname) || empty($lastname) || empty($email_address)|| empty($username) || empty($password)) 
+	if (empty($firstname) || empty($lastname) || empty($email_address)|| empty($username) || empty($password) || empty($roleID)) 
 	{
-		$error = "Invalid product data. Check all fields and try again.";
+		$error = "Invalid employee data. Check all fields and try again.";
 		include('../errors/error.php');
 	} else 
 	{
 		//Set vlaues
 		$employeeRow = new Employee($firstname, $lastname, $email_address, $username, $password, $classroom);
 		$employeeRow->setRoom($classroom);
-		$employeeRow->setEmployeeType($roleID);
+		$employeeRow->setRoleID($roleID);
 		$employeeRow->setPhoneNum($phonenumber);
 		$employeeRow->setAddress($address);
 			
@@ -58,6 +58,7 @@ if ($action == 'show_add_employee_form') {
 } else if ($action == 'edit_employee') {
 	
 	$rooms = RoomDB::getRooms();
+	$roles = RoleDB::getRoles();
 	$empIdToEdit = $_POST['employee_id']; 	
 	$employee = EmployeeDB::getEmployee($empIdToEdit);
 
@@ -70,21 +71,15 @@ if ($action == 'show_add_employee_form') {
 	$DelEmployee = EmployeeDB::getEmployee($empIdToDelete);
 	$ToBeDeletedEmpID = $DelEmployee->getEmployeeID();
 	
-	if ($DelEmployee->getEmployeeType() == 't'){
-		TeacherRoleDB::deleteTeachByEmployee($ToBeDeletedEmpID);
+	if (empty($ToBeDeletedEmpID)) 
+	{
+		$error = "Invalid employee data. Check all fields and try again.";
+		include('../errors/error.php');
+	} else 
+	{
 		EmployeeDB::deleteEmployee($ToBeDeletedEmpID);
-	}elseif ($DelEmployee->getEmployeeType() == 'a'){
-		AdminRoleDB::deleteAdminRoleByEmpID($ToBeDeletedEmpID);
-		EmployeeDB::deleteEmployee($ToBeDeletedEmpID);	
-	} elseif ($DelEmployee->getEmployeeType() == 'c'){
-		CaseRoleDB::deleteCaseWorkerByEmpID($ToBeDeletedEmpID);
-		EmployeeDB::deleteEmployee($ToBeDeletedEmpID);	
-	} else {
-		$error = "Invalid product data. Check all fields and try again.";
-		include('../errors/error.php');	
-	}
-
-	header("Location: .?action=show_add_employee_form");
+		header("Location: .?action=show_add_employee_form");
+	}		
 	
 } else if ($action == 'update_employee') {
 	
@@ -94,20 +89,19 @@ if ($action == 'show_add_employee_form') {
 	$address = $_POST['address_cuurent'];
 	$email_address = $_POST['email_cuurent'];
 	$classroom = $_POST['classRoom_cuurent'];
-	$roleID = $_POST['roleID_cuurent'];
+	$roleID = $_POST['New_RoleID'];
 	$eID = $_POST['empID_cuurent']; 
 	
-	if (empty($firstname) || empty($lastname) || empty($email_address) || empty($eID)) 
+	if (empty($firstname) || empty($lastname) || empty($email_address) || empty($eID) || empty($roleID)) 
 	{
-		$error = "Invalid product data. Check all fields and try again.";
+		$error = "Invalid employee data. Check all fields and try again.";
 		include('../errors/error.php');
 	} else 
 	{
 		//Set vlaues
 		$employeeNew = new Employee($firstname, $lastname, $email_address, $username, $password, $classroom);
 		$employeeNew->setEmployeeID($eID);
-		$employeeNew->setRoom($classroom);
-		$employeeNew->setEmployeeType($roleID);
+		$employeeNew->setRoleID($roleID);
 		$employeeNew->setPhoneNum($phonenumber);
 		$employeeNew->setAddress($address);
 		

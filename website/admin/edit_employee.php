@@ -9,7 +9,7 @@
 
 		<table id='formtable' class='imagetable'>
 			<tr>
-				<th colspan='8' class='tableTitle'>Employee Infomation</th>
+				<th colspan='9' class='tableTitle'>Employee Infomation</th>
 			</tr>
  			<tr>
  				<th>*First Name</th>
@@ -18,6 +18,7 @@
 				<th>Address</th>
 				<th>*Email</th>
 				<th>Class Room</th>
+				<th>* Role</th>
 				<th>Action</th>
   			</tr>
  			<tr>
@@ -31,8 +32,17 @@
 				    <select name="classRoom_cuurent">
 						<option value="NotSpecified">No Room</option>
 						<?php foreach ($rooms as $room) : ?>
-						<option value="<?php echo $room->getRoom_id(); ?>" <?php if ($employee->getRoom() == $room->getLocation()) { echo "selected";}?>>
+						<option value="<?php echo $room->getRoom_id(); ?>" <?php if ($employee->getRoom() == $room->getRoom_id()) { echo "selected";}?>>
 							<?php echo $room->getLocation(); ?>
+						</option>
+						<?php endforeach; ?>
+					</select>
+				</td>
+				<td>
+				    <select name="New_RoleID">
+						<?php foreach ($roles as $role) : ?>
+						<option value="<?php echo $role->getRole_id(); ?>" <?php if ($employee->getRoleID() == $role->getRole_id()) { echo "selected";}?>>
+							<?php echo $role->getRoleName(); ?>
 						</option>
 						<?php endforeach; ?>
 					</select>
