@@ -3,7 +3,6 @@ class Room {
     private  $room_id, $location;
 
     public function __construct($r_id, $location) {
-        //we set only the location because the room_id is Auto Increament	
 		$this->room_id = $r_id;
 		$this->location = $location;   
     }
