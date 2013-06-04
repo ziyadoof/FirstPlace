@@ -97,7 +97,7 @@
 					</select>			
 				</td>
 				<td><input type='date' name='SpecStartDateForEmp' required /></td>
-				<td><input type='date' name='SpecEndDateForEmp' required /></td>
+				<td><input type='date' name='SpecEndDateForEmp'  /></td>
 				<td>
 					<input type="hidden" name="employee_id" value="<?php echo $employee->getEmployeeID(); ?>" />
 					<input type="submit" value="Add to employee" />
