@@ -29,7 +29,9 @@
 			</tr>
 		</table>
     </form>
+	
 	<br>
+	
 	<table id='displaytable' class='imagetable'>
 		<tr>
 			<th colspan='4' class='tableTitle'>Hloidays for School Years List</th>
@@ -40,15 +42,15 @@
 			<th>End Date</th>
 			<th>Action</th>
 		</tr>
-		<?php foreach ($school_year as $sYear) : ?>
+		<?php foreach ($YearHolidays as $YHoliday) : ?>
 		<tr>
-			<td><?php echo $sYear->getStartDate(); ?></td>
-			<td><?php echo $sYear->getEndDate(); ?></td>
-			<td><?php echo $sYear->getName(); ?></td>
+			<td><?php echo $YHoliday->getName(); ?></td>
+			<td><?php echo $YHoliday->getStartDate(); ?></td>
+			<td><?php echo $YHoliday->getEndDate(); ?></td>
 			<td>
 				<form class='inline' method='post' action='index.php'>
-					<input type="hidden" name="action" value="edit_schoolyear" />
-					<input type="hidden" name="schoolyear_id" value="<?php echo $sYear->getSy_id(); ?>" />
+					<input type="hidden" name="action" value="delete_holiday_from_year" />
+					<input type="hidden" name="hli_id_to_delete" value="<?php echo $YHoliday->getHoli_id(); ?>" />
                     <input type="submit" value="Delete Holiday" />
                 </form>
 			</td>			
@@ -58,8 +60,8 @@
 			<form class='inline' method='post' action='index.php'>
 				<input type="hidden" name="action" value="add_holiday_to_year" />
 				<td><input type='text' name='new_holiday_name'  /></td>
-				<td><input type='text' name='new_holiday_sd' required /></td>
-				<td><input type='text' name='new_holiday_ed' required /></td>
+				<td><input type='date' name='new_holiday_sd' required /></td>
+				<td><input type='date' name='new_holiday_ed' required /></td>
 				<td>
 					<input type="hidden" name="schoolyear_id" value="<?php echo $sYear->getSy_id(); ?>" />
                     <input type="submit" value="Add Holiday" />

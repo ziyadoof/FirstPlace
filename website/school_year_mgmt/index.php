@@ -5,7 +5,8 @@
 require('../model/mysql_connect.php');
 require('../model/schoolYear_class.php');
 require('../model/schoolYear_db.php');
-
+require('../model/holiday_class.php');
+require('../model/holiday_db.php');
 
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
@@ -49,6 +50,7 @@ if ($action == 'show_add_schoolYear_form') {
 	
 	$sy_id = $_POST['schoolyear_id']; 
 	$SY_ToBeEdited = SchoolYearDB::getSchoolYear($sy_id);
+	$YearHolidays = HolidayDB::getHolidaysBysYear($sy_id);
 	include ('edit_schoolyear.php');
 	
 } else if ($action == 'update_schoolyear') {
