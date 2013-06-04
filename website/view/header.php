@@ -41,7 +41,7 @@
 				<li><a href="#">Classes</a>
 					<ul>
 						<li><a href="/FirstPlace/website/class/?action=show_add_class_form">Add Class</a></li>
-						<li><a href="/FirstPlace/website/class/add_class.php">Edit Classes</a></li>
+						<li><a href="/FirstPlace/website/class/?action=show_add_class_form">Edit Classes</a></li>
 					</ul>
 				</li>
 				<li><a href="#">Attendance</a>

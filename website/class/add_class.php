@@ -112,13 +112,13 @@
 					} ?>
 			<td>
 				<form class='inline' method='post' action='index.php'>
-					<input type="hidden" name="action" value="edit_employee" />
-					<input type="hidden" name="employee_id" value="<?php echo $employee->getEmployeeID(); ?>" />
+					<input type="hidden" name="action" value="edit_class" />
+					<input type="hidden" name="class_id" value="<?php echo $class->getC_id(); ?>" />
                     <input type="submit" value="Edit" />
                 </form>
 				<form class='inline' method='post' action='index.php'>
-					<input type="hidden" name="action" value="delete_employee" />
-					<input type="hidden" name="employee_id" value="<?php echo $employee->getEmployeeID(); ?>" />
+					<input type="hidden" name="action" value="delete_class" />
+					<input type="hidden" name="class_id" value="<?php echo $class->getC_id(); ?>" />
                     <input type="submit" value="Delete" />
                 </form>
 			</td>			
