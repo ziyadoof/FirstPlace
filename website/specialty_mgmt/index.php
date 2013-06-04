@@ -22,12 +22,12 @@ if ($action == 'show_add_specialty_form') {
     include('add_specialty.php');
 
 } else if ($action == 'add_specialty') {
-	
-	$sType = $_POST['spesType_new'];
-	$sName = $_POST['spesName_new'];
-	$sSD = $_POST['spesSD_new'];
-	$sED = $_POST['spesED_new'];
 
+        $sSD = isset($_REQUEST["spe_start_date"]) ? $_REQUEST["spe_start_date"] : "";
+        $sED = isset($_REQUEST["spe_end_date"]) ? $_REQUEST["spe_end_date"] : "";
+	
+        $sType = $_POST['spesType_new'];
+	$sName = $_POST['spesName_new'];
 
 	// Validate the inputs
 	if (empty($sType) || empty($sName) || empty($sSD) || empty($sED)) 
@@ -53,11 +53,14 @@ if ($action == 'show_add_specialty_form') {
 	
 } else if ($action == 'update_specialty') {
 	
+        $s_sd = isset($_REQUEST["spe_start_date"]) ? $_REQUEST["spe_start_date"] : "";
+        $s_ed = isset($_REQUEST["spe_end_date"]) ? $_REQUEST["spe_end_date"] : "";
+    
 	$sid = $_POST['s_id_to_edit'];
 	$s_type = $_POST['sType_new'];
 	$s_name = $_POST['sName_new'];
-	$s_sd = $_POST['sSD_new'];
-	$s_ed = $_POST['sED_new'];
+	//$s_sd = $_POST['sSD_new'];
+	//$s_ed = $_POST['sED_new'];
 
 
 	// Validate the inputs
