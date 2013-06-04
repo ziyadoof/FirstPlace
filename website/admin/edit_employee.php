@@ -55,6 +55,45 @@
 			</tr>
 		</table>
     </form>
+	<br>
+	<table id='displaytable' class='imagetable'>
+		<tr>
+			<th colspan='5' class='tableTitle'>Specilties Included</th>
+		</tr>
+		<tr>
+			<th>Specialty Type 	</th>
+			<th>Specialty Name</th>
+			<th>Specialty Start Date</th>
+			<th>Specialty End Date</th>
+			<th>Action</th>
+		</tr>
+		<?php foreach ($specialty as $spes) : ?>
+		<tr>
+			<td><?php echo $spes->getType(); ?></td>
+			<td><?php echo $spes->getName(); ?></td>
+			<td><?php echo $spes->getStart_date(); ?></td>
+			<td><?php echo $spes->getEnd_date(); ?></td>
+			<td>
+				<form class='inline' method='post' action='index.php'>
+					<input type="hidden" name="action" value="edit_employee" />
+					<input type="hidden" name="employee_id" value="<?php echo $spes->getSpecialty_id(); ?>" />
+                    <input type="submit" value="Remove from employee profile" />
+                </form>			
+			</td>
+		</tr>
+		<?php endforeach; ?>
+		<tr>
+			<td colspan='4'>
+			</td>
+			<td>
+				<form class='inline' method='post' action='index.php'>
+					<input type="hidden" name="action" value="edit_employee" />
+					<input type="hidden" name="employee_id" value="<?php echo $spes->getSpecialty_id(); ?>" />
+                    <input type="submit" value="Add to employee" />
+                </form>
+			</td>	
+		</tr>
+	</table>	
 	
 
 </div> <!-- #content -->
