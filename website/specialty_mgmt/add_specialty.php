@@ -1,6 +1,4 @@
-<?php include '../view/header.php'; 
-require('../calendar/classes/tc_calendar.php');
-?>
+<?php include '../view/header.php'; ?>
 
 <div id="content">
 	<h1>Specialties Management</h1>
@@ -10,40 +8,16 @@ require('../calendar/classes/tc_calendar.php');
         
 		<table id='formtable' class='imagetable'>
 			<tr>
-				<th colspan='5' class='tableTitle'>Create new Specialty</th>
+				<th colspan='3' class='tableTitle'>Create new Specialty</th>
 			</tr>
  			<tr>
 				<th>* Specialty Type</th>
  				<th>* Specialty Name</th>
-				<th>* Specialty Start Date</th>
-				<th>Specialty End Date</th>
 				<th>Action</th>
   			</tr>
  			<tr>
  				<td><input type='text' name='spesType_new' required /></td>
 				<td><input type='text' name='spesName_new' required /></td>
-				<td><?php
-                                        $myCalendar = new tc_calendar("spe_start_date", true, false);
-                                        $myCalendar->setIcon("../calendar/images/iconCalendar.gif");
-                                        $myCalendar->setDate(date('d'), date('m'), date('Y'));
-                                        $myCalendar->setPath("../calendar/");
-                                        $myCalendar->setYearInterval(2010, 2025);
-                                        $myCalendar->dateAllow('2008-05-13', '2040-03-01');
-                                        $myCalendar->setDateFormat('j F Y');
-                                        $myCalendar->setAlignment('left', 'bottom');
-                                        $myCalendar->writeScript();
-                                        ?>  </td>
-				<td><?php
-                                        $myCalendar = new tc_calendar("spe_end_date", true, false);
-                                        $myCalendar->setIcon("../calendar/images/iconCalendar.gif");
-                                        $myCalendar->setDate(date('d'), date('m'), date('Y'));
-                                        $myCalendar->setPath("../calendar/");
-                                        $myCalendar->setYearInterval(2010, 2025);
-                                        $myCalendar->dateAllow('2008-05-13', '2040-03-01');
-                                        $myCalendar->setDateFormat('j F Y');
-                                        $myCalendar->setAlignment('left', 'bottom');
-                                        $myCalendar->writeScript();
-                                        ?>  </td>
   				<td colspan='2' id='formButtons'>
 			  		<input type='submit' value="Add Specialty" />
  				</td>
@@ -54,21 +28,17 @@ require('../calendar/classes/tc_calendar.php');
 	<br>
 	<table id='displaytable' class='imagetable'>
 		<tr>
-			<th colspan='5' class='tableTitle'>Specialty List</th>
+			<th colspan='3' class='tableTitle'>Specialty List</th>
 		</tr>
 		<tr>
 			<th>Specialty Type</th>
 			<th>Specialty Name</th>
-			<th>Specialty Start Date</th>
-			<th>Specialty End Date</th>
 			<th>Action</th>
 		</tr>
 		<?php foreach ($specialty as $spes) : ?>
 		<tr>
 			<td><?php echo $spes->getType(); ?></td>
 			<td><?php echo $spes->getName(); ?></td>
-			<td><?php echo $spes->getStart_date(); ?></td>
-			<td><?php echo $spes->getEnd_date(); ?></td>
 			<td>
 				<form class='inline' method='post' action='index.php'>
 					<input type="hidden" name="action" value="edit_specialty" />

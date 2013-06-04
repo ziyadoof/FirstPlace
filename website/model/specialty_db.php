@@ -12,9 +12,7 @@ class SpecialtyDB {
         foreach ($result as $row) {
             $spes = new Specialty($row['S_ID'],
                              $row['Type'],
-							 $row['Name'],
-							 $row['Start_Date'],
-							 $row['End_Date']);
+							 $row['Name']);
             $Specialties[] = $spes;
         }
         return $Specialties;
@@ -30,9 +28,7 @@ class SpecialtyDB {
         $row = $result->fetch();
 		$spes = new Specialty($row['S_ID'],
                              $row['Type'],
-							 $row['Name'],
-							 $row['Start_Date'],
-							 $row['End_Date']);
+							 $row['Name']);
 		return $spes;  
         
     }
@@ -44,15 +40,11 @@ class SpecialtyDB {
 		$sID = $spesRow->getSpecialty_id();
 		$sType = $spesRow->getType();
 		$sName = $spesRow->getName();
-		$sSD = $spesRow->getStart_date();
-		$sED = $spesRow->getEnd_date();
 	
 		$query = 
 			"UPDATE specialty
 			SET Type = '$sType',
-				Name = '$sName',
-				Start_Date = '$sSD',
-				End_Date = '$sED'
+				Name = '$sName'
 			WHERE S_ID = '$sID'";
 		
 		$row_count = $db->exec($query);
@@ -66,14 +58,12 @@ class SpecialtyDB {
 		
 		$spsType = $specialtyRow->getType();
 		$spsName = $specialtyRow->getName();
-		$spsSD = $specialtyRow->getStart_date();
-		$spsED = $specialtyRow->getEnd_date();
 		
 		$query =
 			"INSERT INTO specialty
-				(Type, Name, Start_Date, End_Date)
+				(Type, Name)
 			VALUES
-				('$spsType', '$spsName', '$spsSD', '$spsED')";
+				('$spsType', '$spsName')";
 		
 		$row_count = $db->exec($query);
         return $row_count; 

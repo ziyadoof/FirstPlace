@@ -1,4 +1,6 @@
-<?php include '../view/header.php'; ?>
+<?php include '../view/header.php'; 
+require('../calendar/classes/tc_calendar.php');
+?>
 
 <div id="content">
 
@@ -96,8 +98,30 @@
 						<?php endforeach; ?>
 					</select>			
 				</td>
-				<td><input type='date' name='SpecStartDateForEmp' required /></td>
-				<td><input type='date' name='SpecEndDateForEmp'  /></td>
+				<td><?php
+                        $myCalendar = new tc_calendar("SpecStartDateForEmp", true, false);
+                        $myCalendar->setIcon("../calendar/images/iconCalendar.gif");
+                        $myCalendar->setDate(date('d'), date('m'), date('Y'));
+                        $myCalendar->setPath("../calendar/");
+                        $myCalendar->setYearInterval(2010, 2025);
+                        $myCalendar->dateAllow('2008-05-13', '2040-03-01');
+                        $myCalendar->setDateFormat('j F Y');
+                        $myCalendar->setAlignment('left', 'bottom');
+                        $myCalendar->writeScript();
+                    ?>  
+				</td>
+				<td><?php
+                        $myCalendar = new tc_calendar("SpecEndDateForEmp", true, false);
+                        $myCalendar->setIcon("../calendar/images/iconCalendar.gif");
+                        $myCalendar->setDate(date('d'), date('m'), date('Y'));
+                        $myCalendar->setPath("../calendar/");
+                        $myCalendar->setYearInterval(2010, 2025);
+                        $myCalendar->dateAllow('2008-05-13', '2040-03-01');
+                        $myCalendar->setDateFormat('j F Y');
+                        $myCalendar->setAlignment('left', 'bottom');
+                        $myCalendar->writeScript();
+                     ?>  
+				</td>
 				<td>
 					<input type="hidden" name="employee_id" value="<?php echo $employee->getEmployeeID(); ?>" />
 					<input type="submit" value="Add to employee" />
