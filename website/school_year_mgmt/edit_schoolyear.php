@@ -1,4 +1,6 @@
-<?php include '../view/header.php'; ?>
+<?php include '../view/header.php'; 
+require('../calendar/classes/tc_calendar.php');
+?>
 
 <div id="content">
 
@@ -9,7 +11,7 @@
 
 		<table id='formtable' class='imagetable'>
 			<tr>
-				<th colspan='4' class='tableTitle'>Speciality Information</th>
+				<th colspan='4' class='tableTitle'>School Year Information</th>
 			</tr>
  			<tr>
 				<th>* Start Year</th>
@@ -19,8 +21,8 @@
   			</tr>
  			<tr>
 
-                            <td><input type='text' name='SY_SD_new' value="<?php echo $SY_ToBeEdited->getStartDate(); ?>" required /></td>
-				<td><input type='text' name='SY_ED_new' value="<?php echo $SY_ToBeEdited->getEndDate(); ?>" required /></td>
+                                <td><input type='text' name='SY_SD_new' value="<?php echo $SY_ToBeEdited->getStartDate(); ?>" required /></td>
+                                <td><input type='text' name='SY_ED_new' value="<?php echo $SY_ToBeEdited->getEndDate(); ?>" required /></td>
 				<td><input type='date' name='SY_Name_new' value="<?php echo $SY_ToBeEdited->getName(); ?>" /></td>
   				<td colspan='2' id='formButtons'>
 					<input type='hidden'  name='SY_Edit_ID' value="<?php echo $SY_ToBeEdited->getSy_id(); ?>" />
@@ -35,13 +37,49 @@
 	
 	<table id='displaytable' class='imagetable'>
 		<tr>
-			<th colspan='4' class='tableTitle'>Hloidays List for School Year</th>
+			<th colspan='4' class='tableTitle'>Holidays List for School Year</th>
 		</tr>
 		<tr>
 			<th>Holiday Name</th>
  			<th>Start Date</th>
 			<th>End Date</th>
 			<th>Action</th>
+		</tr>
+                <tr>
+			<form class='inline' method='post' action='index.php'>
+				<input type="hidden" name="action" value="add_holiday_to_year" />
+				<td><input type='text' name='new_holiday_name'  /></td>
+				<td><?php                                 
+                                        $myCalendar = new tc_calendar("new_holiday_sd", true, false);
+                                        $myCalendar->setIcon("../calendar/images/iconCalendar.gif");
+                                        $myCalendar->setDate(date('d'), date('m'), date('Y'));
+                                        $myCalendar->disabledDay("Sat");
+                                        $myCalendar->disabledDay("sun");
+                                        $myCalendar->setPath("../calendar/");
+                                        $myCalendar->setYearInterval(2010, 2025);
+                                        $myCalendar->dateAllow('2008-05-13', '2040-03-01');
+                                        $myCalendar->setDateFormat('j F Y');
+                                        $myCalendar->setAlignment('left', 'bottom');
+                                        $myCalendar->writeScript();
+                                        ?>  </td>
+				<td><?php                                 
+                                        $myCalendar = new tc_calendar("new_holiday_ed", true, false);
+                                        $myCalendar->setIcon("../calendar/images/iconCalendar.gif");
+                                        $myCalendar->setDate(date('d'), date('m'), date('Y'));
+                                        $myCalendar->disabledDay("Sat");
+                                        $myCalendar->disabledDay("sun");
+                                        $myCalendar->setPath("../calendar/");
+                                        $myCalendar->setYearInterval(2010, 2025);
+                                        $myCalendar->dateAllow('2008-05-13', '2040-03-01');
+                                        $myCalendar->setDateFormat('j F Y');
+                                        $myCalendar->setAlignment('left', 'bottom');
+                                        $myCalendar->writeScript();
+                                        ?>  </td>
+				<td>
+					<input type="hidden" name="AddTo_schoolyear_id" value="<?php echo $SY_ToBeEdited->getSy_id(); ?>" />
+                    <input type="submit" value="Add Holiday" />
+				</td>
+			</form>
 		</tr>
 		<?php foreach ($YearHolidays as $YHoliday) : ?>
 		<tr>
@@ -58,18 +96,7 @@
 			</td>			
 		</tr>
 		<?php endforeach; ?>
-		<tr>
-			<form class='inline' method='post' action='index.php'>
-				<input type="hidden" name="action" value="add_holiday_to_year" />
-				<td><input type='text' name='new_holiday_name'  /></td>
-				<td><input type='date' name='new_holiday_sd' required /></td>
-				<td><input type='date' name='new_holiday_ed' required /></td>
-				<td>
-					<input type="hidden" name="AddTo_schoolyear_id" value="<?php echo $SY_ToBeEdited->getSy_id(); ?>" />
-                    <input type="submit" value="Add Holiday" />
-				</td>
-			</form>
-		</tr>
+	
 	</table>	
 
 </div> <!-- #content -->

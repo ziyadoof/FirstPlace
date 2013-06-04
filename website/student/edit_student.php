@@ -27,17 +27,17 @@ require('../calendar/classes/tc_calendar.php');
 			</tr>
  			<tr>
 				
- 				<td><input type='text' name='firstName_cuurent' value="<?php echo $student->getFirstName(); ?>" required /></td>
-		 		<td><input type='text' name='lastName_cuurent' value="<?php echo $student->getLastName(); ?>" required /></td>
-				<td><input type='text' name='phoneNumber_cuurent' value="<?php echo $student->getPhoneNum(); ?>"  required/></td>
-				<td><input type='text' name='address_cuurent' value="<?php echo $student->getAddress(); ?>" required/></td>
-		   		<td><input type='email' name='email_cuurent' value="<?php echo $student->getEmail(); ?>"  /></td>
-                                <td><input type='text' name='grade_cuurent' value="<?php echo $student->getGrade(); ?>" /></td>
+ 				<td><input type='text' name='firstName_cuurent' value="<?php echo $studentEdit->getFirstName(); ?>" required /></td>
+		 		<td><input type='text' name='lastName_cuurent' value="<?php echo $studentEdit->getLastName(); ?>" required /></td>
+				<td><input type='text' name='phoneNumber_cuurent' value="<?php echo $studentEdit->getPhoneNum(); ?>"  required/></td>
+				<td><input type='text' name='address_cuurent' value="<?php echo $studentEdit->getAddress(); ?>" required/></td>
+		   		<td><input type='email' name='email_cuurent' value="<?php echo $studentEdit->getEmail(); ?>"  /></td>
+                                <td><input type='text' name='grade_cuurent' value="<?php echo $studentEdit->getGrade(); ?>" /></td>
 	 			<td>
 				    <select name="casework_cuurent">
 						<option value="NotSpecified">No Employee</option>
 						<?php foreach ($caseworks as $employee) : ?>
-						<option value="<?php echo $employee->getEmployeeID() ; ?>" <?php if ($student->getCaseWorker() == $employee->getUserName()) { echo "selected";}?>>
+						<option value="<?php echo $employee->getEmployeeID() ; ?>" <?php if ($studentEdit->getCaseWorker() == $employee->getUserName()) { echo "selected";}?>>
 							<?php echo $employee->getUserName(); ?>
 						</option>
 						<?php endforeach; ?>
@@ -49,7 +49,7 @@ require('../calendar/classes/tc_calendar.php');
 					</select>
 				</td>
                                 		<td><?php
-                                        $default_date = $student->getStartDate();
+                                        $default_date = $studentEdit->getStartDate();
                                 
                                         $myCalendar = new tc_calendar("year_cuurent", true, false);
                                         $myCalendar->setIcon("../calendar/images/iconCalendar.gif");
@@ -64,7 +64,7 @@ require('../calendar/classes/tc_calendar.php');
                                         $myCalendar->writeScript();
                                         ?></td>  
                 		<td colspan='2' id='formButtons'>
-					<input type='hidden'  name='stID_cuurent' value="<?php echo $student->getStudentID(); ?>" />
+					<input type='hidden'  name='stID_cuurent' value="<?php echo $studentEdit->getStudentID(); ?>" />
 			  		<input type='submit' value="Update" />
 					<a href='index.php'><button type='button'>Cancel</button></a>
  				</td>

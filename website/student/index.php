@@ -62,7 +62,7 @@ if ($action == 'show_add_student_form') {
 	
 	$rooms = RoomDB::getRooms();
 	$stIdToEdit = $_POST['student_id']; 	
-	$student = StudentDB::getStudent($stIdToEdit);
+	$studentEdit = StudentDB::getStudent($stIdToEdit);
 
 	include ('edit_student.php');
 	
