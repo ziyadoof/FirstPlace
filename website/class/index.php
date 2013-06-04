@@ -53,6 +53,14 @@ if ($action == 'show_add_class_form') {
 		
 	//redirect hte user to the same page where he can see the employee list and refrech the add fields
 	header("Location: .?action=show_add_class_form");
+} else if ($action == 'edit_class') {
+	
+	$stdClasses = StdClassDB::getStdClass();
+	$rooms = RoomDB::getRooms();
+	$terms = SchoolYearDB::getSchoolYears();
+	$employees = EmployeeDB::getTeachers();
+
+	include ('edit_class.php');
 }
 
 ?>

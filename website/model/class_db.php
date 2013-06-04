@@ -34,15 +34,42 @@ class ClassDB {
 			 VALUES
 				 ('$stdClass', '$room', '$term', '$employee')";
 		
-		//Check if the room was specified by the user or not
+		
 		$row_count = $db->exec($addClassQuery);
 
 		return $row_count;
 	}
 	
-	public static function updateClass($student) {
-       //TODO
-        return $row_count;
-    }
+	public static function updateClass($c_id) {
+		$db = Database::getDB();
+		
+		$stdClass = $class->getStdC_id();
+		$room = $class->getRoom_id();
+		$term = $class->getSchoolYear_id();
+		$employee = $class->getEmp_id();	
+		
+		$updateClassquery = 
+				"UPDATE class
+				SET 
+					stdC_id = '$stdClass' ,
+					Room_room_id = '$room' ,
+					SchoolYear_sy_id =  '$lastname',
+					employee_emp_id = '$employee' ,
+					
+				WHERE c_id = '$c_id'";
+				
+		$row_count = $db->exec($updateClassQuery);		
+				
+		return $row_count;
+	}
+	
+	public static function deleteClass($c_id) {
+	   $db = Database::getDB();
+	   
+	   $query = "DELETE FROM class WHERE c_id = '$c_id' ";
+	   
+	   $row_count = $db->exec($query);
+	   return $row_count;
+	}
 }
 ?>
