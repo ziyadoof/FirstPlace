@@ -53,8 +53,8 @@
 	 			<td>
 				    <select name="teacher_new">
 						<option value="NotSpecified">(Select)</option>
-						<?php foreach ($teachers as $teacher) : ?>
-								<option value="<?php echo $teacher->getEmployee_id(); ?>">
+						<?php foreach ($employees as $teacher) : ?>
+								<option value="<?php echo $teacher->getEmployeeID(); ?>">
 									<?php echo $teacher->getLastName() ?>
 									<?php echo ',' ?>
 									<?php echo $teacher->getFirstName() ?>

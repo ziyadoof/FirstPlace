@@ -174,7 +174,28 @@ class EmployeeDB {
     }
 	
 	public static function getTeachers() {
-	
+		$db = Database::getDB();	
+		$query = 'select * from viewgetteachers';
+		
+		$result = $db->query($query);
+		$teachers = array();
+		foreach ($result as $row) {
+            $teacher = new Employee($row['firstname'],
+									$row['lastname'],
+									$row['email_address'],
+									$row['username'],
+									$row['password'],
+									$row['room_room_id']);
+									
+			// $employee->setPhoneNum($row['PhoneNumber']);
+			// $employee->setEmployeeID($row['emp_id']);
+			// $employee->setAddress($row['Address']);
+			// $employee->setEmployeeType($row['employeetype']);
+			
+            $teachers[] = $teacher;
+        }
+		
+		return $teachers;
 	}
 }
 ?>

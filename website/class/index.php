@@ -6,7 +6,8 @@ require('../model/stdClass_class.php');
 require('../model/stdClass_db.php');
 require('../model/schoolYear_class.php');
 require('../model/schoolYear_db.php');
-
+require('../model/employee_class.php');
+require('../model/employee_db.php');
 
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
@@ -20,6 +21,7 @@ if ($action == 'show_add_class_form') {
 	$stdClasses = StdClassDB::getStdClass();
 	$rooms = RoomDB::getRooms();
 	$terms = SchoolYearDB::getSchoolYears();
+	$employees = EmployeeDB::getTeachers();
 	
     // $rooms = RoomDB::getRooms();				//variable will hold all the rooms
 	// $grades = StdClassDB::getStdClass();
