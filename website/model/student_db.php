@@ -30,7 +30,7 @@ class StudentDB {
 		$db = Database::getDB();
         
 		$query = "select * from StudentWithCasework
-                  WHERE st_id = '$s_id'";
+                  WHERE s_id = '$s_id'";
         $result = $db->query($query);
         $row = $result->fetch();
         

@@ -9,7 +9,7 @@
 
 		<table id='formtable' class='imagetable'>
 			<tr>
-				<th colspan='4' class='tableTitle'>Speciality Infomation</th>
+				<th colspan='4' class='tableTitle'>Speciality Information</th>
 			</tr>
  			<tr>
 				<th>* Start Year</th>
@@ -18,7 +18,8 @@
 				<th>Action</th>
   			</tr>
  			<tr>
- 				<td><input type='text' name='SY_SD_new' value="<?php echo $SY_ToBeEdited->getStartDate(); ?>" required /></td>
+
+                            <td><input type='text' name='SY_SD_new' value="<?php echo $SY_ToBeEdited->getStartDate(); ?>" required /></td>
 				<td><input type='text' name='SY_ED_new' value="<?php echo $SY_ToBeEdited->getEndDate(); ?>" required /></td>
 				<td><input type='date' name='SY_Name_new' value="<?php echo $SY_ToBeEdited->getName(); ?>" /></td>
   				<td colspan='2' id='formButtons'>

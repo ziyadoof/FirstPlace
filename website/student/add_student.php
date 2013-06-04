@@ -4,7 +4,6 @@
     <h1>Students</h1>
        <form action="index.php" method="post" class="imagetable" id="formtable">
         <input type="hidden" name="action" value="add_student" />
-
 		<table id='formtable' class='imagetable'>
 			<tr>
 				<th colspan='10' class='tableTitle'>Create New Student</th>
@@ -59,7 +58,7 @@
 						<?php endforeach; ?>
 					</select>
 				</td>
-                                <td><input type='year' name='year_new' /></td>
+                                <td><input type="text" name="year_new" id="datepicker"/></td>
   				<td colspan='2' id='formButtons'>
 			  		<input type='submit' value="Add Student" />
  				</td>
