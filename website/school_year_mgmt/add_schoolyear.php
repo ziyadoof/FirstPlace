@@ -46,7 +46,7 @@
 				<form class='inline' method='post' action='index.php'>
 					<input type="hidden" name="action" value="edit_schoolyear" />
 					<input type="hidden" name="schoolyear_id" value="<?php echo $sYear->getSy_id(); ?>" />
-                    <input type="submit" value="Edit" />
+                    <input type="submit" value="Edit / Add   Holidays" />
                 </form>
 			</td>			
 		</tr>
