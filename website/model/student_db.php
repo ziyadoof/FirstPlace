@@ -25,24 +25,24 @@ class StudentDB {
 		return $students;
     }
     
-    public static function getStudent($s_id) {
+    public static function getStudent($Std_id) {
 
 		$db = Database::getDB();
         
 		$query = "select * from StudentWithCasework
-                  WHERE s_id = '$s_id'";
+                  WHERE s_id = '$Std_id'";
         $result = $db->query($query);
         $row = $result->fetch();
         
             $student = new Student($row['FirstName'],
-			$row['LastName'],
-			$row['Address'],
-			$row['PhoneNumber']);
-                        $student->setEmail($row['email_address']);
+									$row['LastName'],
+									$row['Address'],
+									$row['PhoneNumber']);
+            $student->setEmail($row['email_address']);
 			$student->setGrade($row['Grade']);
-                        $student->setStartDate($row['YearStarted']);
-                        $student->setCaseWorker($row['Employee_emp_id']);
-                        $student->setStudentID($row['s_id']);
+            $student->setStartDate($row['YearStarted']);
+            $student->setCaseWorker($row['Employee_emp_id']);
+            $student->setStudentID($row['s_id']);
                         
 		return $student;
     }

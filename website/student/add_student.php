@@ -102,17 +102,17 @@ require('../calendar/classes/tc_calendar.php');
 			<td><?php echo $student->getPhoneNum(); ?></td>
 			<td><?php echo $student->getAddress(); ?></td>
 			<td><?php echo $student->getEmail(); ?></td>
-                        <td><?php echo $student->getGrade(); ?></td>
-                        <td><?php echo $student->getCaseWorker(); ?></td>
-                        <td><?php echo $student->getClass(); ?></td>
+            <td><?php echo $student->getGrade(); ?></td>
+            <td><?php echo $student->getCaseWorker(); ?></td>
+            <td><?php echo $student->getClass(); ?></td>
 			<td><?php echo $student->getStartDate(); ?></td>
-                        <td>
+            <td>
 				<form class='inline' method='post' action='index.php'>
 					<input type="hidden" name="action" value="edit_student" />
 					<input type="hidden" name="student_id" value="<?php echo $student->getStudentID(); ?>" />
                     <input type="submit" value="Edit" />
                 </form>
-                    </td>			
+            </td>			
 		</tr>
 		<?php endforeach; ?>
 	</table>

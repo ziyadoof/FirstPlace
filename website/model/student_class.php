@@ -29,7 +29,7 @@ class Student {
     }
     
     public function setStudentID($value) {
-        $this->s_ID = $value;
+        $this->s_id = $value;
     }
 
     public function getGrade() {

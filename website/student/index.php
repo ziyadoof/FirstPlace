@@ -22,8 +22,8 @@ if (isset($_POST['action'])) {
 //Get the available rooms for adding new student.
 if ($action == 'show_add_student_form') {             
 	$students = StudentDB::getStudents();	//variable will hold all the students
-        $caseworks = EmployeeDB::getCaseWorkers();	//variable will hold all the Student has class
-        $classes = ClassDB::getClasses();
+    $caseworks = EmployeeDB::getCaseWorkers();	//variable will hold all the Student has class
+    $classes = ClassDB::getClasses();
         
     include('add_student.php');
 } else if ($action == 'add_student') {
@@ -62,12 +62,19 @@ if ($action == 'show_add_student_form') {
 } else if ($action == 'edit_student') {
 	
 	$rooms = RoomDB::getRooms();
-	$stIdToEdit = $_POST['student_id']; 	
+	$stIdToEdit = $_POST['student_id'];
+	if (empty($stIdToEdit)) 
+	{
+		$error = "Invalid employee data. Check all fields and try again.";
+		include('../errors/error.php');
+	} else 
+	{ 	
 	$studentEdit = StudentDB::getStudent($stIdToEdit);
-        $caseworks = EmployeeDB::getCaseWorkers();	//variable will hold all the Student has class
-        $classes = ClassDB::getClasses();
+    $caseworks = EmployeeDB::getCaseWorkers();	//variable will hold all the Student has class
+    $classes = ClassDB::getClasses();
 
 	include ('edit_student.php');
+	}
 	
 } else if ($action == 'update_student') {
 	
