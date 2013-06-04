@@ -8,6 +8,8 @@ require('../model/role_class.php');
 require('../model/role_db.php');
 require('../model/specialty_class.php');
 require('../model/specialty_db.php');
+require('../model/employeeHasSpecialty_class.php');
+require('../model/employeeHasSpecialty_db.php');
 
 
 
@@ -58,10 +60,16 @@ if ($action == 'show_add_employee_form') {
 	//redirect hte user to the same page where he can see the employee list and refrech the add fields
 	header("Location: .?action=show_add_employee_form");
 } else if ($action == 'edit_employee') {
+
+	if (isset($_POST['employee_id'])) {
+		$empIdToEdit = $_POST['employee_id'];
+	} else {
+		$empIdToEdit = $_GET['employee_id'];
+	}
 	
 	$rooms = RoomDB::getRooms();
 	$roles = RoleDB::getRoles();
-	$empIdToEdit = $_POST['employee_id']; 	
+	//$empIdToEdit = $_POST['employee_id']; 	
 	$employee = EmployeeDB::getEmployee($empIdToEdit);
 	$EmpSpecialtis = SpecialtyDB::getSpecialtiesForEmp($empIdToEdit); //Get specilaties for the specified employee
 	$NotEmpSpecialties = SpecialtyDB::getSpecialtiesNotForEmp($empIdToEdit); //Get all specialties
@@ -114,7 +122,47 @@ if ($action == 'show_add_employee_form') {
 	}
 	//go back to show the employee
 	header("Location: .?action=show_add_employee_form");
+	
+	
+} else if ($action == 'add_spes_to_emp') {   //Add Speciality to Employee
+	
+	$specID = $_POST['spes_id'];
+	$EmpID = $_POST['employee_id'];
+	
+	if (empty($specID) || empty($EmpID)) 
+	{
+		$error = "Oops..., Something went wrong! Please try again.";
+		include('../errors/error.php');
+	} else 
+	{
+		//Set vlaues
+		$EmpSpesLink = new EmployeeHasSpecialty($EmpID, $specID);
+		
+		//updated
+		EmployeeHasSpecialtyDB::addSpecialtyToEmployee($EmpSpesLink); //big employee role problem!
+	}
+	//go back to show the employee
+	header("Location: .?action=edit_employee&employee_id=".$EmpID);
+	
+	
+} else if ($action == 'drop_spes_from_emp') {   //Remove Speciality from Employee
+	
+	$specID = $_POST['spes_id'];
+	$EmpID = $_POST['employee_id'];
+	
+	if (empty($specID) || empty($EmpID)) 
+	{
+		$error = "Oops..., Something went wrong! Please try again.";
+		include('../errors/error.php');
+	} else 
+	{
+		//Set vlaues
+		$EmpSpesLink = new EmployeeHasSpecialty($EmpID, $specID);
+		
+		//updated
+		EmployeeHasSpecialtyDB::deleteSpecialtyFromEmployee($EmpSpesLink); //big employee role problem!
+	}
+	//go back to show the employee
+	header("Location: .?action=edit_employee&employee_id=".$EmpID);
 }
-
-
 ?>
