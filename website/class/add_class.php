@@ -19,8 +19,8 @@
   			</tr>
  			<tr>				
 	 			<td>
-				    <select name="stdClass_new" required>
-						<option value="NotSpecified">(Select)</option>
+				    <select name="stdClass_new" >
+						<!--<option value="NotSpecified">(Select)</option> -->
 						<?php foreach ($stdClasses as $stdClass) : ?>
 								<option value="<?php echo $stdClass->getStdClass_id(); ?>">
 									<?php echo $stdClass->getClassName(); ?>
@@ -30,7 +30,7 @@
 				</td>
 	 			<td>
 				    <select name="classroom_new" required>
-						<option value="NotSpecified">(Select)</option>
+						<!--<option value="NotSpecified">(Select)</option>-->
 						<?php foreach ($rooms as $room) : ?>
 								<option value="<?php echo $room->getRoom_id(); ?>">
 									<?php echo $room->getLocation(); ?>
@@ -40,7 +40,7 @@
 				</td>
 	 			<td>
 				    <select name="term_new" required>
-						<option value="NotSpecified">(Select)</option>
+						<!--<option value="NotSpecified">(Select)</option>-->
 						<?php foreach ($terms as $term) : ?>
 								<option value="<?php echo $term->getSy_id(); ?>">
 									<?php echo $term->getStartDate(); ?>
@@ -52,7 +52,7 @@
 				</td>
 	 			<td>
 				    <select name="teacher_new" required>
-						<option value="NotSpecified">(Select)</option>
+						<!--<option value="NotSpecified">(Select)</option>-->
 						<?php foreach ($employees as $teacher) : ?>
 								<option value="<?php echo $teacher->getEmployeeID(); ?>">
 									<?php echo $teacher->getLastName() ?>
