@@ -47,14 +47,9 @@
 				</li>
 				<li><a href="#">Attendance</a>
 					<ul>
-						<li><a href="/FirstPlace/website/attendance/take_attendance.php">Take Attendance</a></li>
-						<li><a href="#">Attendance types Management ></a>
-							<ul>
-								<li><a href="/FirstPlace/website/attendance/add_attendance_type.php">Add Attendance Type</a></li>
-								<li><a href="/FirstPlace/website/attendance/edit_attendance_type.php">Edit Attendance Types</a></li>
-							</ul>
-						</li>
-						<li><a href="/FirstPlace/website/attendance/view_attendance.php">View Attendance</a></li>
+						<li><a href="/FirstPlace/website/attendance_take/?action=take_attendance">Take Attendance</a></li>
+						<li><a href="/FirstPlace/website/attendance_view/?action=view_attendance">View Attendance</a></li>
+						<li><a href="/FirstPlace/website/attendance_mgmt/?action=show_add_attendance_type">Attendance types Management</a></li>
 					</ul>
 				</li>
 				<li><a href="/FirstPlace/website/notification/view_notification.php">Notifications</a>

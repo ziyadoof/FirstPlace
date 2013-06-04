@@ -35,7 +35,7 @@
 	
 	<table id='displaytable' class='imagetable'>
 		<tr>
-			<th colspan='4' class='tableTitle'>Hloidays for School Years List</th>
+			<th colspan='4' class='tableTitle'>Hloidays List for School Year</th>
 		</tr>
 		<tr>
 			<th>Holiday Name</th>
