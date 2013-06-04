@@ -6,7 +6,6 @@ require('../model/room_class.php');
 require('../model/room_db.php');
 require('../model/role_class.php');
 require('../model/role_db.php');
-require('../model/teacherRole_db.php');
 
 
 if (isset($_POST['action'])) {
