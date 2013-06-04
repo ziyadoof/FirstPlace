@@ -6,6 +6,9 @@ require('../model/room_class.php');
 require('../model/room_db.php');
 require('../model/role_class.php');
 require('../model/role_db.php');
+require('../model/specialty_class.php');
+require('../model/specialty_db.php');
+
 
 
 if (isset($_POST['action'])) {
@@ -60,6 +63,8 @@ if ($action == 'show_add_employee_form') {
 	$roles = RoleDB::getRoles();
 	$empIdToEdit = $_POST['employee_id']; 	
 	$employee = EmployeeDB::getEmployee($empIdToEdit);
+	$EmpSpecialtis = SpecialtyDB::getSpecialties(); //Get specilaties for the specified employee
+	$specialty = SpecialtyDB::getSpecialties(); //Get all specialties
 
 	include ('edit_employee.php');
 	
