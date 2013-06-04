@@ -19,7 +19,7 @@ require('../calendar/classes/tc_calendar.php');
 				<th>Grade</th>
  				<th>Case Worker</th>
                                 <th>Class</th>
-                                <th>Year Started</th>
+                                <th>Start Year</th>
  				<th>Action</th>
   			</tr>
  			<tr>

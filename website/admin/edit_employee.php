@@ -9,7 +9,7 @@
 
 		<table id='formtable' class='imagetable'>
 			<tr>
-				<th colspan='9' class='tableTitle'>Employee Infomation</th>
+				<th colspan='9' class='tableTitle'>Employee Information</th>
 			</tr>
  			<tr>
  				<th>*First Name</th>
@@ -58,7 +58,7 @@
 	<br>
 	<table id='displaytable' class='imagetable'>
 		<tr>
-			<th colspan='5' class='tableTitle'>Specilties Included</th>
+			<th colspan='5' class='tableTitle'>Specialties Included</th>
 		</tr>
 		<tr>
 			<th>Specialty Type 	</th>
