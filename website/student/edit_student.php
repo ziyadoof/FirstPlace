@@ -1,4 +1,6 @@
-<?php include '../view/header.php'; ?>
+<?php include '../view/header.php'; 
+require('../calendar/classes/tc_calendar.php');
+?>
 
 <div id="content">
 
@@ -9,7 +11,7 @@
 
 		<table id='formtable' class='imagetable'>
 			<tr>
-				<th colspan='8' class='tableTitle'>Student Information</th>
+				<th colspan='10' class='tableTitle'>Student Information</th>
 			</tr>
  			<tr>
  				<th>First Name</th>
@@ -21,6 +23,7 @@
                                 <th>Case Worker</th>
                                 <th>Class</th>
                                 <th>Start Date</th>
+                                <th>Action</th>
 			</tr>
  			<tr>
 				
@@ -45,6 +48,21 @@
 						<option value="NotSpecified">ToDO</option>
 					</select>
 				</td>
+                                		<td><?php
+                                        $default_date = $student->getStartDate();
+                                
+                                        $myCalendar = new tc_calendar("year_cuurent", true, false);
+                                        $myCalendar->setIcon("../calendar/images/iconCalendar.gif");
+                                        $myCalendar->setDate(date('d', strtotime($default_date))
+                                            , date('m', strtotime($default_date))
+                                            , date('Y', strtotime($default_date)));
+                                        $myCalendar->setPath("../calendar/");
+                                        $myCalendar->setYearInterval(2010, 2025);
+                                        $myCalendar->dateAllow('2008-05-13', '2040-03-01');
+                                        $myCalendar->setDateFormat('j F Y');
+                                        $myCalendar->setAlignment('left', 'bottom');
+                                        $myCalendar->writeScript();
+                                        ?></td>  
                 		<td colspan='2' id='formButtons'>
 					<input type='hidden'  name='stID_cuurent' value="<?php echo $student->getStudentID(); ?>" />
 			  		<input type='submit' value="Update" />

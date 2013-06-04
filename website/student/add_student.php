@@ -1,4 +1,6 @@
-<?php include '../view/header.php'; ?>
+<?php include '../view/header.php'; 
+require('../calendar/classes/tc_calendar.php');
+?>
 
 <div id="content">
     <h1>Students</h1>
@@ -58,7 +60,17 @@
 						<?php endforeach; ?>
 					</select>
 				</td>
-                                <td><input type="text" name="year_new" id="datepicker"/></td>
+                                <td><?php
+                                        $myCalendar = new tc_calendar("year_new", true, false);
+                                        $myCalendar->setIcon("../calendar/images/iconCalendar.gif");
+                                        $myCalendar->setDate(date('d'), date('m'), date('Y'));
+                                        $myCalendar->setPath("../calendar/");
+                                        $myCalendar->setYearInterval(2010, 2025);
+                                        $myCalendar->dateAllow('2008-05-13', '2040-03-01');
+                                        $myCalendar->setDateFormat('j F Y');
+                                        $myCalendar->setAlignment('left', 'bottom');
+                                        $myCalendar->writeScript();
+                                        ?>  </td>
   				<td colspan='2' id='formButtons'>
 			  		<input type='submit' value="Add Student" />
  				</td>
@@ -100,12 +112,7 @@
 					<input type="hidden" name="student_id" value="<?php echo $student->getStudentID(); ?>" />
                     <input type="submit" value="Edit" />
                 </form>
-				<form class='inline' method='post' action='index.php'>
-					<input type="hidden" name="action" value="delete_student" />
-					<input type="hidden" name="student_id" value="<?php echo $student->getStudentID(); ?>" />
-                    <input type="submit" value="Delete" />
-                </form>
-			</td>			
+                    </td>			
 		</tr>
 		<?php endforeach; ?>
 	</table>
