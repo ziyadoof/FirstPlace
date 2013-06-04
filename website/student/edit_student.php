@@ -45,7 +45,12 @@ require('../calendar/classes/tc_calendar.php');
 				</td>                                
                 		<td>
 				    <select name="class_cuurent">
-						<option value="NotSpecified">ToDO</option>
+						<option value="NotSpecified">No Class</option>
+						<?php foreach ($classes as $class) : ?>
+						<option value="<?php echo $class->getC_id(); ?>">
+							<?php echo $class->getName ?>
+						</option>
+						<?php endforeach; ?>
 					</select>
 				</td>
                                 		<td><?php

@@ -23,6 +23,7 @@ if (isset($_POST['action'])) {
 if ($action == 'show_add_student_form') {             
 	$students = StudentDB::getStudents();	//variable will hold all the students
         $caseworks = EmployeeDB::getCaseWorkers();	//variable will hold all the Student has class
+        $classes = ClassDB::getClasses();
         
     include('add_student.php');
 } else if ($action == 'add_student') {
@@ -63,6 +64,8 @@ if ($action == 'show_add_student_form') {
 	$rooms = RoomDB::getRooms();
 	$stIdToEdit = $_POST['student_id']; 	
 	$studentEdit = StudentDB::getStudent($stIdToEdit);
+        $caseworks = EmployeeDB::getCaseWorkers();	//variable will hold all the Student has class
+        $classes = ClassDB::getClasses();
 
 	include ('edit_student.php');
 	
