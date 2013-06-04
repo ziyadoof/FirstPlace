@@ -67,7 +67,7 @@
 			<th>Specialty End Date</th>
 			<th>Action</th>
 		</tr>
-		<?php foreach ($specialty as $spes) : ?>
+		<?php foreach ($EmpSpecialtis as $spes) : ?>
 		<tr>
 			<td><?php echo $spes->getType(); ?></td>
 			<td><?php echo $spes->getName(); ?></td>
@@ -75,23 +75,34 @@
 			<td><?php echo $spes->getEnd_date(); ?></td>
 			<td>
 				<form class='inline' method='post' action='index.php'>
-					<input type="hidden" name="action" value="edit_employee" />
-					<input type="hidden" name="employee_id" value="<?php echo $spes->getSpecialty_id(); ?>" />
+					<input type="hidden" name="action" value="drop_spes_from_emp" />
+					<input type="hidden" name="employee_id" value="<?php echo $employee->getEmployeeID(); ?>" />
+					<input type="hidden" name="spes_id" value="<?php echo $spes->getSpecialty_id(); ?>" />
                     <input type="submit" value="Remove from employee profile" />
                 </form>			
 			</td>
 		</tr>
 		<?php endforeach; ?>
 		<tr>
-			<td colspan='4'>
-			</td>
-			<td>
-				<form class='inline' method='post' action='index.php'>
-					<input type="hidden" name="action" value="edit_employee" />
-					<input type="hidden" name="employee_id" value="<?php echo $spes->getSpecialty_id(); ?>" />
-                    <input type="submit" value="Add to employee" />
-                </form>
-			</td>	
+			<form class='inline' method='post' action='index.php'>
+				<input type="hidden" name="action" value="add_spes_to_emp" />
+				<td colspan='4'>
+					<select name="spes_id">
+						<?php foreach ($NotEmpSpecialties as $notInEmpSpes) : ?>
+						<option value="<?php echo $notInEmpSpes->getSpecialty_id(); ?>"  >
+							<?php echo $notInEmpSpes->getType(); ?>, 
+							<?php echo $notInEmpSpes->getName(); ?>, 
+							<?php echo $notInEmpSpes->getStart_date(); ?>, 
+							<?php echo $notInEmpSpes->getEnd_date(); ?>
+						</option>
+						<?php endforeach; ?>
+					</select>			
+				</td>
+				<td>
+					<input type="hidden" name="employee_id" value="<?php echo $employee->getEmployeeID(); ?>" />
+					<input type="submit" value="Add to employee" />
+				</td>	
+			</form>
 		</tr>
 	</table>	
 	

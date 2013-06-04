@@ -83,5 +83,45 @@ class SpecialtyDB {
        //TODO
         
     }
+
+	public static function getSpecialtiesForEmp($emp_id) {
+        
+		$db = Database::getDB();
+		
+        $query = "SELECT * FROM EmployeeHasSpecialties_View WHERE emp_id = '$emp_id'";
+        $result = $db->query($query);
+        $Specialties = array();
+        foreach ($result as $row) {
+            $spes = new Specialty($row['S_ID'],
+                             $row['Type'],
+							 $row['Name'],
+							 $row['Start_Date'],
+							 $row['End_Date']);
+            $Specialties[] = $spes;
+        }
+        return $Specialties;			
+    }
+	
+	public static function getSpecialtiesNotForEmp($emp_id) {
+        
+		$db = Database::getDB();
+		
+        $query = "SELECT S_ID, Type, Name,Start_Date, End_Date FROM specialty
+					WHERE NOT EXISTS (
+					SELECT Employee_emp_id FROM employee_has_specialty 
+						WHERE employee_has_specialty.Specialty_S_ID = specialty.S_ID AND Employee_emp_id = '$emp_id')";
+        $result = $db->query($query);
+        $Specialties = array();
+        foreach ($result as $row) {
+            $spes = new Specialty($row['S_ID'],
+                             $row['Type'],
+							 $row['Name'],
+							 $row['Start_Date'],
+							 $row['End_Date']);
+            $Specialties[] = $spes;
+        }
+        return $Specialties;			
+    }
+	
 }
 ?>
