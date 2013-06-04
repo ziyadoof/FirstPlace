@@ -69,10 +69,10 @@
 		</tr>
 		<?php foreach ($EmpSpecialtis as $spes) : ?>
 		<tr>
-			<td><?php echo $spes->getType(); ?></td>
-			<td><?php echo $spes->getName(); ?></td>
-			<td><?php echo $spes->getStart_date(); ?></td>
-			<td><?php echo $spes->getEnd_date(); ?></td>
+			<td><?php echo $spes->getSpecialtyType(); ?></td>
+			<td><?php echo $spes->getSpecialtyName(); ?></td>
+			<td><?php echo $spes->getSpecialtyStartDate(); ?></td>
+			<td><?php echo $spes->getSpecialtyEndDate(); ?></td>
 			<td>
 				<form class='inline' method='post' action='index.php'>
 					<input type="hidden" name="action" value="drop_spes_from_emp" />
@@ -86,18 +86,18 @@
 		<tr>
 			<form class='inline' method='post' action='index.php'>
 				<input type="hidden" name="action" value="add_spes_to_emp" />
-				<td colspan='4'>
+				<td colspan='2'>
 					<select name="spes_id">
 						<?php foreach ($NotEmpSpecialties as $notInEmpSpes) : ?>
 						<option value="<?php echo $notInEmpSpes->getSpecialty_id(); ?>"  >
 							<?php echo $notInEmpSpes->getType(); ?>, 
-							<?php echo $notInEmpSpes->getName(); ?>, 
-							<?php echo $notInEmpSpes->getStart_date(); ?>, 
-							<?php echo $notInEmpSpes->getEnd_date(); ?>
+							<?php echo $notInEmpSpes->getName(); ?>
 						</option>
 						<?php endforeach; ?>
 					</select>			
 				</td>
+				<td><input type='date' name='SpecStartDateForEmp' required /></td>
+				<td><input type='date' name='SpecEndDateForEmp' required /></td>
 				<td>
 					<input type="hidden" name="employee_id" value="<?php echo $employee->getEmployeeID(); ?>" />
 					<input type="submit" value="Add to employee" />

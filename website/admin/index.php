@@ -74,7 +74,7 @@ if ($action == 'show_add_employee_form') {
 	$roles = RoleDB::getRoles();
 	//$empIdToEdit = $_POST['employee_id']; 	
 	$employee = EmployeeDB::getEmployee($empIdToEdit);
-	$EmpSpecialtis = SpecialtyDB::getSpecialtiesForEmp($empIdToEdit); //Get specilaties for the specified employee
+	$EmpSpecialtis = EmployeeHasSpecialtyDB::getSpecialtiesForEmp($empIdToEdit); //Get specilaties for the specified employee
 	$NotEmpSpecialties = SpecialtyDB::getSpecialtiesNotForEmp($empIdToEdit); //Get all specialties
 
 	include ('edit_employee.php');
@@ -131,15 +131,18 @@ if ($action == 'show_add_employee_form') {
 	
 	$specID = $_POST['spes_id'];
 	$EmpID = $_POST['employee_id'];
+	$SpecSD = $_POST['SpecStartDateForEmp'];
+	$SpecED = $_POST['SpecEndDateForEmp'];
 	
-	if (empty($specID) || empty($EmpID)) 
+	if (empty($specID) || empty($EmpID) || empty($SpecSD)) 
 	{
 		$error = "Oops..., Something went wrong! Please try again.";
 		include('../errors/error.php');
 	} else 
 	{
 		//Set vlaues
-		$EmpSpesLink = new EmployeeHasSpecialty($EmpID, $specID);
+		$EmpSpesLink = new EmployeeHasSpecialty($EmpID, $specID, $SpecSD);
+		$EmpSpesLink->setSpecialtyEndDate($SpecED);
 		
 		//updated
 		EmployeeHasSpecialtyDB::addSpecialtyToEmployee($EmpSpesLink); //big employee role problem!
@@ -160,7 +163,7 @@ if ($action == 'show_add_employee_form') {
 	} else 
 	{
 		//Set vlaues
-		$EmpSpesLink = new EmployeeHasSpecialty($EmpID, $specID);
+		$EmpSpesLink = new EmployeeHasSpecialty($EmpID, $specID, "");
 		
 		//updated
 		EmployeeHasSpecialtyDB::deleteSpecialtyFromEmployee($EmpSpesLink); //big employee role problem!
