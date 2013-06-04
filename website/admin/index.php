@@ -63,8 +63,8 @@ if ($action == 'show_add_employee_form') {
 	$roles = RoleDB::getRoles();
 	$empIdToEdit = $_POST['employee_id']; 	
 	$employee = EmployeeDB::getEmployee($empIdToEdit);
-	$EmpSpecialtis = SpecialtyDB::getSpecialties(); //Get specilaties for the specified employee
-	$specialty = SpecialtyDB::getSpecialties(); //Get all specialties
+	$EmpSpecialtis = SpecialtyDB::getSpecialtiesForEmp($empIdToEdit); //Get specilaties for the specified employee
+	$NotEmpSpecialties = SpecialtyDB::getSpecialtiesNotForEmp($empIdToEdit); //Get all specialties
 
 	include ('edit_employee.php');
 	
