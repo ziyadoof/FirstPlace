@@ -150,27 +150,27 @@ class EmployeeDB {
     public static function getCaseWorkers() {
 		$db = Database::getDB();
         
-		$query = 'select * from ViewCaseWorkers order by username'; //This is a view
+		$query = 'select * from ViewCaseWorkers'; //This is a view
 		
-		//Get the results into array
+		
 		$result = $db->query($query);
-		$employees = array();
+		$caseworkers = array();
 		foreach ($result as $row) {
-            $employee = new Employee($row['FirstName'],
-									$row['LastName'],
-									$row['email_Address'],
+                $caseworker = new Employee($row['firstname'],
+									$row['lastname'],
+									$row['email_address'],
 									$row['username'],
 									$row['password'],
-									$row['Location']);
-			$employee->setPhoneNum($row['PhoneNumber']);
-			$employee->setEmployeeID($row['emp_id']);
-			$employee->setAddress($row['Address']);
-			$employee->setEmployeeType($row['employeetype']);
+									$row['room_room_id']);
+									
+			$caseworker->setEmployeeID($row['emp_id']);
+			// $employee->setPhoneNum($row['PhoneNumber']);
+			// $employee->setAddress($row['Address']);
+			// $employee->setEmployeeType($row['employeetype']);
 			
-            $employees[] = $employee;
+            $caseworkers[] = $caseworker;
         }
-		
-		return $employees;
+         return $caseworkers;
     }
 	
 	public static function getTeachers() {
