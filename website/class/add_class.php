@@ -19,7 +19,7 @@
   			</tr>
  			<tr>				
 	 			<td>
-				    <select name="stdClass_new">
+				    <select name="stdClass_new" required>
 						<option value="NotSpecified">(Select)</option>
 						<?php foreach ($stdClasses as $stdClass) : ?>
 								<option value="<?php echo $stdClass->getStdClass_id(); ?>">
@@ -39,7 +39,7 @@
 					</select>
 				</td>
 	 			<td>
-				    <select name="term_new">
+				    <select name="term_new" required>
 						<option value="NotSpecified">(Select)</option>
 						<?php foreach ($terms as $term) : ?>
 								<option value="<?php echo $term->getSy_id(); ?>">
@@ -51,7 +51,7 @@
 					</select>
 				</td>
 	 			<td>
-				    <select name="teacher_new">
+				    <select name="teacher_new" required>
 						<option value="NotSpecified">(Select)</option>
 						<?php foreach ($employees as $teacher) : ?>
 								<option value="<?php echo $teacher->getEmployeeID(); ?>">
@@ -62,7 +62,7 @@
 						<?php endforeach; ?>
 					</select>
 				</td>
-		   		<td><input type='submit' value='Add Class' name='action_new' required /></td>
+		   		<td><input type='submit' value='Add Class'/></td>
 			</tr>
 		</table>
     </form>
