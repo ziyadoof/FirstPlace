@@ -1,4 +1,7 @@
 <?php
+
+//Employee Managment indes file
+
 require('../model/mysql_connect.php');
 require('../model/employee_class.php');
 require('../model/employee_db.php');
