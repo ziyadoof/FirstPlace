@@ -21,5 +21,8 @@ INSERT INTO `firstplace`.`Student` (`FirstName`, `LastName`, `PhoneNumber`, `Add
 INSERT INTO `firstplace`.`Student` (`FirstName`, `LastName`, `PhoneNumber`, `Address`, `YearStarted`) VALUES ('Joe', 'Smith', '34', 'Tree St', 'CURDATE()');
 INSERT INTO `firstplace`.`Student` (`FirstName`, `LastName`, `PhoneNumber`, `Address`, `YearStarted`) VALUES ('Kenny', 'Von', '32512', 'Pain', 'CURDATE()');
 
+-- insert for Specialty
+INSERT INTO `firstplace`.`specialty` (`Type`, `Name`, `Start_Date`) VALUES ('Training', 'Math', '2000-01-01');
+INSERT INTO `firstplace`.`specialty` (`Type`, `Name`, `Start_Date`) VALUES ('College', 'Chemistry', '2010-04-22');
 
 
