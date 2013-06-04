@@ -57,6 +57,7 @@ if ($action == 'show_add_schoolYear_form') {
 	$SY_ToBeEdited = SchoolYearDB::getSchoolYear($sy_id);
 	$YearHolidays = HolidayDB::getHolidaysBysYear($sy_id);
 	include ('edit_schoolyear.php');
+        //include ('schoolCalendar.php');
 	
 } else if ($action == 'update_schoolyear') {
 	

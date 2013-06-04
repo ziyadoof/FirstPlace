@@ -1,5 +1,5 @@
 <?php include '../view/header.php'; 
-require('../calendar/classes/tc_calendar.php');
+require ('schoolCalendar.php');
 ?>
 
 <div id="content">
@@ -21,9 +21,9 @@ require('../calendar/classes/tc_calendar.php');
   			</tr>
  			<tr>
 
-                                <td><input type='text' name='SY_SD_new' value="<?php echo $SY_ToBeEdited->getStartDate(); ?>" required /></td>
-                                <td><input type='text' name='SY_ED_new' value="<?php echo $SY_ToBeEdited->getEndDate(); ?>" required /></td>
-				<td><input type='date' name='SY_Name_new' value="<?php echo $SY_ToBeEdited->getName(); ?>" /></td>
+                                <td><input type='date' name='SY_SD_new' value="<?php echo $SY_ToBeEdited->getStartDate(); ?>" required /></td>
+                                <td><input type='date' name='SY_ED_new' value="<?php echo $SY_ToBeEdited->getEndDate(); ?>" required /></td>
+				<td><input type='text' name='SY_Name_new' value="<?php echo $SY_ToBeEdited->getName(); ?>" /></td>
   				<td colspan='2' id='formButtons'>
 					<input type='hidden'  name='SY_Edit_ID' value="<?php echo $SY_ToBeEdited->getSy_id(); ?>" />
 			  		<input type='submit' value="Update" />
@@ -50,29 +50,13 @@ require('../calendar/classes/tc_calendar.php');
 				<input type="hidden" name="action" value="add_holiday_to_year" />
 				<td><input type='text' name='new_holiday_name'  /></td>
 				<td><?php                                 
-                                        $myCalendar = new tc_calendar("new_holiday_sd", true, false);
-                                        $myCalendar->setIcon("../calendar/images/iconCalendar.gif");
-                                        $myCalendar->setDate(date('d'), date('m'), date('Y'));
-                                        $myCalendar->disabledDay("Sat");
-                                        $myCalendar->disabledDay("sun");
-                                        $myCalendar->setPath("../calendar/");
-                                        $myCalendar->setYearInterval(2010, 2025);
-                                        $myCalendar->dateAllow('2008-05-13', '2040-03-01');
-                                        $myCalendar->setDateFormat('j F Y');
-                                        $myCalendar->setAlignment('left', 'bottom');
+                                        $myCalendar = new schoolCalendar("new_holiday_sd", true, false);
+                                        $myCalendar->disableHolidays($SY_ToBeEdited->getSy_id());
                                         $myCalendar->writeScript();
                                         ?>  </td>
 				<td><?php                                 
-                                        $myCalendar = new tc_calendar("new_holiday_ed", true, false);
-                                        $myCalendar->setIcon("../calendar/images/iconCalendar.gif");
-                                        $myCalendar->setDate(date('d'), date('m'), date('Y'));
-                                        $myCalendar->disabledDay("Sat");
-                                        $myCalendar->disabledDay("sun");
-                                        $myCalendar->setPath("../calendar/");
-                                        $myCalendar->setYearInterval(2010, 2025);
-                                        $myCalendar->dateAllow('2008-05-13', '2040-03-01');
-                                        $myCalendar->setDateFormat('j F Y');
-                                        $myCalendar->setAlignment('left', 'bottom');
+                                        $myCalendar = new schoolCalendar("new_holiday_ed", true, false);
+                                        $myCalendar->disableHolidays($SY_ToBeEdited->getSy_id());
                                         $myCalendar->writeScript();
                                         ?>  </td>
 				<td>

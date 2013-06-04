@@ -135,6 +135,10 @@ class tc_calendar{
 	function setText($txt){
 		$this->txt = $txt;
 	}
+        
+        function setObjName($txt){
+            $this->objname = $txt;
+        }
 
 	//-----------------------------------------------------------
 	//input the date format according to php date format

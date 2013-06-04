@@ -1,4 +1,7 @@
-<?php include '../view/header.php'; ?>
+<?php include '../view/header.php'; 
+      require ('schoolCalendar.php');
+     // require('../calendar/classes/tc_calendar.php')
+?>
 
 <div id="content">
 	<h1>School Year Management</h1>
@@ -16,8 +19,14 @@
 				<th>Action</th>
   			</tr>
  			<tr>
- 				<td><input type='text' name='startY_new' required /></td>
-				<td><input type='text' name='endY_new' required /></td>
+                                <td><?php                                 
+                                        $myCalendar = new schoolCalendar("startY_new", true, false);
+                                        $myCalendar->writeScript();
+                                        ?>  </td>
+                                <td><?php                                 
+                                        $myCalendar = new schoolCalendar("endY_new", true, false);
+                                        $myCalendar->writeScript();
+                                        ?>  </td>				
 				<td><input type='text' name='yearName_new' /></td>
   				<td colspan='2' id='formButtons'>
 			  		<input type='submit' value="Add Year" />
