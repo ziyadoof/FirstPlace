@@ -25,10 +25,22 @@ class StdClassDB {
         
     }
     
-        public static function addStdClass($stdClass_id) {
-       //TODO
-        
+        public static function addStdClass($stdClassRow) {
+      	$db = Database::getDB();
+		
+		$newstdClassName = $stdClassRow->getClassName();
+		
+		$addstdClassquery =
+			"INSERT INTO stdClass
+				(ClassName)
+			VALUES
+				('$newstdClassName')";
+		
+		$row_count = $db->exec($addstdClassquery);
+        return $row_count;
     }
+        
+    
 	
 	public static function updateStdClass($stdClass_id) {
        //TODO
