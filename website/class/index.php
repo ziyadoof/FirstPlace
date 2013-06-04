@@ -24,7 +24,6 @@ if ($action == 'show_add_class_form') {
 	$rooms = RoomDB::getRooms();
 	$terms = SchoolYearDB::getSchoolYears();
 	$employees = EmployeeDB::getTeachers();
-	
 	$classes = ClassDB::getClasses();
 	
     include('add_class.php');
@@ -59,8 +58,39 @@ if ($action == 'show_add_class_form') {
 	$rooms = RoomDB::getRooms();
 	$terms = SchoolYearDB::getSchoolYears();
 	$employees = EmployeeDB::getTeachers();
+	$classes = ClassDB::getClasses();
 
-	include ('edit_class.php');
+	$classIdToEdit = $_POST['class_id'];
+	$classToEdit = ClassDB::getClassById($classIdToEdit);
+	
+	$error = $classToEdit->getStdC_id();
+
+	include('edit_class.php');
+} else if ($action == 'update_class') {
+
+	$stdClass = $_POST['stdClass_update'];
+	$room = $_POST['classroom_update'];
+	$term = $_POST['term_update'];
+	$employee = $_POST['teacher_update'];
+	$classId = $_POST['classId'];
+
+	// Validate the inputs
+	if (empty($stdClass) || empty($room) || empty($term)|| empty($employee)) 
+	{
+		$error = "Invalid class data. Check all fields and try again.";
+		include('../errors/error.php');
+	} else  {
+		// //insert into class
+		$classRow = new ClassFP($stdClass, 
+								$room, 
+								$term, 
+								$employee);
+		$classRow->setC_id($classId);
+		
+		ClassDB::updateClass($classRow);
+	}
+		
+	//redirect hte user to the same page where he can see the employee list and refrech the add fields
+	header("Location: .?action=show_add_class_form");
 }
-
 ?>

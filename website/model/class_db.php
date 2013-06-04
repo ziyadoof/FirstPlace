@@ -20,6 +20,24 @@ class ClassDB {
         return $classes;
     }    
     
+	public static function getClassById($c_id) {
+       $db = Database::getDB();
+	   
+	   $query = "select * from class where c_id = '$c_id'";
+	   
+	   //Get the results into array
+		$result = $db->query($query);
+		$row = $result->fetch();
+		
+		$class = new ClassFP($row['stdC_id'],
+							$row['Room_Room_ID'],
+							$row['SchoolYear_sy_id'],
+							$row['Employee_emp_id']);	
+		$class->setC_id($row['c_id']);
+		
+        return $class;
+	}
+	
 	public static function addClass($class) {
 		$db = Database::getDB();
 
@@ -40,9 +58,10 @@ class ClassDB {
 		return $row_count;
 	}
 	
-	public static function updateClass($c_id) {
+	public static function updateClass($class) {
 		$db = Database::getDB();
 		
+		$c_id = $class->getC_id();
 		$stdClass = $class->getStdC_id();
 		$room = $class->getRoom_id();
 		$term = $class->getSchoolYear_id();
@@ -53,23 +72,15 @@ class ClassDB {
 				SET 
 					stdC_id = '$stdClass' ,
 					Room_room_id = '$room' ,
-					SchoolYear_sy_id =  '$lastname',
-					employee_emp_id = '$employee' ,
-					
+					SchoolYear_sy_id =  '$term',
+					employee_emp_id = '$employee'					
 				WHERE c_id = '$c_id'";
 				
-		$row_count = $db->exec($updateClassQuery);		
+		$row_count = $db->exec($updateClassquery);		
 				
 		return $row_count;
 	}
 	
-	public static function deleteClass($c_id) {
-	   $db = Database::getDB();
-	   
-	   $query = "DELETE FROM class WHERE c_id = '$c_id' ";
-	   
-	   $row_count = $db->exec($query);
-	   return $row_count;
-	}
+	
 }
 ?>
