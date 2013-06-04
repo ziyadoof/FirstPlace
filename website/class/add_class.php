@@ -11,10 +11,10 @@
 				<th colspan='5' class='tableTitle'>Create New classes</th>
 			</tr>
  			<tr>
- 				<th>Standard Class</th>
-				<th>Class Room</th>
-				<th>School Year</th>
-				<th>Teacher</th>
+ 				<th>*Standard Class</th>
+				<th>*Class Room</th>
+				<th>*School Year</th>
+				<th>*Teacher</th>
 				<th>Action</th>				
   			</tr>
  			<tr>				
@@ -74,10 +74,10 @@
 			<th colspan='8' class='tableTitle'>Class List</th>
 		</tr>
 		<tr>
-			<th>Standard Class</th>
-			<th>Class Room</th>
-			<th>School Year</th>
-			<th>Teacher</th>
+			<th>*Standard Class</th>
+			<th>*Class Room</th>
+			<th>*School Year</th>
+			<th>*Teacher</th>
 			<th>Action</th>				
 		</tr>
 		<?php foreach ($classes as $class) : ?>
