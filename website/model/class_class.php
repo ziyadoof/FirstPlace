@@ -2,8 +2,7 @@
 class ClassFP {
     private $c_id, $stdC_id, $room_id, $schoolYear_id, $emp_id;
 
-    public function __construct($c_id, $stdC_id, $room_id, $schoolYear_id, $emp_id) {
-		$this->c_id = $c_id;
+    public function __construct($stdC_id, $room_id, $schoolYear_id, $emp_id) {
 		$this->stdC_id = $stdC_id;
         $this->room_id = $room_id;
 		$this->schoolYear_id = $schoolYear_id;
@@ -12,6 +11,10 @@ class ClassFP {
 
     public function getC_id() {
         return $this->c_id;
+    }
+
+    public function setC_id($value) {
+        $this->c_id = $value;
     }
 
     public function getStdC_id() {
@@ -23,7 +26,7 @@ class ClassFP {
     }
 
     public function getSchoolYear_id() {
-        return $this->schoolYear_id
+        return $this->schoolYear_id;
     }
 	
     public function getEmp_id() {
@@ -93,4 +96,5 @@ class ClassFP {
         // $this->room = $value;
 	// }
 // }
+}
 ?>
