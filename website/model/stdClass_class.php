@@ -4,10 +4,7 @@ class StdClass2 {
 
     public function __construct($stdClass_id, $className) {
         $this->stdClass_id = $stdClass_id;
-				
-		$this->className = $className;
-		
-        
+		$this->className = $className;        
     }
 
     public function getStdClass_id() {

@@ -9,9 +9,11 @@ class ClassDB {
 		$result = $db->query($query);
 		$classes = array();
 		foreach ($result as $row) {
-            $class = new ClassFP($row['stdC_id'],
-									$row['Room_Room_ID'],
-									$row['SchoolYear_sy_id']);
+            $class = new ClassFP($row['c_id'],
+								$row['stdC_id'],
+								$row['Room_Room_ID'],
+								$row['SchoolYear_sy_id'],
+								$row['Employee_emp_id']);
 									
 			$classes[] = $class;
         }

@@ -11,7 +11,7 @@
 				<th colspan='5' class='tableTitle'>Create New classes</th>
 			</tr>
  			<tr>
- 				<th>Grade</th>
+ 				<th>Standard Class</th>
 				<th>Class Room</th>
 				<th>School Year</th>
 				<th>Teacher</th>
@@ -19,11 +19,11 @@
   			</tr>
  			<tr>				
 	 			<td>
-				    <select name="grade_new">
+				    <select name="stdClass_new">
 						<option value="NotSpecified">(Select)</option>
-						<?php foreach ($grades as $grade) : ?>
-								<option value="<?php echo $grade->getStdClass_id(); ?>">
-									<?php echo $grade->getClassName(); ?>
+						<?php foreach ($stdClasses as $stdClass) : ?>
+								<option value="<?php echo $stdClass->getStdClass_id(); ?>">
+									<?php echo $stdClass->getClassName(); ?>
 								</option>
 						<?php endforeach; ?>
 					</select>
@@ -43,7 +43,9 @@
 						<option value="NotSpecified">(Select)</option>
 						<?php foreach ($terms as $term) : ?>
 								<option value="<?php echo $term->getSy_id(); ?>">
-									<?php echo $term->getName(); ?>
+									<?php echo $term->getStartDate(); ?>
+									<?php echo '-' ?>
+									<?php echo $term->getEndDate();?>
 								</option>
 						<?php endforeach; ?>
 					</select>
@@ -72,7 +74,7 @@
 			<th colspan='8' class='tableTitle'>Class List</th>
 		</tr>
 		<tr>
-			<th>Grade</th>
+			<th>Standard Class</th>
 			<th>Class Room</th>
 			<th>School Year</th>
 			<th>Teacher</th>

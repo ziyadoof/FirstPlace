@@ -172,5 +172,9 @@ class EmployeeDB {
 		
 		return $employees;
     }
+	
+	public static function getTeachers() {
+	
+	}
 }
 ?>
