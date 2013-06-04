@@ -25,14 +25,36 @@ class HolidayDB {
     }
     
     
-        public static function addHoliday($holi_id) {
-       //TODO
-        
+    public static function addHoliday($RowToAdd) {
+        $db = Database::getDB();
+		
+		$Holi_SD = $RowToAdd->getStartDate();
+		$Holi_ED = $RowToAdd->getEndDate();
+		$HoliName = $RowToAdd->getName();
+		$YearKey = $RowToAdd->getSchoolYear_id();
+
+		
+		$query =
+			"INSERT INTO holiday
+				(SchoolYear_sy_id, StartDate, EndDate, Name)
+			VALUES
+				('$YearKey', '$Holi_SD', '$Holi_ED', '$HoliName')";
+
+		$row_count = $db->exec($query);
+        return $row_count;
     }
 	
 	public static function updateHoliday($holi_id) {
        //TODO
         
+    }
+	
+	public static function deleteHoliday($holi_id) {
+	   $db = Database::getDB();
+	   
+	   $query = "DELETE FROM holiday WHERE holi_id = '$holi_id' ";
+	   $row_count = $db->exec($query);
+	   return $row_count;
     }
 }
 ?>

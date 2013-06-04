@@ -47,8 +47,13 @@ if ($action == 'show_add_schoolYear_form') {
 	}
 
 } else if ($action == 'edit_schoolyear') {
-	
-	$sy_id = $_POST['schoolyear_id']; 
+
+	if (isset($_POST['schoolyear_id'])) {
+		$sy_id = $_POST['schoolyear_id'];
+	} else {
+		$sy_id = $_GET['schoolyear_id'];
+	}
+	 
 	$SY_ToBeEdited = SchoolYearDB::getSchoolYear($sy_id);
 	$YearHolidays = HolidayDB::getHolidaysBysYear($sy_id);
 	include ('edit_schoolyear.php');
@@ -76,6 +81,49 @@ if ($action == 'show_add_schoolYear_form') {
 		
 		//redirect hte user to the same page where he can see the employee list and refrech the add fields
 		header("Location: .?action=show_add_schoolYear_form");
+	}
+	
+} else if ($action == 'delete_holiday_from_year') {
+	
+	$DeleteThisID = $_POST['hli_id_to_delete'];
+	$E_SY_IS = $_POST['edited_SY_id'];
+	// Validate the inputs
+	if (empty($DeleteThisID)) 
+	{
+		$error = "Oops..., Something went wrong! Please try again.";
+		include('../errors/error.php');
+	}else {
+		//Set vlaues
+
+		HolidayDB::deleteHoliday($DeleteThisID);
+		
+		//redirect hte user to the same page
+		header("Location: .?action=edit_schoolyear&schoolyear_id=".$E_SY_IS);
+	}
+	
+} else if ($action == 'add_holiday_to_year') {
+	
+	$Hli_SD = $_POST['new_holiday_sd'];
+	$Holi_ED = $_POST['new_holiday_ed'];
+	$Holi_Name = $_POST['new_holiday_name'];
+	$Scl_Year_ID = $_POST['AddTo_schoolyear_id'];
+
+
+	// Validate the inputs
+	if (empty($Hli_SD) || empty($Holi_ED) || empty($Scl_Year_ID)) 
+	{
+		$error = "Oops..., Something went wrong! Please try again.";
+		include('../errors/error.php');
+	}else {
+		//Set vlaues
+		$HlidayRow = new Holiday("",$Scl_Year_ID, $Hli_SD, $Holi_ED);
+		$HlidayRow->setName($Holi_Name);
+			
+		//insert
+		HolidayDB::addHoliday($HlidayRow);
+		
+		//redirect hte user to the same page where he can see the employee list and refrech the add fields
+		header("Location: .?action=edit_schoolyear&schoolyear_id=".$Scl_Year_ID);
 	}
 	
 }

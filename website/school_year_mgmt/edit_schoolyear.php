@@ -51,6 +51,7 @@
 			<td>
 				<form class='inline' method='post' action='index.php'>
 					<input type="hidden" name="action" value="delete_holiday_from_year" />
+					<input type="hidden" name="edited_SY_id" value="<?php echo $SY_ToBeEdited->getSy_id(); ?>" />
 					<input type="hidden" name="hli_id_to_delete" value="<?php echo $YHoliday->getHoli_id(); ?>" />
                     <input type="submit" value="Delete Holiday" />
                 </form>
@@ -64,7 +65,7 @@
 				<td><input type='date' name='new_holiday_sd' required /></td>
 				<td><input type='date' name='new_holiday_ed' required /></td>
 				<td>
-					<input type="hidden" name="schoolyear_id" value="<?php echo $sYear->getSy_id(); ?>" />
+					<input type="hidden" name="AddTo_schoolyear_id" value="<?php echo $SY_ToBeEdited->getSy_id(); ?>" />
                     <input type="submit" value="Add Holiday" />
 				</td>
 			</form>
