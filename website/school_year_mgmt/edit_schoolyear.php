@@ -20,10 +20,27 @@ require ('schoolCalendar.php');
 				<th>Action</th>
   			</tr>
  			<tr>
-
-                                <td><input type='date' name='SY_SD_new' value="<?php echo $SY_ToBeEdited->getStartDate(); ?>" required /></td>
-                                <td><input type='date' name='SY_ED_new' value="<?php echo $SY_ToBeEdited->getEndDate(); ?>" required /></td>
-				<td><input type='text' name='SY_Name_new' value="<?php echo $SY_ToBeEdited->getName(); ?>" /></td>
+                                <td><?php    
+                                        $default_date = $SY_ToBeEdited->getStartDate();
+                                
+                                        $myCalendar = new schoolCalendar("SY_SD_new", true, false);
+                                        $myCalendar->disableHolidays($SY_ToBeEdited->getSy_id());
+                                        $myCalendar->setDate(date('d', strtotime($default_date))
+                                            , date('m', strtotime($default_date))
+                                            , date('Y', strtotime($default_date)));
+                                        $myCalendar->writeScript();
+                                        ?>  </td>
+                                <td><?php    
+                                        $default_date = $SY_ToBeEdited->getEndDate();
+                                
+                                        $myCalendar = new schoolCalendar("SY_ED_new", true, false);
+                                        $myCalendar->disableHolidays($SY_ToBeEdited->getSy_id());
+                                        $myCalendar->setDate(date('d', strtotime($default_date))
+                                            , date('m', strtotime($default_date))
+                                            , date('Y', strtotime($default_date)));
+                                        $myCalendar->writeScript();
+                                        ?>  </td>
+                                <td><input type='text' name='SY_Name_new' value="<?php echo $SY_ToBeEdited->getName(); ?>" /></td>
   				<td colspan='2' id='formButtons'>
 					<input type='hidden'  name='SY_Edit_ID' value="<?php echo $SY_ToBeEdited->getSy_id(); ?>" />
 			  		<input type='submit' value="Update" />
