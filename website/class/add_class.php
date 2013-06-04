@@ -82,10 +82,10 @@
 		</tr>
 		<?php foreach ($classes as $class) : ?>
 		<tr>
-			<td><?php $currGrade = $class->getStdC_id();
-				foreach ($grades as $grade)
-					if ( $currGrade == $grade->getStdClass_id() ) {
-						echo $grade->getClassName();
+			<td><?php $currStdClass = $class->getStdC_id();
+				foreach ($stdClasses as $stdClass)
+					if ( $currStdClass == $stdClass->getStdClass_id() ) {
+						echo $stdClass->getClassName();
 						break;
 					} ?>
 			<td><?php $currRoom = $class->getRoom_id();
@@ -97,9 +97,31 @@
 			<td><?php $currTerm = $class->getSchoolYear_id();
 				foreach ($terms as $term)
 					if ( $currTerm == $term->getSy_id() ) {
-						echo $term->getName();
+						echo $term->getStartDate();
+						echo '-';
+						echo $term->getEndDate();
 						break;
 					} ?>
+			<td><?php $currEmployee = $class->getEmp_Id();
+				foreach ($employees as $employee)
+					if ( $currEmployee == $employee->getEmployeeID() ) {
+						echo $employee->getLastName();
+						echo ',';
+						echo $employee->getFirstName();
+						break;
+					} ?>
+			<td>
+				<form class='inline' method='post' action='index.php'>
+					<input type="hidden" name="action" value="edit_employee" />
+					<input type="hidden" name="employee_id" value="<?php echo $employee->getEmployeeID(); ?>" />
+                    <input type="submit" value="Edit" />
+                </form>
+				<form class='inline' method='post' action='index.php'>
+					<input type="hidden" name="action" value="delete_employee" />
+					<input type="hidden" name="employee_id" value="<?php echo $employee->getEmployeeID(); ?>" />
+                    <input type="submit" value="Delete" />
+                </form>
+			</td>			
 		</tr>
 		<?php endforeach; ?>
 	</table>
