@@ -13,14 +13,14 @@
 				<th>* Specialty Type</th>
  				<th>* Specialty Name</th>
 				<th>* Specialty Start Date</th>
-				<th>* Specialty End Date</th>
+				<th>Specialty End Date</th>
 				<th>Action</th>
   			</tr>
  			<tr>
  				<td><input type='text' name='spesType_new' required /></td>
 				<td><input type='text' name='spesName_new' required /></td>
 				<td><input type='date' name='spesSD_new' required /></td>
-				<td><input type='date' name='spesED_new' required /></td>
+				<td><input type='date' name='spesED_new' /></td>
   				<td colspan='2' id='formButtons'>
 			  		<input type='submit' value="Add Specialty" />
  				</td>
