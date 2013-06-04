@@ -34,5 +34,6 @@ class EmployeeHasSpecialtyDB {
 	   $row_count = $db->exec($query);
 	   return $row_count;
     }
+	
 }
 ?>
