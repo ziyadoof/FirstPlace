@@ -3,6 +3,7 @@
 <head>
  	<title>First Place</title>
 	<link rel="stylesheet" type="text/css" href="/FirstPlace/website/style.css"/>
+        <script language="javascript" src="../calendar/calendar.js"></script>
 </head>
 
 <body>
