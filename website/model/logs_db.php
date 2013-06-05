@@ -3,7 +3,7 @@ class LogsDB {
     public static function getLogs() {
        $db = Database::getDB();
         
-		$query = 'select * from logEmployee_view order by log_Date'; //This is a view
+		$query = 'select * from logEmployee_view'; //This is a view
 		
 		//Get the results into array
 		$result = $db->query($query);
