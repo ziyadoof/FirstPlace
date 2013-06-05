@@ -21,11 +21,11 @@ if (isset($_POST['action'])) {
 } else if (isset($_GET['action'])) {
     $action = $_GET['action'];
 } else {
-    $action = 'show_add_employee_form';
+    $action = 'take_attendance';
 }
 
 //Get the available rooms for adding new employee.
-if ($action == 'show_add_employee_form') {             
+if ($action == 'take_attendance') {             
     $rooms = RoomDB::getRooms();				//variable will hold all the rooms
 	$roles = RoleDB::getRoles();
 	$employees = EmployeeDB::getEmployees();	//variable will hold all the employees

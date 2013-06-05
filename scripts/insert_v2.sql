@@ -37,3 +37,15 @@ INSERT INTO `firstplace`.`attendance_type` (`att_Ty_Name`) VALUES ('Excused Abse
 INSERT INTO `firstplace`.`attendance_type` (`att_Ty_Name`) VALUES ('Excused Tardy');
 INSERT INTO `firstplace`.`attendance_type` (`att_Ty_Name`) VALUES ('Unexcused Absence');
 INSERT INTO `firstplace`.`attendance_type` (`att_Ty_Name`) VALUES ('Unexcused Tardy');
+
+-- insert for Standerd Class
+INSERT INTO `firstplace`.`stdclass` (`ClassName`) VALUES ('Math Grade-1');
+INSERT INTO `firstplace`.`stdclass` (`ClassName`) VALUES ('Math Grade-2');
+INSERT INTO `firstplace`.`stdclass` (`ClassName`) VALUES ('History Grade-6');
+INSERT INTO `firstplace`.`stdclass` (`ClassName`) VALUES ('Reading Grade-2');
+
+-- insert for class
+INSERT INTO `firstplace`.`class` (`SchoolYear_sy_id`, `Room_Room_ID`, `stdC_id`, `StartTime`, `EndTime`, `Employee_emp_id`) VALUES ('3', '1', '1', '10:00:00', '11:00:00', '2');
+INSERT INTO `firstplace`.`class` (`SchoolYear_sy_id`, `Room_Room_ID`, `stdC_id`, `StartTime`, `EndTime`, `Employee_emp_id`) VALUES ('3', '2', '2', '11:00:00', '12:00:00', '2');
+INSERT INTO `firstplace`.`class` (`SchoolYear_sy_id`, `Room_Room_ID`, `stdC_id`, `StartTime`, `EndTime`, `Employee_emp_id`) VALUES ('2', '3', '3', '13:00:00', '14:00:00', '2');
+
