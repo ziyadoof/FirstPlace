@@ -774,7 +774,11 @@ INSERT INTO `FirstPlace`.`Log_Type` (`log_ty_ID`, `log_ty_name`) VALUES (1, 'Emp
 INSERT INTO `FirstPlace`.`Log_Type` (`log_ty_ID`, `log_ty_name`) VALUES (2, 'Employee_Update');
 INSERT INTO `FirstPlace`.`Log_Type` (`log_ty_ID`, `log_ty_name`) VALUES (NULL, 'Attendance_Add');
 INSERT INTO `FirstPlace`.`Log_Type` (`log_ty_ID`, `log_ty_name`) VALUES (NULL, 'Attendance_Update');
-
+INSERT INTO `FirstPlace`.`Log_Type` (`log_ty_ID`, `log_ty_name`) VALUES (NULL, '');
+INSERT INTO `FirstPlace`.`Log_Type` (`log_ty_ID`, `log_ty_name`) VALUES (NULL, '');
+INSERT INTO `FirstPlace`.`Log_Type` (`log_ty_ID`, `log_ty_name`) VALUES (NULL, '');
+INSERT INTO `FirstPlace`.`Log_Type` (`log_ty_ID`, `log_ty_name`) VALUES (NULL, '');
+INSERT INTO `FirstPlace`.`Log_Type` (`log_ty_ID`, `log_ty_name`) VALUES (NULL, '');
 
 COMMIT;
 
