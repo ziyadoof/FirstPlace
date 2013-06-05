@@ -1,14 +1,17 @@
 <?php
 class Logs {
-    private  $log_id, $log_Date, $emp_id, $log_type_id, $att_id, $emp_lname, $emp_fname;
+    private  $log_id, $log_Date, $emp_id, $log_type_id, $st_id, $emp_lname, $emp_fname, $st_lname, $st_fname, $att_old, $att_new;
 
-    public function __construct($log_id, $log_Date, $emp_id, $log_type_id) {
-        $this->log_id = $log_id;
+    public function __construct($log_id, $log_Date, $emp_id, $st_id, $st_fname, $st_lname, $att_old, $att_new, $log_type_id) {
+                $this->log_id = $log_id;
 		$this->log_Date = $log_Date;		
 		$this->emp_id = $emp_id;
 		$this->log_type_id = $log_type_id;  
-                $this->att_id = "N/A";
-                
+                $this->st_id = $st_id;
+                $this->st_fname = $st_fname;
+                $this->st_lname = $st_lname;
+                $this->att_new = $att_new;
+                $this->att_old = $att_old;           
     }
 
     public function getLog_id() {
@@ -22,7 +25,7 @@ class Logs {
 	
     public function getEmp_id() {
         return $this->emp_id;
-    }
+    } 
     
     public function getEmpLname() {
         return $this->emp_lname;
@@ -48,10 +51,24 @@ class Logs {
         return $this->att_id;
     }
     
-    public function setAtt_id($value){
-        $this->att_id=$value;
+    public function setSt_id($value){
+        $this->st_id=$value;
     }
    
+    public function getStLname() {
+        return $this->st_lname;
+    }
     
+    public function getStFname() {
+        return $this->st_fname;
+    }
+    
+    public function getOldAtt() {
+        return $this->att_old;
+    }
+    
+    public function getnewAtt() {
+        return $this->att_new;
+    }
 }
 ?>

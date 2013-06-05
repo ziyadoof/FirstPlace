@@ -3,7 +3,7 @@ class LogsDB {
     public static function getLogs() {
        $db = Database::getDB();
         
-		$query = 'select * from logEmployee_view'; //This is a view
+		$query = 'select * from logsAtt_view'; //This is a view
 		
 		//Get the results into array
 		$result = $db->query($query);
@@ -12,10 +12,17 @@ class LogsDB {
             $log = new Logs($row['log_id'],
                         $row['log_Date'],
 			$row['emp_id'],
+                        $row['st_id'],
+                        $row['st_firstname'],
+                        $row['st_lastname'],
+                        $row['old_att_id'],
+                        $row['new_att_id'],
                         $row['log_ty_name']);
                         
-            $log->setEmpFname($row['firstname']);
-            $log->setEmpLname($row['lastname']);
+            $log->setEmpFname($row['emp_firstname']);
+            $log->setEmpLname($row['emp_lastname']);
+            
+            
             
                   $logs[] = $log;
                 }
