@@ -25,6 +25,58 @@ class StudentDB {
 		return $students;
     }
     
+	public static function getStudentsByClassId($class_id) {
+		$db = Database::getDB();        
+		$query = "select s.* from student s where s.s_id in
+					(select sc.Student_s_id FROM student_has_class sc where 
+					 sc.Class_c_id = '$class_id')";
+		
+		//Get the results into array
+		$result = $db->query($query);
+		$students = array();		
+		foreach ($result as $row) {
+            $student = new Student($row['FirstName'], 
+									$row['LastName'],
+									$row['Address'],
+									$row['PhoneNumber']);
+            
+			$student->setGrade($row['Grade']);
+			$student->setEmail($row['email_address']);
+			$student->setStartDate($row['YearStarted']);
+			$student->setStudentID($row['s_id']);
+ 			
+            $students[] = $student;
+        }
+		
+		return $students;	
+	}
+	
+	public static function getStudentsNotInClass($class_id) {
+		$db = Database::getDB();        
+		$query = "select s.* from student s where s.s_id not in
+					(select sc.Student_s_id FROM student_has_class sc where 
+					 sc.Class_c_id = '$class_id')";
+		
+		//Get the results into array
+		$result = $db->query($query);
+		$students = array();		
+		foreach ($result as $row) {
+            $student = new Student($row['FirstName'], 
+									$row['LastName'],
+									$row['Address'],
+									$row['PhoneNumber']);
+            
+			$student->setGrade($row['Grade']);
+			$student->setEmail($row['email_address']);
+			$student->setStartDate($row['YearStarted']);
+			$student->setStudentID($row['s_id']);
+ 			
+            $students[] = $student;
+        }
+		
+		return $students;	
+	}
+	
     public static function getStudent($Std_id) {
 
 		$db = Database::getDB();

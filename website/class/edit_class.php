@@ -83,18 +83,41 @@
 			<th>Action</th>
 		</tr>
 
-		
-		<!-- #Students that can be added to class (not already added) -->
-		<?php foreach ($allStudents as $currStudent) : ?>
+		<!-- #Students that are currently in this class -->
+		<?php foreach ($studentsInClass as $currStudent) : ?>
 				<tr>
-					<td><?php echo $currStudent->getLastName(); echo ", "; echo $currStudent->getFirstName(); ?></td>
-					<td>
-						<input type="hidden" name="student_id" value="<?php echo $currStudent->getStudentID(); ?>" />
-						<input type="hidden" name="class_id" value="<?php echo $classToEdit->getC_id(); ?>" />
-						<input type="submit" value="Add to class" />
-					</td>	
+					<form class='inline' method='post' action='index.php'>
+						<input type="hidden" name="classId_edit" value="<?php echo $classToEdit->getC_id(); ?>" />
+						<input type="hidden" name="studentId_remove" value="<?php echo $currStudent->getStudentID(); ?>" />
+						<td><?php echo $currStudent->getLastName(); echo ", "; echo $currStudent->getFirstName(); ?></td>
+						<td>
+							<input type="hidden" name="action" value="remove_student_from_class" />
+							<input type="submit" value="Remove from class" />
+						</td>
+					</form>
 				</tr>
 		<?php endforeach; ?>	
+		
+		<!-- A single table row to allow adding students (not already in the class) to this class -->
+		<tr>
+			<form class='inline' method='post' action='index.php'>
+				<input type="hidden" name="classId_edit" value="<?php echo $classToEdit->getC_id(); ?>" />
+				<td>
+					<select name="studentId_add">
+						<?php foreach ($studentsNotInClass as $currStudent) : ?>
+						<option value="<?php echo $currStudent->getStudentID(); ?>"  >
+							<?php echo $currStudent->getLastName(); echo ", "; echo $currStudent->getFirstName(); ?>
+						</option>
+						<?php endforeach; ?>
+					</select>		
+				</td>
+				<td>
+					<input type="hidden" name="action" value="add_student_to_class" />
+					<input type="submit" value="Add to class" />
+				</td>	
+			</form>
+		</tr>
+
 	</table>	
 			
 

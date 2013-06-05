@@ -12,6 +12,8 @@ require('../model/class_class.php');
 require('../model/class_db.php');
 require('../model/student_class.php');
 require('../model/student_db.php');
+require('../model/studentHasClass_class.php');
+require('../model/studentHasClass_db.php');
 
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
@@ -55,16 +57,23 @@ if ($action == 'show_add_class_form') {
 	//redirect hte user to the same page where he can see the employee list and refrech the add fields
 	header("Location: .?action=show_add_class_form");
 } else if ($action == 'edit_class') {
+
+	if (isset($_POST['class_id'])) {
+		$classIdToEdit = $_POST['class_id'];
+	} else {
+		$classIdToEdit = $_GET['class_id'];
+	}
+
+	$classToEdit = ClassDB::getClassById($classIdToEdit);
 	
 	$stdClasses = StdClassDB::getStdClasses();
 	$rooms = RoomDB::getRooms();
 	$terms = SchoolYearDB::getSchoolYears();
 	$employees = EmployeeDB::getTeachers();
 	$classes = ClassDB::getClasses();
-	$allStudents = StudentDB::getStudents();
-
-	$classIdToEdit = $_POST['class_id'];
-	$classToEdit = ClassDB::getClassById($classIdToEdit);
+	
+	$studentsNotInClass = StudentDB::getStudentsNotInClass($classIdToEdit);
+	$studentsInClass = StudentDB::getStudentsByClassId($classIdToEdit);
 	
 	$error = $classToEdit->getStdC_id();
 
@@ -95,5 +104,24 @@ if ($action == 'show_add_class_form') {
 		
 	//redirect hte user to the same page where he can see the employee list and refrech the add fields
 	header("Location: .?action=show_add_class_form");
+} else if ($action == 'add_student_to_class') {
+
+	$classId = $_POST['classId_edit'];
+	$studentId = $_POST['studentId_add'];
+	
+	StudentHasClassDB::addStudentToClass($studentId, $classId);
+	
+	//redirect hte user to the same page where he can see the employee list and refrech the add fields
+	header("Location: .?action=edit_class&class_id=".$classId);
+} else if ($action == 'remove_student_from_class') {
+
+	$classId = $_POST['classId_edit'];
+	$studentId = $_POST['studentId_remove'];
+		
+	StudentHasClassDB::removeStudentFromClass($studentId, $classId);
+
+	//redirect hte user to the same page where he can see the employee list and refrech the add fields
+	header("Location: .?action=edit_class&class_id=".$classId);
 }
+
 ?>
