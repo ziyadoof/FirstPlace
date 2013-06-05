@@ -10,6 +10,8 @@ require('../model/employee_class.php');
 require('../model/employee_db.php');
 require('../model/class_class.php');
 require('../model/class_db.php');
+require('../model/student_class.php');
+require('../model/student_db.php');
 
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
@@ -59,6 +61,7 @@ if ($action == 'show_add_class_form') {
 	$terms = SchoolYearDB::getSchoolYears();
 	$employees = EmployeeDB::getTeachers();
 	$classes = ClassDB::getClasses();
+	$allStudents = StudentDB::getStudents();
 
 	$classIdToEdit = $_POST['class_id'];
 	$classToEdit = ClassDB::getClassById($classIdToEdit);

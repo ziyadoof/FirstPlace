@@ -74,7 +74,29 @@
 	<br>
 	<br>
 			
-	
+	<table id='displaytable' class='imagetable'>
+		<tr>
+			<th colspan='5' class='tableTitle'>Students </th>
+		</tr>
+		<tr>
+			<th>Student Name</th>
+			<th>Action</th>
+		</tr>
+
+		
+		<!-- #Students that can be added to class (not already added) -->
+		<?php foreach ($allStudents as $currStudent) : ?>
+				<tr>
+					<td><?php echo $currStudent->getLastName(); echo ", "; echo $currStudent->getFirstName(); ?></td>
+					<td>
+						<input type="hidden" name="student_id" value="<?php echo $currStudent->getStudentID(); ?>" />
+						<input type="hidden" name="class_id" value="<?php echo $classToEdit->getC_id(); ?>" />
+						<input type="submit" value="Add to class" />
+					</td>	
+				</tr>
+		<?php endforeach; ?>	
+	</table>	
+			
 
 </div> <!-- #content -->
 
