@@ -23,76 +23,76 @@ if ($action == 'show_add_att_type_form') {
 
 } else if ($action == 'add_attType') {
 	
-	$rName = $_POST['roomName_new'];
+	$attTypeName = $_POST['attTypeName_new'];
 	
-	$availableRooms = RoomDB::getRooms();//variable will hold all the rooms
-	$MatchRoom = 0;
+	$availableAttTypes = AttendanceTypeDB::getAttendanceTypes(); //variable will hold all the rooms
+	$MatchAttType = 0;
 	
 	//Check if there is a match
-	foreach ($availableRooms as $AvRoom) :
-		if ($rName == $AvRoom->getLocation()) {
-			$MatchRoom = 1;
+	foreach ($availableAttTypes as $AvAttType) :
+		if ($attTypeName == $AvAttType->getAttType_Name()) {
+			$MatchAttType = 1;
 		}
 	endforeach;
 
 
 	// Validate the inputs
-	if (empty($rName)) 
+	if (empty($attTypeName)) 
 	{
-		$error = "Invalid room data. Check all fields and try again.";
+		$error = "Invalid attendance type data. Check all fields and try again.";
 		include('../errors/error.php');
-	} elseif ($MatchRoom == 1){
-		$error = "Room name already exists. Try another name.";
+	} elseif ($MatchAttType == 1){
+		$error = "Attendence type name already exists. Try another name.";
 		include('../errors/error.php');
 	}else {
 		//Set vlaues
-		$RoomRow = new Room("", $rName);
+		$AttTypeRow = new AttendanceType("", $attTypeName);
 			
 		//insert
-		RoomDB::addRoom($RoomRow);
+		AttendanceTypeDB::addAttendanceType($AttTypeRow);
 		
 		//redirect hte user to the same page where he can see the employee list and refrech the add fields
-		header("Location: .?action=show_add_room_form");
+		header("Location: .?action=show_add_att_type_form");
 	}
 
 } else if ($action == 'edit_attType') {
 	
-	$r_id = $_POST['room_id']; 
-	$roomToBeEdited = RoomDB::getRoom($r_id);
-	include ('edit_room.php');
+	$attTypeID = $_POST['attType_id']; 
+	$attTypeToBeEdited = AttendanceTypeDB::getAttendanceType($attTypeID);
+	include ('edit_attendance_type.php');
 	
-} else if ($action == 'update_room') {
+} else if ($action == 'update_attType') {
 	
-	$r_id = $_POST['r_id_cuurent'];
-	$r_location = $_POST['LocName_New'];
+	$attTypeID = $_POST['attType_id_cuurent'];
+	$attTypeNewName = $_POST['AttType_New_Name'];
 
-	$availableRooms = RoomDB::getRooms();//variable will hold all the rooms
-	$MatchRoom = 0;
+	$availableAttTypes = AttendanceTypeDB::getAttendanceTypes(); //variable will hold all the rooms
+	$MatchAttType = 0;
 	
 	//Check if there is a match
-	foreach ($availableRooms as $AvRoom) :
-		if ($r_location == $AvRoom->getLocation()) {
-			$MatchRoom = 1;
+	foreach ($availableAttTypes as $AvAttType) :
+		if ($attTypeNewName == $AvAttType->getAttType_Name()) {
+			$MatchAttType = 1;
 		}
 	endforeach;
 
+
 	// Validate the inputs
-	if (empty($r_location)) 
+	if (empty($attTypeID) || empty($attTypeNewName)) 
 	{
-		$error = "Invalid room data. Check all fields and try again.";
+		$error = "Invalid attendance type data. Check all fields and try again.";
 		include('../errors/error.php');
-	} elseif ($MatchRoom == 1){
-		$error = "Room name already exists. Try another name.";
+	} elseif ($MatchAttType == 1){
+		$error = "Attendence type name already exists. Try another name.";
 		include('../errors/error.php');
 	}else {
 		//Set vlaues
-		$RoomRow = new Room($r_id, $r_location);
+		$AttTypeRow = new AttendanceType($attTypeID, $attTypeNewName);
 			
 		//update
-		RoomDB::updateRoom($RoomRow);
+		AttendanceTypeDB::updateAttendanceType($AttTypeRow);
 		
-		//redirect hte user to the same page where he can see the employee list and refrech the add fields
-		header("Location: .?action=show_add_room_form");
+		header("Location: .?action=show_add_att_type_form");
 	}
 	
 }
