@@ -31,7 +31,7 @@
 						<li><a href="/FirstPlace/website/rooms_mgmt/?action=show_add_room_form">Rooms Management</a></li>
 						<li><a href="/FirstPlace/website/specialty_mgmt/?action=show_add_specialty_form">Specialty Management</a></li>
 						<li><a href="/FirstPlace/website/school_year_mgmt/?action=show_add_schoolYear_form">School Year Management</a></li>
-						<li><a href="/FirstPlace/website/school_year_mgmt/?action=show_add_standardClass_form">Standard Classes Management</a></li>
+						<li><a href="/FirstPlace/website/stdClass_mgmt/?action=show_add_standardClass_form">Standard Classes Management</a></li>
 						<li><a href="/FirstPlace/website/admin/view_logs.php">View Logs</a></li>
 					</ul>
 				</li>

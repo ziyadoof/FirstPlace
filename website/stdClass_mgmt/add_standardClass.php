@@ -2,42 +2,44 @@
 
 <div id="content">
 
-	<h1>Roles Management</h1>
+	<h1>Standard Class Management</h1>
     <form action="index.php" method="post" class="imagetable" id="formtable">
         <input type="hidden" name="action" value="add_role" />
 		<table id='formtable' class='imagetable'>
 			<tr>
-				<th colspan='2' class='tableTitle'>Create new role</th>
+				<th colspan='2' class='tableTitle'>Create new standard class</th>
 			</tr>
  			<tr>
- 				<th>* Role Name</th>
+ 				<th>*Standard Class Name</th>
 				<th>Action</th>
   			</tr>
  			<tr>
- 				<td><input type='text' name='roleName_new' required /></td>
+ 				<td><input type='text' name='stdClassName_new' required /></td>
   				<td colspan='2' id='formButtons'>
-			  		<input type='submit' value="Add Role" />
+					<input type="hidden" name="action" value="add_standardClass" />
+			  		<input type='submit' value="Add" />
  				</td>
 			</tr>
 		</table>
     </form>
 	<br>
 	<br>
+	
 	<table id='displaytable' class='imagetable'>
 		<tr>
-			<th colspan='2' class='tableTitle'>Roles List</th>
+			<th colspan='2' class='tableTitle'>Standard Class List</th>
 		</tr>
 		<tr>
-			<th>Role Name</th>
+			<th>*Standard Class Name</th>
 			<th>Action</th>
 		</tr>
-		<?php foreach ($roles as $role) : ?>
+		<?php foreach ($stdClasses as $stdClass) : ?>
 		<tr>
-			<td><?php echo $role->getRoleName(); ?></td>
+			<td><?php echo $stdClass->getClassName(); ?></td>
 			<td>
 				<form class='inline' method='post' action='index.php'>
-					<input type="hidden" name="action" value="edit_room" />
-					<input type="hidden" name="role_id" value="<?php echo $role->getRole_id(); ?>" />
+					<input type="hidden" name="action" value="edit_standardClass" />
+					<input type="hidden" name="stdClass_id" value="<?php echo $stdClass->getStdClass_id(); ?>" />
                     <input type="submit" value="Edit" />
                 </form>
 			</td>			

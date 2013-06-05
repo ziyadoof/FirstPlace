@@ -25,7 +25,7 @@ class StdClassDB {
         
     }
     
-        public static function addStdClass($stdClassRow) {
+	public static function addStdClass($stdClassRow) {
       	$db = Database::getDB();
 		
 		$newstdClassName = $stdClassRow->getClassName();

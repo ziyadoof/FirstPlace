@@ -19,6 +19,7 @@ if (isset($_POST['action'])) {
 if ($action == 'show_add_standardClass_form') {             
     
 	$stdClasses = StdClassDB::getStdClass();		//variable will hold all the standard classes
+	
     include('add_standardClass.php');
 
 } else if ($action == 'add_standardClass') {
@@ -30,11 +31,10 @@ if ($action == 'show_add_standardClass_form') {
 	
 	//Check if there is a match
 	foreach ($availablestdClasses as $availablestdClass) :
-		if ($stdClassName == $availablestdClass->getClassName()) {
-			$MatchstdClass = 1;
-		}
+	if ($stdClassName == $availablestdClass->getClassName()) {
+		$MatchstdClass = 1;
+	}
 	endforeach;
-
 
 	// Validate the inputs
 	if (empty($stdClassName)) 
@@ -46,7 +46,7 @@ if ($action == 'show_add_standardClass_form') {
 		include('../errors/error.php');
 	}else {
 		//Set vlaues
-		$stdClassRow = new StdClass2("", $rName);
+		$stdClassRow = new StdClass2("", $stdClassName);
 			
 		//insert
 		StdClassDB::addStdClass($stdClassRow);
