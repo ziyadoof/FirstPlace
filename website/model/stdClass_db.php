@@ -1,6 +1,6 @@
 <?php
 class StdClassDB {
-    public static function getStdClass() {
+    public static function getStdClasses() {
        $db = Database::getDB();
 	   
 	   $query = 'select * from StdClass';
@@ -15,9 +15,19 @@ class StdClassDB {
         return $grades2;
     }
     
-     public static function getStdClassByStudent($stdClass_id) {
-         //TODO
-        
+     public static function getStdClassById($stdClass_id) {
+        $db = Database::getDB();
+		
+		//This is a view
+        $query = "SELECT * FROM StdClass
+                  WHERE stdC_id ='$stdClass_id'";
+        $result = $db->query($query);
+		
+        $row = $result->fetch();
+		$stdClass = new StdClass2($row['stdC_id'],
+								  $row['ClassName']);
+
+		return $stdClass;
     }
     
 	public static function getStdClassByClass($stdClass_id) {
@@ -42,9 +52,19 @@ class StdClassDB {
         
     
 	
-	public static function updateStdClass($stdClass_id) {
-       //TODO
-        
+	public static function updateStdClass($stdClass) {
+		$db = Database::getDB();
+		
+		$stdClass_id = $stdClass->getStdClass_id();
+		$stdClass_name = $stdClass->getClassName();
+	
+		$query = 
+			"UPDATE stdClass
+			SET ClassName = '$stdClass_name'
+			WHERE stdC_id = '$stdClass_id'";
+		
+		$row_count = $db->exec($query);
+        return $row_count;
     }
 }
 ?>
