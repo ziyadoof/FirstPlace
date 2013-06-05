@@ -81,6 +81,5 @@ class ClassDB {
 		return $row_count;
 	}
 	
-	
 }
 ?>

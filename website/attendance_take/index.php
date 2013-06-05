@@ -3,18 +3,16 @@
 //Employee Managment indes file
 
 require('../model/mysql_connect.php');
-require('../model/employee_class.php');
-require('../model/employee_db.php');
-require('../model/room_class.php');
-require('../model/room_db.php');
-require('../model/role_class.php');
-require('../model/role_db.php');
-require('../model/specialty_class.php');
-require('../model/specialty_db.php');
-require('../model/employeeHasSpecialty_class.php');
-require('../model/employeeHasSpecialty_db.php');
-
-
+require('../model/class_Info_class.php');
+require('../model/class_Info_db.php');
+require('../model/class_class.php');
+require('../model/class_db.php');
+require('../model/student_class.php');
+require('../model/student_db.php');
+require('../model/studentHasClass_class.php');
+require('../model/studentHasClass_db.php');
+require('../model/attendanceType_class.php');
+require('../model/attendanceType_db.php');
 
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
@@ -25,43 +23,52 @@ if (isset($_POST['action'])) {
 }
 
 //Get the available rooms for adding new employee.
-if ($action == 'take_attendance') {             
-    $rooms = RoomDB::getRooms();				//variable will hold all the rooms
-	$roles = RoleDB::getRoles();
-	$employees = EmployeeDB::getEmployees();	//variable will hold all the employees
-    include('add_employee.php');
-} else if ($action == 'add_employee') {
+if ($action == 'take_attendance') {  
+
+	$TodayDate = date("Y-m-d");
+    $AvailableClasses = ClassInfoDB::getClassesByYear($TodayDate);	//variable will hold all the rooms
+    include('select_class.php');
 	
-	$firstname = $_POST['firstName_new'];
-	$lastname = $_POST['lastName_new'];
-	$phonenumber = $_POST['phoneNumber_new'];
-	$address = $_POST['address_new'];
-	$email_address = $_POST['email_new'];
-	$classroom = $_POST['classRoom_new'];
-	$username = $_POST['username_new'];
-	$password = $_POST['password_new'];
-	$roleID = $_POST['roleID_new'];
+} else if ($action == 'take_attendance_for_class') {
+	
+	if (isset($_POST['ClassID'])) {
+		$class_id_selected = $_POST['ClassID'];
+	} else {
+		$class_id_selected = $_GET['ClassID'];
+	}
+
+	$class_selected = ClassDB::getClassById($class_id_selected);
+	$studentsInClass = StudentDB::getStudentsByClassId($class_id_selected);
+	$AttTypes = AttendanceTypeDB::getAttendanceTypes();
+	$ClassInfo = ClassInfoDB::getClassByID($class_id_selected);
+
+	include('take_attendance.php');
+	
+} else if ($action == 'update_class') {
+
+	$stdClass = $_POST['stdClass_update'];
+	$room = $_POST['classroom_update'];
+	$term = $_POST['term_update'];
+	$employee = $_POST['teacher_update'];
+	$classId = $_POST['classId'];
 
 	// Validate the inputs
-	if (empty($firstname) || empty($lastname) || empty($email_address)|| empty($username) || empty($password) || empty($roleID)) 
+	if (empty($stdClass) || empty($room) || empty($term)|| empty($employee)) 
 	{
-		$error = "Invalid employee data. Check all fields and try again.";
+		$error = "Invalid class data. Check all fields and try again.";
 		include('../errors/error.php');
-	} else 
-	{
-		//Set vlaues
-		$employeeRow = new Employee($firstname, $lastname, $email_address, $username, $password, $classroom);
-		$employeeRow->setRoom($classroom);
-		$employeeRow->setRoleID($roleID);
-		$employeeRow->setPhoneNum($phonenumber);
-		$employeeRow->setAddress($address);
-			
-		//insert
-		EmployeeDB::addEmployee($employeeRow); //DB trigger will take care of the adding the rmployee to the approbiate role.
-	}
+	} else  {
+		// //insert into class
+		$classRow = new ClassFP($stdClass, 
+								$room, 
+								$term, 
+								$employee);
+		$classRow->setC_id($classId);
 		
-	//redirect hte user to the same page where he can see the employee list and refrech the add fields
-	header("Location: .?action=show_add_employee_form");
+		ClassDB::updateClass($classRow);
+	}
+	
+	
 } else if ($action == 'edit_employee') {
 
 	if (isset($_POST['employee_id'])) {
