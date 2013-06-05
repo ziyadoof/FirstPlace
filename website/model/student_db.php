@@ -93,7 +93,7 @@ class StudentDB {
             $student->setEmail($row['email_address']);
 			$student->setGrade($row['Grade']);
             $student->setStartDate($row['YearStarted']);
-            $student->setCaseWorker($row['emp_id']);
+            $student->setCaseWorker($row['Employee_emp_ID']);
             $student->setStudentID($row['s_id']);
                         
 		return $student;
@@ -152,13 +152,13 @@ class StudentDB {
 		
 		$WithCaseWorkerQuery = 
 				"UPDATE student
-				SET s_id = s_id ,
+				SET s_id = '$st_id' ,
 					FirstName = '$firstname' ,
 					LastName =  '$lastname',
                                         Grade = '$grade',  
 					PhoneNumber = '$phoneNum' ,
 					Address = '$address' ,
-					email_Address = '$emailAddress'
+					email_Address = '$emailAddress',
                                         YearStarted = '$stYear', 
                                         Employee_emp_id = '$casework'
                                             
@@ -166,14 +166,14 @@ class StudentDB {
 				
 		$WithoutCaseWorkerQuery = 
 				"UPDATE student
-				SET s_id = st_id ,
+				SET s_id = '$st_id' ,
 					
 					FirstName = '$firstname' ,
 					LastName =  '$lastname',
 					Grade = '$grade',  
 					PhoneNumber = '$phoneNum' ,
 					Address = '$address' ,
-					email_Address = '$emailAddress'
+					email_Address = '$emailAddress',
                                         YearStarted = '$stYear', 
                                         Employee_emp_id = NULL
 				WHERE s_id = '$st_id'";

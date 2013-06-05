@@ -70,7 +70,7 @@ require('../calendar/classes/tc_calendar.php');
                                         ?>
 				</td>  
                 <td colspan='2' id='formButtons'>
-					<input type='hidden'  name='stID_cuurent' value="<?php echo $studentEdit->getStudentID(); ?>" />
+                     			<input type='hidden'  name='stID_cuurent' value="<?php echo $studentEdit->getStudentID(); ?>" />
 			  		<input type='submit' value="Update" />
 					<a href='index.php'><button type='button'>Cancel</button></a>
  				</td>
