@@ -12,7 +12,7 @@ class LogsDB {
             $log = new Logs($row['log_id'],
                         $row['log_Date'],
 			$row['emp_id'],
-                        $row['$log_ty_name']);
+                        $row['log_ty_name']);
 	
             $logs[] = $log;
                 }
