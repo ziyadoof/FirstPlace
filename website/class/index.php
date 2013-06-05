@@ -54,7 +54,7 @@ if ($action == 'show_add_class_form') {
 	header("Location: .?action=show_add_class_form");
 } else if ($action == 'edit_class') {
 	
-	$stdClasses = StdClassDB::getStdClass();
+	$stdClasses = StdClassDB::getStdClasses();
 	$rooms = RoomDB::getRooms();
 	$terms = SchoolYearDB::getSchoolYears();
 	$employees = EmployeeDB::getTeachers();
