@@ -4,26 +4,20 @@ class AttendanceType {
 
     public function __construct($att_id, $attName) {
         $this->att_id = $att_id;
-				
-		$this->attName = $attName;
-		
-        
+		$this->attName = $attName;  
     }
 
-    public function getAtt_id() {
+    public function getAttType_id() {
         return $this->att_id;
     }
 
     
-    public function getAttName() {
+    public function getAttType_Name() {
         return $this->attName;
     }
 
-    public function setAttName($value) {
+    public function setAttType_Name($value) {
         $this->attName = $value;
     }
-
-    
-    
 }
 ?>

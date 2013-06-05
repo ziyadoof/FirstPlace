@@ -50,7 +50,7 @@
 					<ul>
 						<li><a href="/FirstPlace/website/attendance_take/?action=take_attendance">Take Attendance</a></li>
 						<li><a href="/FirstPlace/website/attendance_view/?action=view_attendance">View Attendance</a></li>
-						<li><a href="/FirstPlace/website/attendance_mgmt/?action=show_add_attendance_type">Attendance types Management</a></li>
+						<li><a href="/FirstPlace/website/attendance_mgmt/?action=show_add_att_type_form">Attendance types Management</a></li>
 					</ul>
 				</li>
 				<li><a href="/FirstPlace/website/notification/view_notification.php">Notifications</a>
