@@ -13,8 +13,11 @@ class LogsDB {
                         $row['log_Date'],
 			$row['emp_id'],
                         $row['log_ty_name']);
-	
-            $logs[] = $log;
+                        
+            $log->setEmpFname($row['firstname']);
+            $log->setEmpLname($row['lastname']);
+            
+                  $logs[] = $log;
                 }
                 return $logs;
         

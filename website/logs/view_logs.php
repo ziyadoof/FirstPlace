@@ -16,7 +16,11 @@
  		<?php foreach ($logs as $log) : ?>
 		<tr>
 			<td><?php echo $log->getLog_Date(); ?></td>
-                        <td><?php echo $log->getEmp_id(); ?></td>
+                        
+                        <td> <?php echo $log->getEmpFname(); ?>
+				<?php echo ',' ?>
+				<?php echo $log->getEmpLName(); ?>
+			</td>
                         <td><?php echo $log->getLog_type_id(); ?></td>
                 </form>
 			</td>			
