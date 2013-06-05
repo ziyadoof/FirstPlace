@@ -16,12 +16,12 @@ if (isset($_POST['action'])) {
 }
 
 //Get the available rooms then redirect to the add with list form.
-if ($action == 'show_add_room_form') {             
+if ($action == 'show_add_att_type_form') {             
     
-	$rooms = RoomDB::getRooms();				//variable will hold all the rooms
-    include('add_room.php');
+	$AttTypes = AttendanceTypeDB::getAttendanceTypes();	 //variable will hold all the attendeance types
+    include('add_attendance_type.php');
 
-} else if ($action == 'add_room') {
+} else if ($action == 'add_attType') {
 	
 	$rName = $_POST['roomName_new'];
 	
@@ -55,7 +55,7 @@ if ($action == 'show_add_room_form') {
 		header("Location: .?action=show_add_room_form");
 	}
 
-} else if ($action == 'edit_room') {
+} else if ($action == 'edit_attType') {
 	
 	$r_id = $_POST['room_id']; 
 	$roomToBeEdited = RoomDB::getRoom($r_id);

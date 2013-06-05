@@ -4,20 +4,20 @@
 
 	<h1>Attendance Type Management</h1>
     <form action="index.php" method="post" class="imagetable" id="formtable">
-        <input type="hidden" name="action" value="add_room" />
+        <input type="hidden" name="action" value="add_attType" />
 
 		<table id='formtable' class='imagetable'>
 			<tr>
-				<th colspan='2' class='tableTitle'>Create new room</th>
+				<th colspan='2' class='tableTitle'>Create new attendance type</th>
 			</tr>
  			<tr>
- 				<th>* Room Name (ex. "BANN-305")</th>
+ 				<th>* Attendance Type Name</th>
 				<th>Action</th>
   			</tr>
  			<tr>
- 				<td><input type='text' name='roomName_new' required /></td>
+ 				<td><input type='text' name='attTypeName_new' required /></td>
   				<td colspan='2' id='formButtons'>
-			  		<input type='submit' value="Add Room" />
+			  		<input type='submit' value="Add Attendance Type" />
  				</td>
 			</tr>
 		</table>
@@ -26,19 +26,19 @@
 	<br>
 	<table id='displaytable' class='imagetable'>
 		<tr>
-			<th colspan='2' class='tableTitle'>Rooms List</th>
+			<th colspan='2' class='tableTitle'>Attendance Types List</th>
 		</tr>
 		<tr>
-			<th>Room Name</th>
+			<th>Attendance Type Name</th>
 			<th>Action</th>
 		</tr>
-		<?php foreach ($rooms as $room) : ?>
+		<?php foreach ($AttTypes as $attType) : ?>
 		<tr>
-			<td><?php echo $room->getLocation(); ?></td>
+			<td><?php echo $attType->getAttType_Name(); ?></td>
 			<td>
 				<form class='inline' method='post' action='index.php'>
-					<input type="hidden" name="action" value="edit_room" />
-					<input type="hidden" name="room_id" value="<?php echo $room->getRoom_id(); ?>" />
+					<input type="hidden" name="action" value="edit_attType" />
+					<input type="hidden" name="attType_id" value="<?php echo $attType->getAttType_id(); ?>" />
                     <input type="submit" value="Edit" />
                 </form>
 			</td>			

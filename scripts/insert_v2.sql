@@ -30,3 +30,10 @@ INSERT INTO `firstplace`.`schoolyear` (`StartDate`, `EndDate`, `Name`) VALUES ('
 -- insert for Holiday
 INSERT INTO `firstplace`.`holiday` (`SchoolYear_sy_id`, `StartDate`, `EndDate`, `Name`) VALUES ('1', '2013-05-27', '2013-05-27', 'Memorial Day');
 INSERT INTO `firstplace`.`holiday` (`SchoolYear_sy_id`, `StartDate`, `EndDate`, `Name`) VALUES ('1', '2013-06-15', '2013-06-25', 'Summer Break');
+
+-- insert for Attendance Type
+INSERT INTO `firstplace`.`attendance_type` (`att_Ty_Name`) VALUES ('Present');
+INSERT INTO `firstplace`.`attendance_type` (`att_Ty_Name`) VALUES ('Excused Absence');
+INSERT INTO `firstplace`.`attendance_type` (`att_Ty_Name`) VALUES ('Excused Tardy');
+INSERT INTO `firstplace`.`attendance_type` (`att_Ty_Name`) VALUES ('Unexcused Absence');
+INSERT INTO `firstplace`.`attendance_type` (`att_Ty_Name`) VALUES ('Unexcused Tardy');
