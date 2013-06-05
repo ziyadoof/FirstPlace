@@ -29,7 +29,8 @@ if (isset($_POST['action'])) {
 if ($action == 'take_attendance') {  
 
 	$TodayDate = date("Y-m-d");
-    $AvailableClasses = ClassInfoDB::getClassesByYear($TodayDate);	//variable will hold all the rooms
+    $AvailableClasses = ClassInfoDB::getClassesByYear($TodayDate);	//variable will hold class info
+	
     include('select_class.php');
 	
 } else if ($action == 'take_attendance_for_class') {
@@ -39,13 +40,36 @@ if ($action == 'take_attendance') {
 	} else {
 		$class_id_selected = $_GET['ClassID'];
 	}
+	
+	$TodayDate = date("Y-m-d");
+	$attendacneRecords = AttendanceDB::getAttendanceByClassAndDay($class_id_selected,$TodayDate);//Check if attendence already taken
+	
+	$availableDate = 0;
+	foreach($attendacneRecords as $attRow){
+	
+		$std_id = $attRow->getAtt_student_id();   //this is a variable of AttendanceTable Type
+		$class_id = $attRow->getAtt_class_id();
+		$attType_id = $attRow->getAtt_type_id();
+		$attDate = $attRow->getAtt_date();
+		$attCommentValue = $attRow->getAttComment();
+		
+		$availableDate = $attDate;
+	}
+	
+	
+	if ($TodayDate = $availableDate) 
+	{
+		$msg = "Attendance is already taken for this class today. Please contact your admin for editing.";
+		include('messages.php');
+	} else 
+	{
+		$class_selected = ClassDB::getClassById($class_id_selected);
+		$studentsInClass = StudentDB::getStudentsByClassId($class_id_selected);
+		$AttTypes = AttendanceTypeDB::getAttendanceTypes();
+		$ClassInfo = ClassInfoDB::getClassByID($class_id_selected);
 
-	$class_selected = ClassDB::getClassById($class_id_selected);
-	$studentsInClass = StudentDB::getStudentsByClassId($class_id_selected);
-	$AttTypes = AttendanceTypeDB::getAttendanceTypes();
-	$ClassInfo = ClassInfoDB::getClassByID($class_id_selected);
-
-	include('take_attendance.php');
+		include('take_attendance.php');
+	}
 	
 } else if ($action == 'apply_attendace') {
 
