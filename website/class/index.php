@@ -20,7 +20,7 @@ if (isset($_POST['action'])) {
 }
 
 if ($action == 'show_add_class_form') {             
-	$stdClasses = StdClassDB::getStdClass();
+	$stdClasses = StdClassDB::getStdClasses();
 	$rooms = RoomDB::getRooms();
 	$terms = SchoolYearDB::getSchoolYears();
 	$employees = EmployeeDB::getTeachers();
