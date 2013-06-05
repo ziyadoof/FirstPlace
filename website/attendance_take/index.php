@@ -13,6 +13,9 @@ require('../model/studentHasClass_class.php');
 require('../model/studentHasClass_db.php');
 require('../model/attendanceType_class.php');
 require('../model/attendanceType_db.php');
+require('../model/attendance_class.php');
+require('../model/attendance_db.php');
+
 
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
@@ -44,30 +47,24 @@ if ($action == 'take_attendance') {
 
 	include('take_attendance.php');
 	
-} else if ($action == 'update_class') {
+} else if ($action == 'apply_attendace') {
 
-	$stdClass = $_POST['stdClass_update'];
-	$room = $_POST['classroom_update'];
-	$term = $_POST['term_update'];
-	$employee = $_POST['teacher_update'];
-	$classId = $_POST['classId'];
-
-	// Validate the inputs
-	if (empty($stdClass) || empty($room) || empty($term)|| empty($employee)) 
-	{
-		$error = "Invalid class data. Check all fields and try again.";
-		include('../errors/error.php');
-	} else  {
-		// //insert into class
-		$classRow = new ClassFP($stdClass, 
-								$room, 
-								$term, 
-								$employee);
-		$classRow->setC_id($classId);
+	$NumberOfRows = $_POST['rows_count'];
+	
+	$attend = array();
+	
+	for ($i=0; $i<$NumberOfRows ; $i++){
+		$attendanceRow = new AttendanceTable($_POST['studentId_add_'.$i],
+									$_POST['classId_add_'.$i],
+									$_POST['attendanceType_id_'.$i],
+									date("Y-m-d"));
+		$attendanceRow->setAttComment($_POST['attendance_comment_'.$i]);
 		
-		ClassDB::updateClass($classRow);
+		$attend[] = $attendanceRow;
 	}
 	
+	
+	AttendanceDB::addManyAttendance($attend);
 	
 } else if ($action == 'edit_employee') {
 

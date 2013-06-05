@@ -29,23 +29,25 @@
 		</table>
     </form>
 	<br>
-	<form class='inline' method='post' action='index.php'>	
+	<form class='inline' method='post' action='index.php' name='attendencePosts'>	
 		<table id='displaytable' class='imagetable'>
 			<tr>
-				<th colspan='2' class='tableTitle'>Students in class</th>
+				<th colspan='3' class='tableTitle'>Students in class</th>
 			</tr>
 			<tr>
 				<th>Student Name</th>
 				<th>Attendance Statues</th>
+				<th>Comment</th>
 			</tr>
 			<!-- #Students that are currently in this class -->
+			<?php $number_of_rows = 0; ?>
 			<?php foreach ($studentsInClass as $currStudent) : ?>
 				<tr>
-					<input type="hidden" name="classId_edit" value="<?php echo $class_selected->getC_id(); ?>" />
-					<input type="hidden" name="studentId_remove" value="<?php echo $currStudent->getStudentID(); ?>" />
+					<input type="hidden" name="classId_add_<?php echo $number_of_rows; ?>" value="<?php echo $class_selected->getC_id(); ?>" />
+					<input type="hidden" name="studentId_add_<?php echo $number_of_rows; ?>" value="<?php echo $currStudent->getStudentID(); ?>" />
 					<td><?php echo $currStudent->getLastName(); echo ", "; echo $currStudent->getFirstName(); ?></td>
 					<td>
-						<select name="attendanceType_id" required>
+						<select name="attendanceType_id_<?php echo $number_of_rows; ?>" required>
 							<?php foreach ($AttTypes as $attType) : ?>
 								<option value="<?php echo $attType->getAttType_id(); ?>" <?php if ($attType->getAttType_Name() == 'Present') { echo "selected";}?> >
 									<?php echo $attType->getAttType_Name(); ?>
@@ -53,10 +55,13 @@
 							<?php endforeach; ?>
 						</select>
 					</td>
+					<td><input type="textarea" name="attendance_comment_<?php echo $number_of_rows; ?>" /></td>
 				</tr>
+			<?php $number_of_rows++; ?>
 			<?php endforeach; ?>
 		</table>
-		<input type="hidden" name="action" value="remove_student_from_class" />
+		<input type="hidden" name="rows_count" value="<?php echo $number_of_rows; ?>" />
+		<input type="hidden" name="action" value="apply_attendace" />
 		<input type="submit" value="Submit" />
 	</form>
 </div> <!-- #content -->
