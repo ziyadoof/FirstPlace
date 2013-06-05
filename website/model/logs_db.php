@@ -13,8 +13,7 @@ class LogsDB {
                         $row['log_Date'],
 			$row['emp_id'],
                         $row['$log_ty_name']);
-			$log->setAtt_id($row['att_id']);
-
+	
             $logs[] = $log;
                 }
                 return $logs;

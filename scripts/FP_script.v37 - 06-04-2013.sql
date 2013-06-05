@@ -375,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `FirstPlace`.`ViewCaseWorkers` (`emp_id` INT, `firstn
 -- -----------------------------------------------------
 -- Placeholder table for view `FirstPlace`.`StudentWithCasework`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `FirstPlace`.`StudentWithCasework` (`s_id` INT, `FirstName` INT, `LastName` INT, `Grade` INT, `email_address` INT, `PhoneNumber` INT, `Address` INT, `YearStarted` INT, `username` INT);
+CREATE TABLE IF NOT EXISTS `FirstPlace`.`StudentWithCasework` (`s_id` INT, `FirstName` INT, `LastName` INT, `Grade` INT, `email_address` INT, `PhoneNumber` INT, `Address` INT, `YearStarted` INT, `Employee_emp_ID` INT);
 
 -- -----------------------------------------------------
 -- Placeholder table for view `FirstPlace`.`ViewStudentHasClass_byClass`
@@ -448,7 +448,7 @@ DROP VIEW IF EXISTS `FirstPlace`.`StudentWithCasework` ;
 DROP TABLE IF EXISTS `FirstPlace`.`StudentWithCasework`;
 USE `FirstPlace`;
 CREATE  OR REPLACE VIEW `FirstPlace`.`StudentWithCasework` AS
-select s.s_id, s.FirstName, s.LastName, s.Grade, s.email_address, s.PhoneNumber, s.Address, s.YearStarted, emp.username
+select s.s_id, s.FirstName, s.LastName, s.Grade, s.email_address, s.PhoneNumber, s.Address, s.YearStarted, s.Employee_emp_ID
 From Student s left outer join Employee emp
 on s.Employee_emp_ID = emp.emp_ID
 order by LastName;

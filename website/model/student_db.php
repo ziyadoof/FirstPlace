@@ -16,7 +16,7 @@ class StudentDB {
                         $student->setGrade($row['Grade']);
                         $student->setEmail($row['email_address']);
                         $student->setStartDate($row['YearStarted']);
-                        $student->setCaseWorker($row['username']);
+                        $student->setCaseWorker($row['Employee_emp_ID']);
                         $student->setStudentID($row['s_id']);
  			
             $students[] = $student;

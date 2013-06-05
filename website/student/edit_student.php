@@ -11,7 +11,7 @@ require('../calendar/classes/tc_calendar.php');
 
 		<table id='formtable' class='imagetable'>
 			<tr>
-				<th colspan='10' class='tableTitle'>Student Information</th>
+				<th colspan='9' class='tableTitle'>Student Information</th>
 			</tr>
  			<tr>
  				<th>First Name</th>
@@ -21,7 +21,6 @@ require('../calendar/classes/tc_calendar.php');
                 <th>Email</th>
                 <th>Grade</th>
                 <th>Case Worker</th>
-                <th>Class</th>
                 <th>Start Date</th>
                 <th>Action</th>
 			</tr>
@@ -37,22 +36,14 @@ require('../calendar/classes/tc_calendar.php');
 						<option value="NotSpecified">No Employee</option>
 						<?php foreach ($caseworks as $employee) : ?>
 						<option value="<?php echo $employee->getEmployeeID() ; ?>" <?php if ($studentEdit->getCaseWorker() == $employee->getUserName()) { echo "selected";}?>>
-							<?php echo $employee->getUserName(); ?>
+							<?php echo $employee->getLastName() ?>
+							<?php echo ',' ?>
+							<?php echo $teacher->getFirstName() ?>
 						</option>
 						<?php endforeach; ?>
 					</select>
 				</td>                                
-                <td>
-				    <select name="class_cuurent">
-						<option value="NotSpecified">No Class</option>
-						<?php foreach ($classes as $class) : ?>
-						<option value="<?php echo $class->getC_id(); ?>">
-							<?php echo $class->getName ?>
-						</option>
-						<?php endforeach; ?>
-					</select>
-				</td>
-                <td><?php
+                              <td><?php
                                         $default_date = $studentEdit->getStartDate();
                                         $myCalendar = new tc_calendar("year_cuurent", true, false);
                                         $myCalendar->setIcon("../calendar/images/iconCalendar.gif");

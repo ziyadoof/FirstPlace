@@ -8,7 +8,7 @@ require('../calendar/classes/tc_calendar.php');
         <input type="hidden" name="action" value="add_student" />
 		<table id='formtable' class='imagetable'>
 			<tr>
-				<th colspan='10' class='tableTitle'>Create New Student</th>
+				<th colspan='9' class='tableTitle'>Create New Student</th>
 			</tr>
  			<tr>
  				<th>*First Name</th>
@@ -18,7 +18,6 @@ require('../calendar/classes/tc_calendar.php');
 				<th>Email</th>
 				<th>Grade</th>
  				<th>Case Worker</th>
-                                <th>Class</th>
                                 <th>Start Year</th>
  				<th>Action</th>
   			</tr>
@@ -45,17 +44,9 @@ require('../calendar/classes/tc_calendar.php');
 						<option value="NotSpecified">No Employee</option>
 						<?php foreach ($caseworks as $employee) : ?>
 						<option value="<?php echo $employee->getEmployeeID(); ?>">
-							<?php echo $employee->getUserName(); ?>
-						</option>
-						<?php endforeach; ?>
-					</select>
-				</td>
-                                <td>
-				    <select name="class_new">
-						<option value="NotSpecified">No Class</option>
-						<?php foreach ($classes as $class) : ?>
-						<option value="<?php echo $class->getC_id(); ?>">
-							<?php echo $class->getName ?>
+							<?php echo $employee->getLastName() ?>
+							<?php echo ',' ?>
+							<?php echo $employee->getFirstName() ?>
 						</option>
 						<?php endforeach; ?>
 					</select>
@@ -81,7 +72,7 @@ require('../calendar/classes/tc_calendar.php');
 	<br>
 	<table id='displaytable' class='imagetable'>
 		<tr>
-			<th colspan='10' class='tableTitle'>Student List</th>
+			<th colspan='9' class='tableTitle'>Student List</th>
 		</tr>
 		<tr>
 			<th>First Name</th>
@@ -91,7 +82,6 @@ require('../calendar/classes/tc_calendar.php');
 			<th>Email</th>
 			<th>Grade</th>
  			<th>Case Worker</th>
-                        <th>Class</th>
                         <th>Start Date</th>
 			<th>Action</th>
 		</tr>
@@ -102,10 +92,17 @@ require('../calendar/classes/tc_calendar.php');
 			<td><?php echo $student->getPhoneNum(); ?></td>
 			<td><?php echo $student->getAddress(); ?></td>
 			<td><?php echo $student->getEmail(); ?></td>
-            <td><?php echo $student->getGrade(); ?></td>
-            <td><?php echo $student->getCaseWorker(); ?></td>
-            <td><?php echo $student->getClass(); ?></td>
-			<td><?php echo $student->getStartDate(); ?></td>
+                        <td><?php echo $student->getGrade(); ?></td>
+                        <td><?php $curcasework = $student->getCaseWorker();
+				foreach ($caseworks as $employee)
+					if ( $curcasework == $employee->getEmployeeID() ) {
+						echo $employee->getLastName();
+						echo ',';
+						echo $employee->getFirstName();
+						break;
+					} ?>
+			</td>
+         		<td><?php echo $student->getStartDate(); ?></td>
             <td>
 				<form class='inline' method='post' action='index.php'>
 					<input type="hidden" name="action" value="edit_student" />

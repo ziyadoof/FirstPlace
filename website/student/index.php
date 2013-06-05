@@ -2,10 +2,6 @@
 require('../model/mysql_connect.php');
 require('../model/student_class.php');
 require('../model/student_db.php');
-require('../model/class_class.php');
-require('../model/class_db.php');
-require('../model/room_class.php');
-require('../model/room_db.php');
 require('../model/employee_class.php');
 require('../model/employee_db.php');
 
@@ -23,7 +19,6 @@ if (isset($_POST['action'])) {
 if ($action == 'show_add_student_form') {             
 	$students = StudentDB::getStudents();	//variable will hold all the students
     $caseworks = EmployeeDB::getCaseWorkers();	//variable will hold all the Student has class
-    $classes = ClassDB::getClasses();
         
     include('add_student.php');
 } else if ($action == 'add_student') {
@@ -35,7 +30,6 @@ if ($action == 'show_add_student_form') {
 	$email_address = $_POST['email_new'];
 	$grade = $_POST['grade_new'];
 	$casework = $_POST['casework_new'];
-	$class = $_POST['class_new'];
 	$year = $_POST['year_new'];
 
 	// Validate the inputs
@@ -50,7 +44,6 @@ if ($action == 'show_add_student_form') {
 		$studentRow->setEmail($email_address);
                 $studentRow->setGrade($grade);
 		$studentRow->setCaseWorker($casework);
-		$studentRow->setClass($class);
 		$studentRow->setStartDate($year);
 			
 		//insert
@@ -60,9 +53,8 @@ if ($action == 'show_add_student_form') {
 	//redirect hte user to the same page where he can see the student list and refrech the add fields
 	header("Location: .?action=show_add_student_form");
 } else if ($action == 'edit_student') {
-	
-	$rooms = RoomDB::getRooms();
-	$stIdToEdit = $_POST['student_id'];
+
+    $stIdToEdit = $_POST['student_id'];
 	if (empty($stIdToEdit)) 
 	{
 		$error = "Invalid employee data. Check all fields and try again.";
@@ -71,7 +63,6 @@ if ($action == 'show_add_student_form') {
 	{ 	
 	$studentEdit = StudentDB::getStudent($stIdToEdit);
     $caseworks = EmployeeDB::getCaseWorkers();	//variable will hold all the Student has class
-    $classes = ClassDB::getClasses();
 
 	include ('edit_student.php');
 	}
@@ -85,7 +76,6 @@ if ($action == 'show_add_student_form') {
 	$email_address = $_POST['email_cuurent'];
 	$grade = $_POST['grade_cuurent'];
 	$casework = $_POST['casework_cuurent'];
-	$class = $_POST['class_cuurent'];
 	$year = $_POST['year_cuurent'];
 	$sID = $_POST['stID_cuurent']; 
 	
@@ -101,7 +91,6 @@ if ($action == 'show_add_student_form') {
 		$studentNew->setGrade($grade);
 		$studentNew->setEmail($email_address);
                 $studentNew->setCaseWorker($casework);
-		$studentNew->setClass($class);
 		$studentNew->setStartDate($year);
                 $studentNew->setStudentID($sID);
 
