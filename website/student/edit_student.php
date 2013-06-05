@@ -30,15 +30,26 @@ require('../calendar/classes/tc_calendar.php');
 				<td><input type='text' name='phoneNumber_cuurent' value="<?php echo $studentEdit->getPhoneNum(); ?>"  required/></td>
 				<td><input type='text' name='address_cuurent' value="<?php echo $studentEdit->getAddress(); ?>" required/></td>
 		   		<td><input type='email' name='email_cuurent' value="<?php echo $studentEdit->getEmail(); ?>"  /></td>
-                <td><input type='text' name='grade_cuurent' value="<?php echo $studentEdit->getGrade(); ?>" /></td>
-	 			<td>
+                		<td>
+				    <select name="grade_cuurent"> 
+                                                <option value="NotSpecified"  <?php if($studentEdit->getGrade() == NULL){ echo "selected";}?>>No Grade</option>
+                                                <option value="1st"<?php if($studentEdit->getGrade() == '1st'){ echo "selected";}?> >1st </option>
+                                                <option value="2nd" <?php if($studentEdit->getGrade() == '2nd'){ echo "selected";}?>>2nd</option>
+                                                <option value="3th" <?php if($studentEdit->getGrade() == '3rd'){ echo "selected";}?>>3th</option>
+                                                <option value="4th" <?php if($studentEdit->getGrade() == '4th'){ echo "selected";}?>>4th</option>
+                                                <option value="5th" <?php if($studentEdit->getGrade() == '5th'){ echo "selected";}?>>5th</option>
+                                                <option value="6th" <?php if($studentEdit->getGrade() == '6th'){ echo "selected";}?>>6th</option>
+					</select>
+				</td>
+				</td>
+                                <td>
 				    <select name="casework_cuurent">
 						<option value="NotSpecified">No Employee</option>
 						<?php foreach ($caseworks as $employee) : ?>
 						<option value="<?php echo $employee->getEmployeeID() ; ?>" <?php if ($studentEdit->getCaseWorker() == $employee->getUserName()) { echo "selected";}?>>
 							<?php echo $employee->getLastName() ?>
 							<?php echo ',' ?>
-							<?php echo $teacher->getFirstName() ?>
+							<?php echo $employee->getFirstName() ?>
 						</option>
 						<?php endforeach; ?>
 					</select>

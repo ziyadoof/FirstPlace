@@ -93,7 +93,7 @@ class StudentDB {
             $student->setEmail($row['email_address']);
 			$student->setGrade($row['Grade']);
             $student->setStartDate($row['YearStarted']);
-            $student->setCaseWorker($row['Employee_emp_id']);
+            $student->setCaseWorker($row['emp_id']);
             $student->setStudentID($row['s_id']);
                         
 		return $student;
@@ -125,28 +125,15 @@ class StudentDB {
 			VALUES
 				('$firstname', '$lastname', '$grad', '$phoneNum', '$address', '$emailAddress', '$stDate')";
 
-                $WithClassQuery =
-			"INSERT INTO studentClass
-				(Student_s_id, Class_c_id)
-			VALUES
-				('$st_id', '$fpclass')";
-
 		//Check if the caseworker was specified by the user or not
 	        if ($casework == "NotSpecified")
 		{
 			$row_count = $db->exec($WithoutCaseWorkerQuery);
-                        $st_id = $mysqli->insert_id;
-		} else 
+  		} else 
 		{
 			$row_count = $db->exec($WithCaseWorkerQuery);
-                        $st_id = $mysqli->insert_id;
-		}
-                //Check if class was specified
-                if($fpclass != "NotSpecified")
-                {
-          
-                    $row_count = $db->exec($WithClassQuery);
-                }
+        	}
+
         return $row_count;
     }
 
@@ -159,7 +146,7 @@ class StudentDB {
 		$phoneNum = $student->getPhoneNum();
 		$address = $student->getAddress();
 		$emailAddress = $student->getEmail();
-		$grade = $student->getUserName();
+		$grade = $student->getGrade();
 		$casework = $student->getCaseWorker();
 		$stYear = $student->getStartDate();		
 		
