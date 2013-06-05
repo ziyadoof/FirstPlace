@@ -63,8 +63,10 @@ if ($action == 'take_attendance') {
 		$attend[] = $attendanceRow;
 	}
 	
-	
 	AttendanceDB::addManyAttendance($attend);
+	
+	$msg = "Attendance was successfully taken.";
+	include('messages.php');
 	
 } else if ($action == 'edit_employee') {
 
