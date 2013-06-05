@@ -782,13 +782,3 @@ INSERT INTO `FirstPlace`.`Log_Type` (`log_ty_ID`, `log_ty_name`) VALUES (NULL, '
 
 COMMIT;
 
--- -----------------------------------------------------
--- Data for table `FirstPlace`.`Logs`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `FirstPlace`;
-INSERT INTO `FirstPlace`.`Logs` (`log_ID`, `log_Date`, `emp_id`, `log_type_id`, `att_ID`, `old_att_Ty`, `new_att_Ty`) VALUES (NULL, '2013-06-04 15:53:48', 2, 3, 1, NULL, 4);
-INSERT INTO `FirstPlace`.`Logs` (`log_ID`, `log_Date`, `emp_id`, `log_type_id`, `att_ID`, `old_att_Ty`, `new_att_Ty`) VALUES (NULL, '2013-06-04 15:33:48', 2, 3, 2, NULL, 4);
-INSERT INTO `FirstPlace`.`Logs` (`log_ID`, `log_Date`, `emp_id`, `log_type_id`, `att_ID`, `old_att_Ty`, `new_att_Ty`) VALUES (NULL, '2013-06-04 15:35:48', 2, 4, 2, 3, 4);
-
-COMMIT;
