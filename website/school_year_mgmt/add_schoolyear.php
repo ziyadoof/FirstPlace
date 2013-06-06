@@ -21,10 +21,12 @@
  			<tr>
                                 <td><?php                                 
                                         $myCalendar = new schoolCalendar("startY_new", true, false);
+                                        $myCalendar->disableAllHolidays();
                                         $myCalendar->writeScript();
                                         ?>  </td>
                                 <td><?php                                 
                                         $myCalendar = new schoolCalendar("endY_new", true, false);
+                                        $myCalendar->disableAllHolidays();
                                         $myCalendar->writeScript();
                                         ?>  </td>				
 				<td><input type='text' name='yearName_new' /></td>

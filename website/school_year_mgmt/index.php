@@ -20,6 +20,7 @@ if (isset($_POST['action'])) {
 if ($action == 'show_add_schoolYear_form') {             
     
 	$school_year = SchoolYearDB::getSchoolYears();	//variable will hold all the rows
+        
     include('add_schoolyear.php');
 
 } else if ($action == 'add_schoolyear') {

@@ -21,6 +21,7 @@
 			<td><?php echo $classes->getClassYearName(); ?></td>
                         <td><?php                                 
                                         $myCalendar = new schoolCalendar("selected_date", true, false);
+                                        $myCalendar->disableAllHolidays();
                                         $myCalendar->writeScript();
                                         ?>  </td>
 			<td>

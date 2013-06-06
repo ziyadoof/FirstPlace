@@ -1,7 +1,22 @@
 <?php
 class HolidayDB {
-    public static function getHoliday() {
-       //TODO
+    public static function getHolidays() {
+       $db = Database::getDB();
+        
+		$query = "SELECT holi_id, SchoolYear_sy_id, StartDate, EndDate, Name FROM holiday ORDER BY StartDate";
+		
+		//Get the results into array
+		$result = $db->query($query);
+		$holidays = array();
+		foreach ($result as $row) {
+            $holiday = new Holiday($row['holi_id'],
+									$row['SchoolYear_sy_id'],
+									$row['StartDate'],
+									$row['EndDate']);
+			$holiday->setName($row['Name']);
+            $holidays[] = $holiday;
+        }
+		return $holidays;
         
     }
     

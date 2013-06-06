@@ -24,7 +24,7 @@ require ('schoolCalendar.php');
                                         $default_date = $SY_ToBeEdited->getStartDate();
                                 
                                         $myCalendar = new schoolCalendar("SY_SD_new", true, false);
-                                        $myCalendar->disableHolidays($SY_ToBeEdited->getSy_id());
+                                        $myCalendar->disableAllHolidays();
                                         $myCalendar->setDate(date('d', strtotime($default_date))
                                             , date('m', strtotime($default_date))
                                             , date('Y', strtotime($default_date)));
@@ -34,7 +34,7 @@ require ('schoolCalendar.php');
                                         $default_date = $SY_ToBeEdited->getEndDate();
                                 
                                         $myCalendar = new schoolCalendar("SY_ED_new", true, false);
-                                        $myCalendar->disableHolidays($SY_ToBeEdited->getSy_id());
+                                        $myCalendar->disableAllHolidays();
                                         $myCalendar->setDate(date('d', strtotime($default_date))
                                             , date('m', strtotime($default_date))
                                             , date('Y', strtotime($default_date)));

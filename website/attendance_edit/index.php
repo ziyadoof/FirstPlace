@@ -28,7 +28,7 @@ if ($action == 'select_attendance') {
 
 	$TodayDate = date("Y-m-d");
     $AvailableClasses = ClassInfoDB::getClassesByYear($TodayDate);	//variable will hold class info
-	//Get the holidays for this year to disable them.
+    $school_year = SchoolYearDB::getSchoolYears(); //Get the holidays for this year to disable them.
 	
     include('select_attendance.php');
 	

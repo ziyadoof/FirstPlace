@@ -34,5 +34,16 @@ class schoolCalendar extends tc_calendar {
                    // parent::disabledDay($day);
                     endforeach; 
         }
+        
+        function disableAllHolidays(){
+           $YearHolidays = HolidayDB::getHolidays();
+            
+            //Need to change holidays as not available
+                foreach ($YearHolidays as $holiday) : 
+                   parent::setSpecificDate(array($holiday->getStartDate(),$holiday->getEndDate() ), 0, ''); 
+                  //  parent::setSpecificDate(); 
+                   // parent::disabledDay($day);
+                    endforeach; 
+        }
 }
     ?> 
