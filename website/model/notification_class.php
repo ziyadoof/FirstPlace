@@ -1,13 +1,13 @@
 <?php
 class Notification {
-    private  $notf_id, $caseWorker_id, $stud_id, $notf_date, $cw_Fname, $cw_Lname, $att_id, $st_Lname, $st_Fname;
+    private  $notf_id, $caseWorker_id, $stud_id, $notf_date, $cw_Fname, $cw_Lname, $att_ty_id, $st_Lname, $st_Fname;
 
-    public function __construct($notf_id, $notf_date, $caseWorker_id, $stud_id, $st_Lname, $st_Fname, $att_id) {
+    public function __construct($notf_id, $notf_date, $caseWorker_id, $stud_id, $st_Lname, $st_Fname, $att_ty_id) {
                 $this->notf_id = $notf_id;
 		$this->caseWorker_id = $caseWorker_id;		
 		$this->stud_id = $stud_id;
 		$this->notf_date = $notf_date;
-                $this->att_id = $att_id;
+                $this->att_ty_id = $att_ty_id;
                 $this->st_Lname = $st_Lname;
                 $this->st_Fname = $st_Fname;
     }
@@ -46,7 +46,7 @@ class Notification {
     }
 
     public function getAtt() {
-        return $this->att_id;
+        return $this->att_ty_id;
     }
         
 }

@@ -15,7 +15,7 @@ class NotificationDB {
                         $row['st_id'],
                         $row['st_firstname'],
                         $row['st_lastname'],
-                        $row['att_id']);
+                        $row['Att_Ty_id']);
                         
             $notif->setEmpFname($row['emp_firstname']);
             $notif->setEmpLname($row['emp_lastname']);       
