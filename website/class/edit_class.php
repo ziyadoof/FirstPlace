@@ -90,7 +90,7 @@
 					<select name="studentId_add">
 						<?php foreach ($studentsNotInClass as $currStudent) : ?>
 						<option value="<?php echo $currStudent->getStudentID(); ?>"  >
-							<?php echo $currStudent->getLastName(); echo ", "; echo $currStudent->getFirstName(); ?>
+							<?php echo $currStudent->getLastName(); echo ", "; echo $currStudent->getFirstName(); echo ", "; echo $currStudent->getGrade(); echo " Grade ";?>
 						</option>
 						<?php endforeach; ?>
 					</select>		
