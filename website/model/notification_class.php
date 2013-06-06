@@ -48,6 +48,14 @@ class Notification {
     public function getAtt() {
         return $this->att_ty_id;
     }
-        
+    
+    public function getStLname(){
+        return $this->st_Lname;
+    }
+
+        public function getStFname(){
+        return $this->st_Fname;
+    }
+    
 }
 ?>

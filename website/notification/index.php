@@ -20,7 +20,7 @@ if (isset($_POST['action'])) {
 if ($action == 'show_notif_form') {             
     
 	$notifs = NotificationDB::getNotifs();
-        //$attenTys = AttendanceTypeDB::getAttendanceTypes();
+        $attenTys = AttendanceTypeDB::getAttendanceTypes();
        
         include('view_notification.php');
 
