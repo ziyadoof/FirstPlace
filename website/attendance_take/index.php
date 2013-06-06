@@ -17,6 +17,7 @@ require('../model/attendance_class.php');
 require('../model/attendance_db.php');
 require('../model/holiday_class.php');
 require('../model/holiday_db.php');
+require('../model/attendance_info.php');
 
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
@@ -100,8 +101,12 @@ if ($action == 'take_attendance') {
 	
 	AttendanceDB::addManyAttendance($attend);
 	
-	$msg = "Attendance was successfully taken.";
-	include('messages.php');
+	$TodaysDate = date("Y-m-d");
+	$selected_class_id = $_POST['classId_add_0'];
+	$ClassRow = ClassInfoDB::getClassByID($selected_class_id);
+	$attendacneRecords = AttendanceDB::getAttendanceFullInfoByClassAndDay($selected_class_id,$TodaysDate);//Get Attendance info
+
+	include('view_attendance_after_insert.php');
 	
 }
 ?>
