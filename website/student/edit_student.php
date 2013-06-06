@@ -35,7 +35,7 @@ require('../calendar/classes/tc_calendar.php');
                                                 <option value="NotSpecified"  <?php if($studentEdit->getGrade() == NULL){ echo "selected";}?>>No Grade</option>
                                                 <option value="1st"<?php if($studentEdit->getGrade() == '1st'){ echo "selected";}?> >1st </option>
                                                 <option value="2nd" <?php if($studentEdit->getGrade() == '2nd'){ echo "selected";}?>>2nd</option>
-                                                <option value="3th" <?php if($studentEdit->getGrade() == '3rd'){ echo "selected";}?>>3th</option>
+                                                <option value="3th" <?php if($studentEdit->getGrade() == '3rd'){ echo "selected";}?>>3rd</option>
                                                 <option value="4th" <?php if($studentEdit->getGrade() == '4th'){ echo "selected";}?>>4th</option>
                                                 <option value="5th" <?php if($studentEdit->getGrade() == '5th'){ echo "selected";}?>>5th</option>
                                                 <option value="6th" <?php if($studentEdit->getGrade() == '6th'){ echo "selected";}?>>6th</option>
