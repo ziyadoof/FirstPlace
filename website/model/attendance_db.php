@@ -32,6 +32,30 @@ class AttendanceDB {
         //TODO
         return $student;
     }
+	
+    public static function getAttendanceFullInfoByClassAndDay($class_id, $DayDate) {
+		$db = Database::getDB();
+        
+		$query = "SELECT * FROM ViewAttendanceInfo
+                  WHERE Class_ID = '$class_id' AND Att_Date = '$DayDate' ORDER BY FirstName";
+		
+		//Get the results into array
+		$result = $db->query($query);
+		$ateendences = array();
+		foreach ($result as $row) {
+            $attend = new AttendanceInfo($row['Student_s_id'],
+									$row['Class_ID'],
+									$row['att_Ty_ID'],
+									$row['Att_Date'],
+									$row['Comment'],
+									$row['att_Ty_Name'],
+									$row['FirstName'],
+									$row['LastName']);
+			
+            $ateendences[] = $attend;
+        }
+		return $ateendences;
+    }
 
     public static function addManyAttendance($atthendances) {
         

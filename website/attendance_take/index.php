@@ -1,6 +1,6 @@
 <?php
 
-//Employee Managment indes file
+//Take Attendance Managment indes file
 
 require('../model/mysql_connect.php');
 require('../model/class_Info_class.php');
