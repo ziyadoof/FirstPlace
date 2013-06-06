@@ -1,4 +1,5 @@
-<?php include '../view/header.php'; ?>
+<?php include '../view/header.php'; 
+require ('../school_year_mgmt/schoolCalendar.php');?>
 
 <div id="content">
 	<h1>Select a class for the current year</h1>
@@ -17,8 +18,12 @@
 		<tr>
 			<td><?php echo $classes->getStdClassName(); ?></td>
 			<td><?php echo $classes->getClassYearName(); ?></td>
-			<td><input type='date' name='selected_date' required /></td>
-			<td>
+			 <td><?php                                 
+                                        $myCalendar = new schoolCalendar("selected_date", true, false);
+                                        $myCalendar->disableAllHolidays();
+                                        $myCalendar->writeScript();
+                                        ?>  </td>
+                	<td>
 				<input type="hidden" name="action" value="view_attendance" />
 				<input type="hidden" name="ClassID" value="<?php echo $classes->getC_id(); ?>" />
 				<input type="submit" value="Select" />

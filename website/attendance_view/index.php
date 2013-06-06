@@ -17,7 +17,8 @@ require('../model/attendance_info.php');
 require('../model/student_class.php');
 require('../model/student_db.php');
 require('../model/student_classes_info_class.php');
-
+require('../model/schoolYear_class.php');
+require('../model/schoolYear_db.php');
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
 } else if (isset($_GET['action'])) {
