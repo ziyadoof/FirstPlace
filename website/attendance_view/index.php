@@ -57,17 +57,18 @@ if ($action == 'select_attendance') {
 	$selected_student_id = $_POST['student_id'];
 
 	$StudentClasses = ClassInfoDB::getClassesForStudent($selected_student_id);
-	//$attendacneRecords = AttendanceDB::getAttendanceFullInfoByClassAndDay($selected_class_id,$date_selected);//Get Attendance info
 	
 	include('classes_for_student.php');
 } else if ($action == 'view_attendenc_for_std_in_class') {
 	
 	
-	$selected_student_id = $_POST['student_id'];
+	$selected_std_id = $_POST['student_id'];
+	$selected_class_id = $_POST['class_id'];
+	$selected_start = $_POST['req_start_date'];
+	$selected_end = $_POST['req_end_date'];
 
-	$StudentClasses = ClassInfoDB::getClassesForStudent($selected_student_id);
-	//$attendacneRecords = AttendanceDB::getAttendanceFullInfoByClassAndDay($selected_class_id,$date_selected);//Get Attendance info
+	$attendacneRecords = AttendanceDB::getAttendanceFullInfoByClassAndDay($selected_class_id, $selected_std_id, $selected_start, $selected_end);//Get Attendance info
 	
-	include('classes_for_student.php');
+	include('view_attendance_for_student.php');
 }
 ?>

@@ -97,5 +97,29 @@ class AttendanceDB {
 		$row_count = $db->exec($query);
         return $row_count;
     }
+
+    public static function getAttendanceFullInfoByClassAndStudentAndDayRange($class_id, $std_id, $start_date, $end_date) {
+		$db = Database::getDB();
+        
+		$query = "SELECT * FROM ViewAttendanceInfo
+					WHERE Class_ID = '$class_id' AND Student_s_id = '$std_id' AND Att_Date BETWEEN '$start_date' AND '$end_date' ORDER BY Att_Date";
+		
+		//Get the results into array
+		$result = $db->query($query);
+		$ateendences = array();
+		foreach ($result as $row) {
+            $attend = new AttendanceInfo($row['Student_s_id'],
+									$row['Class_ID'],
+									$row['att_Ty_ID'],
+									$row['Att_Date'],
+									$row['Comment'],
+									$row['att_Ty_Name'],
+									$row['FirstName'],
+									$row['LastName']);
+			
+            $ateendences[] = $attend;
+        }
+		return $ateendences;
+	}
 }
 ?>
