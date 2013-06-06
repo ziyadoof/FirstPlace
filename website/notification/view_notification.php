@@ -27,9 +27,9 @@
 				<?php echo $notif->getStLname(); ?>
 			</td>
                          <td><?php foreach ($attenTy as $attendT )
-					if ( $notif->getAtt() == $attendT->getAttType_id() ) {
-						echo $attendT->getAttType_Name();
-					} ?></td>
+				if ( $notif->getAtt() == $attendT->getAttType_id() ) {
+					echo $attendT->getAttType_Name();
+				} ?></td>
                 </form>
 			</td>			
 		</tr>
