@@ -54,12 +54,11 @@ require ('schoolCalendar.php');
 	
 	<table id='displaytable' class='imagetable'>
 		<tr>
-			<th colspan='4' class='tableTitle'>Holidays List for School Year</th>
+			<th colspan='3' class='tableTitle'>Holidays List for School Year</th>
 		</tr>
 		<tr>
 			<th>Holiday Name</th>
- 			<th>Start Date</th>
-			<th>End Date</th>
+ 			<th>Date</th>
 			<th>Action</th>
 		</tr>
                 <tr>
@@ -68,11 +67,6 @@ require ('schoolCalendar.php');
 				<td><input type='text' name='new_holiday_name'  /></td>
 				<td><?php                                 
                                         $myCalendar = new schoolCalendar("new_holiday_sd", true, false);
-                                        $myCalendar->disableHolidays($SY_ToBeEdited->getSy_id());
-                                        $myCalendar->writeScript();
-                                        ?>  </td>
-				<td><?php                                 
-                                        $myCalendar = new schoolCalendar("new_holiday_ed", true, false);
                                         $myCalendar->disableHolidays($SY_ToBeEdited->getSy_id());
                                         $myCalendar->writeScript();
                                         ?>  </td>
@@ -86,7 +80,6 @@ require ('schoolCalendar.php');
 		<tr>
 			<td><?php echo $YHoliday->getName(); ?></td>
 			<td><?php echo $YHoliday->getStartDate(); ?></td>
-			<td><?php echo $YHoliday->getEndDate(); ?></td>
 			<td>
 				<form class='inline' method='post' action='index.php'>
 					<input type="hidden" name="action" value="delete_holiday_from_year" />

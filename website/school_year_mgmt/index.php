@@ -106,19 +106,18 @@ if ($action == 'show_add_schoolYear_form') {
 } else if ($action == 'add_holiday_to_year') {
 	
 	$Hli_SD = $_POST['new_holiday_sd'];
-	$Holi_ED = $_POST['new_holiday_ed'];
 	$Holi_Name = $_POST['new_holiday_name'];
 	$Scl_Year_ID = $_POST['AddTo_schoolyear_id'];
 
 
 	// Validate the inputs
-	if (empty($Hli_SD) || empty($Holi_ED) || empty($Scl_Year_ID)) 
+	if (empty($Hli_SD) || empty($Scl_Year_ID)) 
 	{
 		$error = "Oops..., Something went wrong! Please try again.";
 		include('../errors/error.php');
 	}else {
 		//Set vlaues
-		$HlidayRow = new Holiday("",$Scl_Year_ID, $Hli_SD, $Holi_ED);
+		$HlidayRow = new Holiday("",$Scl_Year_ID, $Hli_SD, $Hli_SD);
 		$HlidayRow->setName($Holi_Name);
 			
 		//insert
