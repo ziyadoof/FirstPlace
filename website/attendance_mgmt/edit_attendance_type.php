@@ -9,7 +9,7 @@
 
 		<table id='formtable' class='imagetable'>
 			<tr>
-				<th colspan='2' class='tableTitle'>Attendance Type Infomation</th>
+				<th colspan='2' class='tableTitle'>Attendance Type Information</th>
 			</tr>
  			<tr>
  				<th>* Attendance Type Name</th>
