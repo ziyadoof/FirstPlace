@@ -15,7 +15,8 @@ require('../model/attendanceType_class.php');
 require('../model/attendanceType_db.php');
 require('../model/attendance_class.php');
 require('../model/attendance_db.php');
-
+require('../model/holiday_class.php');
+require('../model/holiday_db.php');
 
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
@@ -56,18 +57,28 @@ if ($action == 'take_attendance') {
 		$availableDate = $attDate;
 	}
 	
+	$class_selected = ClassDB::getClassById($class_id_selected);
+	$studentsInClass = StudentDB::getStudentsByClassId($class_id_selected);
+	$AttTypes = AttendanceTypeDB::getAttendanceTypes();
+	$ClassInfo = ClassInfoDB::getClassByID($class_id_selected);
+	
+	$SchoolYearID = $class_selected->getSchoolYear_id();
+	$isHlidayToday = HolidayDB::getHolidaysBysYearID_and_Date($SchoolYearID, $TodayDate);
+	
+	$isHolSD = $isHlidayToday->getStartDate();
+	$isHolED = $isHlidayToday->getEndDate();
+	$isHolName = $isHlidayToday->getName();
 	
 	if ($TodayDate = $availableDate) 
 	{
 		$msg = "Attendance is already taken for this class today. Please contact your admin for editing.";
 		include('messages.php');
-	} else 
+	} elseif ($isHolSD != NULL) {
+		$msg = "Today is a holiday(".$isHolSD." - ".$isHolED."), you can't take attendance for today.";
+		include('messages.php');
+	
+	}else
 	{
-		$class_selected = ClassDB::getClassById($class_id_selected);
-		$studentsInClass = StudentDB::getStudentsByClassId($class_id_selected);
-		$AttTypes = AttendanceTypeDB::getAttendanceTypes();
-		$ClassInfo = ClassInfoDB::getClassByID($class_id_selected);
-
 		include('take_attendance.php');
 	}
 	
@@ -92,110 +103,5 @@ if ($action == 'take_attendance') {
 	$msg = "Attendance was successfully taken.";
 	include('messages.php');
 	
-} else if ($action == 'edit_employee') {
-
-	if (isset($_POST['employee_id'])) {
-		$empIdToEdit = $_POST['employee_id'];
-	} else {
-		$empIdToEdit = $_GET['employee_id'];
-	}
-	
-	$rooms = RoomDB::getRooms();
-	$roles = RoleDB::getRoles();
-	//$empIdToEdit = $_POST['employee_id']; 	
-	$employee = EmployeeDB::getEmployee($empIdToEdit);
-	$EmpSpecialtis = SpecialtyDB::getSpecialtiesForEmp($empIdToEdit); //Get specilaties for the specified employee
-	$NotEmpSpecialties = SpecialtyDB::getSpecialtiesNotForEmp($empIdToEdit); //Get all specialties
-
-	include ('edit_employee.php');
-	
-} else if ($action == 'delete_employee') {
-	
-	$empIdToDelete = $_POST['employee_id']; 
-	
-	$DelEmployee = EmployeeDB::getEmployee($empIdToDelete);
-	$ToBeDeletedEmpID = $DelEmployee->getEmployeeID();
-	
-	if (empty($ToBeDeletedEmpID)) 
-	{
-		$error = "Invalid employee data. Check all fields and try again.";
-		include('../errors/error.php');
-	} else 
-	{
-		EmployeeDB::deleteEmployee($ToBeDeletedEmpID);
-		header("Location: .?action=show_add_employee_form");
-	}		
-	
-} else if ($action == 'update_employee') {
-	
-	$firstname = $_POST['firstName_cuurent'];
-	$lastname = $_POST['lastName_cuurent'];
-	$phonenumber = $_POST['phoneNumber_cuurent'];
-	$address = $_POST['address_cuurent'];
-	$email_address = $_POST['email_cuurent'];
-	$classroom = $_POST['classRoom_cuurent'];
-	$roleID = $_POST['New_RoleID'];
-	$eID = $_POST['empID_cuurent']; 
-	
-	if (empty($firstname) || empty($lastname) || empty($email_address) || empty($eID) || empty($roleID)) 
-	{
-		$error = "Invalid employee data. Check all fields and try again.";
-		include('../errors/error.php');
-	} else 
-	{
-		//Set vlaues
-		$employeeNew = new Employee($firstname, $lastname, $email_address, $username, $password, $classroom);
-		$employeeNew->setEmployeeID($eID);
-		$employeeNew->setRoleID($roleID);
-		$employeeNew->setPhoneNum($phonenumber);
-		$employeeNew->setAddress($address);
-		
-		//updated
-		EmployeeDB::updateEmployee($employeeNew); //big employee role problem!
-	}
-	//go back to show the employee
-	header("Location: .?action=show_add_employee_form");
-	
-	
-} else if ($action == 'add_spes_to_emp') {   //Add Speciality to Employee
-	
-	$specID = $_POST['spes_id'];
-	$EmpID = $_POST['employee_id'];
-	
-	if (empty($specID) || empty($EmpID)) 
-	{
-		$error = "Oops..., Something went wrong! Please try again.";
-		include('../errors/error.php');
-	} else 
-	{
-		//Set vlaues
-		$EmpSpesLink = new EmployeeHasSpecialty($EmpID, $specID);
-		
-		//updated
-		EmployeeHasSpecialtyDB::addSpecialtyToEmployee($EmpSpesLink); //big employee role problem!
-	}
-	//go back to show the employee
-	header("Location: .?action=edit_employee&employee_id=".$EmpID);
-	
-	
-} else if ($action == 'drop_spes_from_emp') {   //Remove Speciality from Employee
-	
-	$specID = $_POST['spes_id'];
-	$EmpID = $_POST['employee_id'];
-	
-	if (empty($specID) || empty($EmpID)) 
-	{
-		$error = "Oops..., Something went wrong! Please try again.";
-		include('../errors/error.php');
-	} else 
-	{
-		//Set vlaues
-		$EmpSpesLink = new EmployeeHasSpecialty($EmpID, $specID);
-		
-		//updated
-		EmployeeHasSpecialtyDB::deleteSpecialtyFromEmployee($EmpSpesLink); //big employee role problem!
-	}
-	//go back to show the employee
-	header("Location: .?action=edit_employee&employee_id=".$EmpID);
 }
 ?>

@@ -18,8 +18,8 @@
 				    <select name="ClassID">
 						<?php foreach ($AvailableClasses as $classes) : ?>
 						<option value="<?php echo $classes->getC_id(); ?>">
-							<?php echo $classes->getStdClassName(); ?>, 
-							<?php echo $classes->getClassYearName(); ?>, 
+							<?php echo $classes->getStdClassName(); ?>,  
+							<?php echo $classes->getClassYearName(); ?>
 						</option>
 						<?php endforeach; ?>
 					</select>

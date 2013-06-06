@@ -23,6 +23,23 @@ class HolidayDB {
         }
 		return $holidays;
     }
+	
+    public static function getHolidaysBysYearID_and_Date($SchoolYearID, $TodayDate) {
+		$db = Database::getDB();
+        
+		$query = "SELECT * FROM holiday WHERE SchoolYear_sy_id = '$SchoolYearID' AND StartDate <= '$TodayDate' AND EndDate >= '$TodayDate';";
+		
+		//Get the results into array
+		$result = $db->query($query);
+        $row = $result->fetch();
+        $holiday = new Holiday($row['holi_id'],
+								$row['SchoolYear_sy_id'],
+								$row['StartDate'],
+								$row['EndDate']);
+		$holiday->setName($row['Name']);
+        
+		return $holiday;
+    }
     
     
     public static function addHoliday($RowToAdd) {

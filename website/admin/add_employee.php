@@ -87,11 +87,6 @@
 					<input type="hidden" name="employee_id" value="<?php echo $employee->getEmployeeID(); ?>" />
                     <input type="submit" value="Profile/Edit" />
                 </form>
-				<form class='inline' method='post' action='index.php'>
-					<input type="hidden" name="action" value="delete_employee" />
-					<input type="hidden" name="employee_id" value="<?php echo $employee->getEmployeeID(); ?>" />
-                    <input type="submit" value="Delete" />
-                </form>
 			</td>			
 		</tr>
 		<?php endforeach; ?>
