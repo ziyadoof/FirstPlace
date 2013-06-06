@@ -54,7 +54,7 @@
 						<li><a href="/FirstPlace/website/attendance_mgmt/?action=show_add_att_type_form">Attendance types Management</a></li>
 					</ul>
 				</li>
-				<li><a href="/FirstPlace/website/notification/view_notification.php">Notifications</a>
+				<li><a href="/FirstPlace/website/notification/?action=show_notif_form">Notifications</a>
 			</ul>
 		</ul>
 	</nav>
