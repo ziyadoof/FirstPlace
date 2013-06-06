@@ -19,7 +19,7 @@
             <td><?php echo $student->getGrade(); ?></td>
             <td>
 				<form class='inline' method='post' action='index.php'>
-					<input type="hidden" name="action" value="selected_student" />
+					<input type="hidden" name="action" value="edit_student" />
 					<input type="hidden" name="student_id" value="<?php echo $student->getStudentID(); ?>" />
                     <input type="submit" value="Select" />
                 </form>
