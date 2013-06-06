@@ -1,7 +1,7 @@
 <?php include '../view/header.php'; ?>
 
 <div id="content">
-	<h1>Select on of this year classes</h1>
+	<h1>Select a class for the current year</h1>
 	<table id='displaytable' class='imagetable'>
 		<tr>
 			<th colspan='4' class='tableTitle'>Classes List</th>
