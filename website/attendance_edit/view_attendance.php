@@ -53,7 +53,7 @@
 							<?php endforeach; ?>
 						</select>
 					</td>
-					<td><input type='text' name='att_comment' value="<?php echo $attInfoRow->getAttComment(); ?>" required /></td>
+					<td><input type='text' name='att_comment' value="<?php echo $attInfoRow->getAttComment(); ?>" /></td>
 					<td>
 						<input type="hidden" name="action" value="update_attendance" />
 						<input type="hidden" name="class_id" value="<?php echo $attInfoRow->getAtt_class_id(); ?>" />
