@@ -179,13 +179,10 @@ CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Attendance` (
   `att_Ty_ID` INT NOT NULL ,
   `Att_Date` DATE NOT NULL ,
   `Comment` VARCHAR(500) NULL DEFAULT NULL ,
-  `Attendance_Student_s_id` INT NOT NULL ,
-  `Attendance_Class_ID` INT NOT NULL ,
   INDEX `fk_Attendance_Student1_idx` (`Student_s_id` ASC) ,
   INDEX `c_id_idx` (`Class_ID` ASC) ,
   INDEX `att_Ty_ID_idx` (`att_Ty_ID` ASC) ,
-  PRIMARY KEY (`Student_s_id`, `Class_ID`, `Attendance_Student_s_id`, `Attendance_Class_ID`) ,
-  INDEX `fk_Attendance_Attendance1_idx` (`Attendance_Student_s_id` ASC, `Attendance_Class_ID` ASC) ,
+  PRIMARY KEY (`Student_s_id`, `Class_ID`) ,
   CONSTRAINT `fk_Attendance_c_id_Class`
     FOREIGN KEY (`Class_ID` )
     REFERENCES `FirstPlace`.`Class` (`c_id` )
@@ -199,11 +196,6 @@ CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Attendance` (
   CONSTRAINT `fk_Attendance_att_Ty_D_AttendanceType`
     FOREIGN KEY (`att_Ty_ID` )
     REFERENCES `FirstPlace`.`Attendance_type` (`att_Ty_ID` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Attendance_Attendance1`
-    FOREIGN KEY (`Attendance_Student_s_id` , `Attendance_Class_ID` )
-    REFERENCES `FirstPlace`.`Attendance` (`Student_s_id` , `Class_ID` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -607,7 +599,7 @@ BEGIN
 INSERT INTO Logs (`log_Date`, `emp_id`, `log_type_id`, `att_id`, `new_att_Ty`)
 SELECT now(), 1, Log_Type.log_ty_id, new.Student_s_id, new.att_Ty_ID
 FROM Log_Type
-WHERE Log_Type.log_ty_name = 'Attendence_Add';
+WHERE Log_Type.log_ty_name = 'Attendance_Add';
 END
 $$
 
@@ -623,13 +615,8 @@ BEGIN
 INSERT INTO Logs (`log_Date`, `emp_id`, `log_type_id`, `att_id`, `old_att_Ty`, `new_att_Ty`)
 SELECT now(), 1, Log_Type.log_ty_id, new.Student_s_id, old.att_Ty_ID, new.att_Ty_ID
 FROM Log_Type
-WHERE Log_Type.log_ty_name = 'Attendence_Update';
+WHERE Log_Type.log_ty_name = 'Attendance_Update';
 
-
-INSERT INTO Notification (`Student_s_id`, `Employee_emp_id`, `Notf_date`)
-SELECT new.Student_s_id, Student.Employee_emp_id, now()
-FROM Student
-WHERE Student.s_id = Attendance.Student_s_id;
 END
 $$
 
@@ -781,4 +768,3 @@ INSERT INTO `FirstPlace`.`Log_Type` (`log_ty_ID`, `log_ty_name`) VALUES (NULL, '
 INSERT INTO `FirstPlace`.`Log_Type` (`log_ty_ID`, `log_ty_name`) VALUES (NULL, '');
 
 COMMIT;
-
