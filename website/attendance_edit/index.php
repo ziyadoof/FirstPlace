@@ -45,6 +45,37 @@ if ($action == 'select_attendance') {
 	
 } else if ($action == 'update_attendance') {
 
+	$std_id = $_POST['student_id'];
+	$cls_id = $_POST['class_id'];
+	$att_id = $_POST['attendace_id'];
+	$att_date = $_POST['attDate'];
+	$att_coment = $_POST['att_comment'];
+	
+	if (empty($std_id) || empty($cls_id) || empty($att_id) || empty($att_date)) 
+	{
+		$error = "Oops... something went wrong.";
+		include('../errors/error.php');
+	} else 
+	{
+		//Set vlaues
+		$AttNewRow = new AttendanceTable($std_id, $cls_id, $att_id, $att_date);
+		$AttNewRow->setAttComment($att_coment);
+		
+		//updated
+		AttendanceDB::updateAttendance($AttNewRow);
+		
+		header("Location: .?action=after_update&ClassID=".$cls_id."&selected_date=".$att_date);
+	}
+	
+} else if ($action == 'after_update') {
 
+	$selected_class_id = $_GET['ClassID'];
+	$date_selected = $_GET['selected_date'];
+
+	$ClassRow = ClassInfoDB::getClassByID($selected_class_id);
+	$attendacneRecords = AttendanceDB::getAttendanceFullInfoByClassAndDay($selected_class_id,$date_selected);//Get Attendance info
+	$AttTypes = AttendanceTypeDB::getAttendanceTypes();
+	
+	include('view_attendance_after_update.php');
 }
 ?>

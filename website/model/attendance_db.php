@@ -78,5 +78,24 @@ class AttendanceDB {
         }
 		
     }
+	
+    public static function updateAttendance($AttRow){
+		$db = Database::getDB();
+		
+		$std_id = $AttRow->getAtt_student_id();
+		$cls_id = $AttRow->getAtt_class_id();
+		$att_type_id = $AttRow->getAtt_type_id();
+		$att_current_date = $AttRow->getAtt_date();
+		$att_comment = $AttRow->getAttComment();
+	
+		$query = 
+			"UPDATE attendance
+			SET att_Ty_ID = '$att_type_id' , 
+				Comment = '$att_comment'
+			WHERE Student_s_id = '$std_id' AND Class_ID = '$cls_id' AND Att_Date = '$att_current_date'";
+		
+		$row_count = $db->exec($query);
+        return $row_count;
+    }
 }
 ?>

@@ -166,7 +166,7 @@ if ($action == 'show_add_employee_form') {
 		$EmpSpesLink = new EmployeeHasSpecialty($EmpID, $specID, "");
 		
 		//updated
-		EmployeeHasSpecialtyDB::deleteSpecialtyFromEmployee($EmpSpesLink); //big employee role problem!
+		EmployeeHasSpecialtyDB::deleteSpecialtyFromEmployee($EmpSpesLink); 
 	}
 	//go back to show the employee
 	header("Location: .?action=edit_employee&employee_id=".$EmpID);

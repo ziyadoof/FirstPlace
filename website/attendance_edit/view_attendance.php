@@ -37,9 +37,10 @@
 			<th>Action</th>
 		</tr>
 		<!-- s -->
-		<form class='inline' method='post' action='index.php' name='attendencePosts'>
-			<?php foreach ($attendacneRecords as $attInfoRow) : ?>
-				<tr>
+		
+		<?php foreach ($attendacneRecords as $attInfoRow) : ?>
+			<tr>
+				<form class='inline' method='post' action='index.php' name='attendencePosts'>
 					<td><?php echo $attInfoRow->getAtt_date(); ?></td>
 					<td><?php echo $attInfoRow->getAtt_s_FName(); ?></td>
 					<td><?php echo $attInfoRow->getAtt_s_LName(); ?></td>
@@ -60,9 +61,9 @@
 						<input type="hidden" name="attDate" value="<?php echo $attInfoRow->getAtt_date(); ?>" />
 						<input type="submit" value="Update" />
 					</td>
-				</tr>
-			<?php endforeach; ?>
-		</form>
+				</form>
+			</tr>
+		<?php endforeach; ?>
 	</table>
 	
 </div> <!-- #content -->
