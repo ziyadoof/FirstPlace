@@ -39,7 +39,12 @@ if ($action == 'select_attendance') {
 
 	$ClassRow = ClassInfoDB::getClassByID($selected_class_id);
 	$attendacneRecords = AttendanceDB::getAttendanceFullInfoByClassAndDay($selected_class_id,$date_selected);//Get Attendance info
+	$AttTypes = AttendanceTypeDB::getAttendanceTypes();
 	
 	include('view_attendance.php');
+	
+} else if ($action == 'update_attendance') {
+
+
 }
 ?>

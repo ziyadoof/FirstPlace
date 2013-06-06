@@ -49,6 +49,7 @@
 				<li><a href="#">Attendance</a>
 					<ul>
 						<li><a href="/FirstPlace/website/attendance_take/?action=take_attendance">Take Attendance</a></li>
+						<li><a href="/FirstPlace/website/attendance_edit/?action=select_attendance">Edit Attendance</a></li>
 						<li><a href="/FirstPlace/website/attendance_view/?action=select_attendance">View Attendance</a></li>
 						<li><a href="/FirstPlace/website/attendance_mgmt/?action=show_add_att_type_form">Attendance types Management</a></li>
 					</ul>
