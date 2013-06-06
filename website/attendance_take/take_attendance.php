@@ -55,7 +55,7 @@
 							<?php endforeach; ?>
 						</select>
 					</td>
-					<td><input type="textarea" name="attendance_comment_<?php echo $number_of_rows; ?>" /></td>
+					<td><textarea name="attendance_comment_<?php echo $number_of_rows; ?>" rows='1' cols='20' value=""></textarea></td>
 				</tr>
 			<?php $number_of_rows++; ?>
 			<?php endforeach; ?>

@@ -179,11 +179,10 @@ CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Attendance` (
   `att_Ty_ID` INT NOT NULL ,
   `Att_Date` DATE NOT NULL ,
   `Comment` VARCHAR(500) NULL DEFAULT NULL ,
-  `att_id` INT NOT NULL AUTO_INCREMENT ,
   INDEX `fk_Attendance_Student1_idx` (`Student_s_id` ASC) ,
   INDEX `c_id_idx` (`Class_ID` ASC) ,
   INDEX `att_Ty_ID_idx` (`att_Ty_ID` ASC) ,
-  PRIMARY KEY (`att_id`) ,
+  PRIMARY KEY (`Student_s_id`, `Class_ID`) ,
   CONSTRAINT `fk_Attendance_c_id_Class`
     FOREIGN KEY (`Class_ID` )
     REFERENCES `FirstPlace`.`Class` (`c_id` )
@@ -296,13 +295,12 @@ CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Notification` (
   `Student_s_id` INT NOT NULL ,
   `Employee_emp_id` INT NOT NULL ,
   `Notf_Date` DATETIME NOT NULL ,
-  `Att_att_id` INT NOT NULL ,
   PRIMARY KEY (`Notf_ID`) ,
+  INDEX `att_id_idx` (`Student_s_id` ASC) ,
   INDEX `fk_Notification_Employee1_idx` (`Employee_emp_id` ASC) ,
-  INDEX `fk_Notification_att_id_Student_idx` (`Att_att_id` ASC) ,
-  CONSTRAINT `fk_Notification_att_id`
-    FOREIGN KEY (`Att_att_id` )
-    REFERENCES `FirstPlace`.`Attendance` (`att_id` )
+  CONSTRAINT `fk_Notification_att_id_Student`
+    FOREIGN KEY (`Student_s_id` )
+    REFERENCES `FirstPlace`.`Attendance` (`Student_s_id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Notification_Employee1`
@@ -332,7 +330,7 @@ DROP TABLE IF EXISTS `FirstPlace`.`Logs` ;
 
 CREATE  TABLE IF NOT EXISTS `FirstPlace`.`Logs` (
   `log_ID` INT NOT NULL AUTO_INCREMENT ,
-  `log_Date`  NOT NULL ,
+  `log_Date` DATETIME NOT NULL ,
   `emp_id` INT NOT NULL ,
   `log_type_id` INT NOT NULL ,
   `att_ID` INT NOT NULL ,
@@ -427,11 +425,6 @@ CREATE TABLE IF NOT EXISTS `FirstPlace`.`logsAtt_view` (`emp_id` INT, `emp_first
 -- Placeholder table for view `FirstPlace`.`ViewAttendanceInfo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `FirstPlace`.`ViewAttendanceInfo` (`Student_s_id` INT, `Class_ID` INT, `att_Ty_ID` INT, `Att_Date` INT, `Comment` INT, `att_Ty_Name` INT, `FirstName` INT, `LastName` INT);
-
--- -----------------------------------------------------
--- Placeholder table for view `FirstPlace`.`notification_view`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `FirstPlace`.`notification_view` (`emp_id` INT, `emp_firstname` INT, `emp_lastname` INT, `not_id` INT, `not_Date` INT, `att_id` INT, `st_id` INT, `st_firstname` INT, `st_lastname` INT);
 
 -- -----------------------------------------------------
 -- View `FirstPlace`.`ViewRooms`
@@ -607,34 +600,6 @@ CREATE  OR REPLACE VIEW `FirstPlace`.`ViewAttendanceInfo` AS
 SELECT Student_s_id, Class_ID, attendance.att_Ty_ID, Att_Date, Comment, att_Ty_Name, FirstName, LastName From student
 JOIN attendance ON attendance.Student_s_id = student.s_id
 JOIN attendance_type ON attendance.att_Ty_ID = attendance_type.att_Ty_ID;
-
--- -----------------------------------------------------
--- View `FirstPlace`.`notification_view`
--- -----------------------------------------------------
-DROP VIEW IF EXISTS `FirstPlace`.`notification_view` ;
-DROP TABLE IF EXISTS `FirstPlace`.`notification_view`;
-USE `FirstPlace`;
-CREATE  OR REPLACE VIEW `FirstPlace`.`notification_view` AS
- select 
-		`e`.`emp_id` AS `emp_id`,
-        `e`.`FirstName` AS `emp_firstname`,
-        `e`.`LastName` AS `emp_lastname`,
-        `no`.`Notf_ID` AS `not_id`,
-        `no`.`Notf_Date` AS `not_Date`,
-		`no`.`Att_att_id` AS `att_id`,
-		`s`.`s_id` AS `st_id`,
-		`s`.`FirstName` AS `st_firstname`,
-		`s`.`LastName` AS `st_lastname`
-    from
-        `Employee` AS `e`,
-        `Notification` AS `no`,
-		`Student` AS `s`,
-		`Attendance` AS `att`
-    where
-        ((`no`.`Employee_emp_id` = `e`.`emp_id`) AND (`att`.`Student_s_id` = `s`.`s_id`)
-		AND (`no`.`Att_att_id` = `att`.`att_id`))
-	order by `no`.`Notf_Date` DESC;
-;
 USE `FirstPlace`;
 
 DELIMITER $$
@@ -642,8 +607,6 @@ DELIMITER $$
 USE `FirstPlace`$$
 DROP TRIGGER IF EXISTS `FirstPlace`.`Attendance_LogTrig_ADD` $$
 USE `FirstPlace`$$
-
-
 
 
 CREATE TRIGGER `Attendance_LogTrig_ADD` AFTER INSERT ON Attendance FOR EACH ROW
@@ -662,8 +625,6 @@ DROP TRIGGER IF EXISTS `FirstPlace`.`Attendance_AUPD` $$
 USE `FirstPlace`$$
 
 
-
-
 CREATE TRIGGER `Attendance_AUPD` AFTER UPDATE ON Attendance FOR EACH ROW
 -- Edit trigger body code below this line. Do not edit lines above this one
 BEGIN
@@ -672,10 +633,6 @@ SELECT now(), 1, Log_Type.log_ty_id, new.Student_s_id, old.att_Ty_ID, new.att_Ty
 FROM Log_Type
 WHERE Log_Type.log_ty_name = 'Attendance_Update';
 
-INSERT INTO Notification (`Notf_Date`, `Employee_emp_id`, `Att_att_id`)
-SELECT now(), s.Employee_emp_id, new.att_id
-FROM Student AS s
-WHERE s.Employee_emp_id = new.Student_s_id;
 END
 $$
 
