@@ -82,7 +82,24 @@
 			<th>Student Name</th>
 			<th>Action</th>
 		</tr>
-
+                <!-- A single table row to allow adding students (not already in the class) to this class -->
+		<tr>
+			<form class='inline' method='post' action='index.php'>
+				<input type="hidden" name="classId_edit" value="<?php echo $classToEdit->getC_id(); ?>" />
+				<td>
+					<select name="studentId_add">
+						<?php foreach ($studentsNotInClass as $currStudent) : ?>
+						<option value="<?php echo $currStudent->getStudentID(); ?>"  >
+							<?php echo $currStudent->getLastName(); echo ", "; echo $currStudent->getFirstName(); ?>
+						</option>
+						<?php endforeach; ?>
+					</select>		
+				</td>
+                                <td>
+					<input type="hidden" name="action" value="add_student_to_class" />
+					<input type="submit" value="Add to class" />
+				</td>	
+			</form>
 		<!-- #Students that are currently in this class -->
 		<?php foreach ($studentsInClass as $currStudent) : ?>
 				<tr>
@@ -98,24 +115,6 @@
 				</tr>
 		<?php endforeach; ?>	
 		
-		<!-- A single table row to allow adding students (not already in the class) to this class -->
-		<tr>
-			<form class='inline' method='post' action='index.php'>
-				<input type="hidden" name="classId_edit" value="<?php echo $classToEdit->getC_id(); ?>" />
-				<td>
-					<select name="studentId_add">
-						<?php foreach ($studentsNotInClass as $currStudent) : ?>
-						<option value="<?php echo $currStudent->getStudentID(); ?>"  >
-							<?php echo $currStudent->getLastName(); echo ", "; echo $currStudent->getFirstName(); ?>
-						</option>
-						<?php endforeach; ?>
-					</select>		
-				</td>
-				<td>
-					<input type="hidden" name="action" value="add_student_to_class" />
-					<input type="submit" value="Add to class" />
-				</td>	
-			</form>
 		</tr>
 
 	</table>	
