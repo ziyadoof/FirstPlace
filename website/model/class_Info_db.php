@@ -45,5 +45,24 @@ class ClassInfoDB {
 		
         return $class;
 	}
+	
+	public static function getClassesForStudent($StudentID) {
+       $db = Database::getDB();
+	   
+	   $query = "SELECT * FROM ViewClassesForStudent WHERE s_id = '$StudentID'";
+	   
+	   //Get the results into array
+		$result = $db->query($query);
+		$classes = array();
+		foreach ($result as $row) {
+            $class = new StudentClassesInfo($row['s_id'],
+								$row['c_id'],
+								$row['FirstName'],
+								$row['LastName'],
+								$row['ClassName']);								
+			$classes[] = $class;
+        }
+        return $classes;
+	}
 }
 ?>

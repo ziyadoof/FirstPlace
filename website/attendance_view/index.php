@@ -16,6 +16,7 @@ require('../model/holiday_db.php');
 require('../model/attendance_info.php');
 require('../model/student_class.php');
 require('../model/student_db.php');
+require('../model/student_classes_info_class.php');
 
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
@@ -46,10 +47,27 @@ if ($action == 'select_attendance') {
 } else if ($action == 'by_student') {
 	
 	$students = StudentDB::getStudents();	//variable will hold all the students
-
-	//$ClassRow = ClassInfoDB::getClassByID($selected_class_id);
-	//$attendacneRecords = AttendanceDB::getAttendanceFullInfoByClassAndDay($selected_class_id,$date_selected);//Get Attendance info
 	
 	include('select_student_attendance.php');
+	
+	
+}  else if ($action == 'selected_student') {
+	
+	
+	$selected_student_id = $_POST['student_id'];
+
+	$StudentClasses = ClassInfoDB::getClassesForStudent($selected_student_id);
+	//$attendacneRecords = AttendanceDB::getAttendanceFullInfoByClassAndDay($selected_class_id,$date_selected);//Get Attendance info
+	
+	include('classes_for_student.php');
+} else if ($action == 'view_attendenc_for_std_in_class') {
+	
+	
+	$selected_student_id = $_POST['student_id'];
+
+	$StudentClasses = ClassInfoDB::getClassesForStudent($selected_student_id);
+	//$attendacneRecords = AttendanceDB::getAttendanceFullInfoByClassAndDay($selected_class_id,$date_selected);//Get Attendance info
+	
+	include('classes_for_student.php');
 }
 ?>
