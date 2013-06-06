@@ -33,7 +33,7 @@ require('../calendar/classes/tc_calendar.php');
 						<option value="NotSpecified">No Grade</option>
 						<option value="1st">1st</option>
                                                 <option value="2nd">2nd</option>
-                                                <option value="3th">3th</option>
+                                                <option value="3th">3rd</option>
                                                 <option value="4th">4th</option>
                                                 <option value="5th">5th</option>
                                                 <option value="6th">6th</option>
