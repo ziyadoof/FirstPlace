@@ -21,11 +21,13 @@
  			<tr>
                                 <td><?php                                 
                                         $myCalendar = new schoolCalendar("startY_new", true, false);
+                                        $myCalendar->setDate(date('d'), date('m'), date('Y'));
                                         $myCalendar->disableAllHolidays();
                                         $myCalendar->writeScript();
                                         ?>  </td>
                                 <td><?php                                 
                                         $myCalendar = new schoolCalendar("endY_new", true, false);
+                                        $myCalendar->setDate(date('d'), date('m'), date('Y'));
                                         $myCalendar->disableAllHolidays();
                                         $myCalendar->writeScript();
                                         ?>  </td>				
