@@ -1,10 +1,11 @@
-<?php include '../view/header.php'; ?>
+<?php include '../view/header.php'; 
+require ('../school_year_mgmt/schoolCalendar.php');?>
 
 <div id="content">
 	<h1>Select a class</h1>
 	<table id='displaytable' class='imagetable'>
 		<tr>
-			<th colspan='2' class='tableTitle'>Classes List</th>
+			<th colspan='4' class='tableTitle'>Classes List</th>
 		</tr>
 		<tr>
 			<th>First Name</th>
@@ -16,8 +17,16 @@
 		<form class='inline' method='post' action='index.php'>
 		<tr>
 			<td><?php echo $classRow->getClass_Name(); ?></td>
-			<td><input type="date" name="req_start_date" required /></td>
-			<td><input type="date" name="req_end_date" required /></td>
+	                <td><?php                                 
+                                        $myCalendar = new schoolCalendar("req_start_date", true, false);
+                                        $myCalendar->disableAllHolidays();
+                                        $myCalendar->writeScript();
+                                        ?>  </td>
+                        <td><?php                                 
+                                        $myCalendar = new schoolCalendar("req_end_date", true, false);
+                                        $myCalendar->disableAllHolidays();
+                                        $myCalendar->writeScript();
+                                        ?>  </td>
             <td>
 
 					<input type="hidden" name="action" value="view_attendenc_for_std_in_class" />

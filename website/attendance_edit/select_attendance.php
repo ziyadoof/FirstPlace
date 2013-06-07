@@ -22,6 +22,7 @@
                         <td><?php                                 
                                         $myCalendar = new schoolCalendar("selected_date", true, false);
                                         $myCalendar->disableAllHolidays();
+                                        $myCalendar->setDate(date('d'), date('m'), date('Y'));
                                         $myCalendar->writeScript();
                                         ?>  </td>
 			<td>
