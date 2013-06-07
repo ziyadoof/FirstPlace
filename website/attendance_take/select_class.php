@@ -1,7 +1,7 @@
 <?php include '../view/header.php'; ?>
 
 <div id="content">
-	<h1>Select on of this year classes</h1>
+	<h1>Select a class for the current year</h1>
     <form action="index.php" method="post" class="imagetable" id="formtable">
         <input type="hidden" name="action" value="take_attendance_for_class" />
 

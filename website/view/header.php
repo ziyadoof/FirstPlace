@@ -50,7 +50,7 @@
 					<ul>
 						<li><a href="/FirstPlace/website/attendance_take/?action=take_attendance">Take Attendance</a></li>
 						<li><a href="/FirstPlace/website/attendance_edit/?action=select_attendance">Edit Attendance</a></li>
-						<li><a href="/FirstPlace/website/attendance_view/?action=select_attendance">View Attendance</a>
+						<li><a href="/FirstPlace/website/attendance_view/?action=select_attendance">View Attendance  >></a>
 							<ul>
 								<li><a href="/FirstPlace/website/attendance_view/?action=select_attendance">By class</a></li>
 								<li><a href="/FirstPlace/website/attendance_view/?action=by_student">By Student</a></li>
