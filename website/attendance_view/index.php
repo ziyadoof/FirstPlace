@@ -68,8 +68,15 @@ if ($action == 'select_attendance') {
 	$selected_start = $_POST['req_start_date'];
 	$selected_end = $_POST['req_end_date'];
 
-	$attendacneRecords = AttendanceDB::getAttendanceFullInfoByClassAndDay($selected_class_id, $selected_std_id, $selected_start, $selected_end);//Get Attendance info
-	
+	if (empty($selected_std_id) || empty($selected_class_id) || empty($selected_start) || empty($selected_end)) 
+	{
+		$error = "Invalid employee data. Check all fields and try again.";
+		include('../errors/error.php');
+	} else 
+	{
+
+	$attendanceRecords = AttendanceDB::getAttendanceFullInfoByClassAndStudentAndDayRange($selected_class_id, $selected_std_id, $selected_start, $selected_end);//Get Attendance info
 	include('view_attendance_for_student.php');
+	}
 }
 ?>

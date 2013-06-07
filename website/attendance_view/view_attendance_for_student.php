@@ -13,7 +13,7 @@
 			<th>Comment</th>
 		</tr>
 		<!-- #Students that are currently in this class -->
-		<?php foreach ($attendacneRecords as $attInfoRow) : ?>
+		<?php foreach ($attendanceRecords as $attInfoRow) : ?>
 			<tr>
 				<td><?php echo $attInfoRow->getAtt_date(); ?></td>
 				<td><?php echo $attInfoRow->getAttTypeName(); ?></td>

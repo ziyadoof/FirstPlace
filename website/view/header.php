@@ -53,7 +53,7 @@
 						<li><a href="/FirstPlace/website/attendance_view/?action=select_attendance">View Attendance  >></a>
 							<ul>
 								<li><a href="/FirstPlace/website/attendance_view/?action=select_attendance">By class</a></li>
-								<li><a href="/FirstPlace/website/attendance_view/?action=by_student">By Student</a></li>
+							<!--	<li><a href="/FirstPlace/website/attendance_view/?action=by_student">By Student</a></li> -->
 							</ul>
 						</li>
 						<li><a href="/FirstPlace/website/attendance_mgmt/?action=show_add_att_type_form">Attendance types Management</a></li>
