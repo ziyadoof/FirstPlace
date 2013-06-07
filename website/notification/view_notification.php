@@ -7,21 +7,16 @@
 
 		<table id='formtable' class='imagetable'>
 			<tr>
-				<th colspan='6' class='tableTitle'>View Notifications</th>
+				<th colspan='3' class='tableTitle'>View Notifications</th>
 			</tr>
  			<tr>
  				<th>Date</th>
-				<th>Case Worker</th>
-                                <th>Student</th>
+		                <th>Student</th>
                                 <th>Attend</th>
   			</tr>
  		<?php foreach ($notifs as $notif) : ?>
 		<tr>
 			<td><?php echo $notif->getNotf_date(); ?></td>  
-                        <td> <?php echo $notif->getCW_Fname(); ?>
-				<?php echo ',' ?>
-				<?php echo $notif->getCW_Lname(); ?>
-			</td>
                         <td> <?php echo $notif->getStFname(); ?>
 				<?php echo ',' ?>
 				<?php echo $notif->getStLname(); ?>
